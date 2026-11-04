@@ -1,0 +1,78 @@
+---
+// Builds one page per core country, such as /countries/uae.
+// External powers have no page of their own: they appear through relationships.
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sources from '../../components/Sources.astro';
+import Value from '../../components/Value.astro';
+
+// Astro runs this during the build to learn which pages to create.
+export async function getStaticPaths() {
+  const countries = await getCollection('countries', (entry) => entry.data.region === 'core');
+  return countries.map((country) => ({
+    params: { slug: country.id },
+    props: { country },
+  }));
+}
+
+interface Props {
+  country: CollectionEntry<'countries'>;
+}
+const { country } = Astro.props;
+const data = country.data;
+const { Content } = await render(country); // Turns the Markdown body into HTML
+---
+<BaseLayout title={data.name}>
+  <h1>{data.name}</h1>
+  <p class="lead"><Value value={data.summary} /></p>
+
+  <section>
+    <h2>Key figures</h2>
+    <dl class="facts">
+      <div><dt>GDP (US$ billions)</dt><dd><Value value={data.gdpUsdBn} /></dd></div>
+      <div><dt>GDP per person (US$)</dt><dd><Value value={data.gdpPerCapitaUsd} /></dd></div>
+      <div><dt>Population</dt><dd><Value value={data.population} /></dd></div>
+      <div><dt>Oil and gas share of exports (%)</dt><dd><Value value={data.oilGasShareOfExportsPct} /></dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Trade</h2>
+    <h3>Top exports</h3>
+    <ul>{data.topExports.map((item) => <li><Value value={item} /></li>)}</ul>
+    <h3>Top partners</h3>
+    <ul>{data.topPartners.map((item) => <li><Value value={item} /></li>)}</ul>
+  </section>
+
+  <section>
+    <h2>Sovereign wealth funds</h2>
+    {data.sovereignWealthFunds.length === 0 ? (
+      <p>None listed.</p>
+    ) : (
+      <ul>
+        {data.sovereignWealthFunds.map((fund) => (
+          <li>
+            <Value value={fund.name} />: assets under management (US$ billions):{' '}
+            <Value value={fund.aumUsdBn} />
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <section>
+    <h2>Currency regime</h2>
+    <p><Value value={data.currencyRegime} /></p>
+    <h2>Diversification plan</h2>
+    <p><Value value={data.diversificationPlan} /></p>
+    <h2>Key risks</h2>
+    <ul>{data.keyRisks.map((item) => <li><Value value={item} /></li>)}</ul>
+  </section>
+
+  <section class="prose">
+    <h2>Analysis</h2>
+    <Content />
+  </section>
+
+  <Sources sources={data.sources} lastUpdated={data.lastUpdated} />
+</BaseLayout>

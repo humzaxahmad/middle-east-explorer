@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="About">
+  <h1>About this project</h1>
+  <p class="lead">
+    Middle East Explorer helps students, from high school upward, learn about the
+    economics and geopolitics of the Middle East and how the region interacts
+    with major powers.
+  </p>
+
+  <section>
+    <h2>How to use it</h2>
+    <p>
+      Click a country on the globe to read a short summary. Click a second country
+      to see how the two are connected. Core countries have full profile pages.
+      External powers (the United States, China, India, Russia, the United Kingdom
+      and the European Union) appear through their relationships with the region.
+      You can also <a href="/browse">browse all pages</a> as a simple list.
+    </p>
+  </section>
+
+  <section>
+    <h2>Sources policy</h2>
+    <ul>
+      <li>Figures and facts are entered by hand and cited to their sources.</li>
+      <li>Every country and relationship page lists its sources and its last-updated date.</li>
+      <li>
+        A field that hasn't been filled in yet says <span class="todo">TODO — fill in</span>.
+        Nothing is estimated to fill a gap.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Map boundaries</h2>
+    <p>
+      {/* Keep links on the same line as the words around them, or the spaces get lost. */}
+      Country shapes come from <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a> and are shown unchanged.
+      Their use here doesn't represent a position on any disputed border or territory.
+    </p>
+  </section>
+</BaseLayout>

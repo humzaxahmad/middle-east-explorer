@@ -1,0 +1,29 @@
+---
+// The sources list and last-updated date shown on every content page.
+import { TODO } from '../data/countries';
+import Value from './Value.astro';
+
+interface Props {
+  sources: { title: string; url: string }[];
+  lastUpdated: string | Date;
+}
+const { sources, lastUpdated } = Astro.props;
+---
+<section class="sources">
+  <h2>Sources</h2>
+  <ul>
+    {sources.map((source) => (
+      <li>
+        {source.url === TODO ? (
+          // A placeholder isn't a real address, so it doesn't become a link.
+          <Value value={source.title} />
+        ) : (
+          <a href={source.url} target="_blank" rel="noopener noreferrer">
+            <Value value={source.title} />
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+  <p class="last-updated">Last updated: <Value value={lastUpdated} /></p>
+</section>

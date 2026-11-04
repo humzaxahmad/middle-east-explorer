@@ -1,0 +1,43 @@
+---
+// The full-screen globe area, plus a fallback message and the page's data.
+import { getCollection } from 'astro:content';
+import InfoPanel from './InfoPanel.astro';
+
+// Runs at build time. Gathers just what the panel needs from the Markdown files,
+// so the browser doesn't have to download whole profiles.
+const countries = await getCollection('countries');
+const relationships = await getCollection('relationships');
+const panelData = {
+  countries: countries.map((country) => ({
+    code: country.data.iso3,
+    summary: country.data.summary,
+  })),
+  relationships: relationships.map((relationship) => ({
+    slug: relationship.id,
+    summary: relationship.data.summary,
+  })),
+};
+
+// The "<" replacement stops any text in the data from closing the script tag early.
+const panelJson = JSON.stringify(panelData).replace(/</g, '\\u003c');
+---
+<div id="globe"></div>
+<InfoPanel />
+
+<!-- Shown while the globe's code downloads, which can take a moment on a phone. -->
+<p id="globe-loading" class="globe-message">Loading the globe…</p>
+<p id="globe-message" class="globe-message" hidden>
+  The globe couldn't load. Your browser may not support 3D graphics, or the map data may have failed to download. Try refreshing the page, or <a href="/browse">browse all pages</a> instead.
+</p>
+<noscript>
+  <style>#globe-loading { display: none; }</style>
+  <p class="globe-message">The globe needs JavaScript. You can still <a href="/browse">browse all pages</a>.</p>
+</noscript>
+
+<!-- The data is stored in the page as JSON, for globe.ts to read in the browser. -->
+<script id="panel-data" type="application/json" set:html={panelJson}></script>
+
+<script>
+  // Astro bundles this import and runs it in the browser.
+  import '../scripts/globe';
+</script>

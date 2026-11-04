@@ -1,0 +1,12 @@
+---
+// The side panel. It starts empty, and src/scripts/globe.ts fills it in when a
+// country is clicked. aria-live makes screen readers announce the new content.
+---
+<aside id="panel" class="panel" aria-live="polite">
+  <button id="panel-reset" class="panel-reset" type="button">Reset selection</button>
+  <p id="panel-type" class="panel-type"></p>
+  <h2 id="panel-title"></h2>
+  <p id="panel-summary"></p>
+  <p id="panel-hint" class="panel-hint"></p>
+  <a id="panel-link" class="panel-link" href="/"></a>
+</aside>

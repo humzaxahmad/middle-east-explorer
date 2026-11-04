@@ -1,0 +1,64 @@
+---
+// A plain list of every page on the site, built from the Markdown files.
+// It gives people another way in if they can't use the globe, such as keyboard
+// and screen-reader users, and it gives search engines links they can follow.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { COUNTRIES, findCountry } from '../data/countries';
+
+const countryFiles = await getCollection('countries');
+const relationshipFiles = await getCollection('relationships');
+
+// Every core country appears, whether or not its file exists yet.
+const coreCountries = COUNTRIES.filter((country) => country.region === 'core');
+const externalPowers = COUNTRIES.filter((country) => country.region === 'external');
+const hasFile = (slug: string) => countryFiles.some((file) => file.id === slug);
+
+// The schema already checked both codes, so the "!" is safe: they will be found.
+const relationships = relationshipFiles
+  .map((file) => ({
+    slug: file.id,
+    name: `${findCountry(file.data.countryA)!.name} and ${findCountry(file.data.countryB)!.name}`,
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+<BaseLayout title="Browse">
+  <h1>Browse all pages</h1>
+  <p class="lead">Everything on the globe, as a simple list.</p>
+
+  <section>
+    <h2>Core countries</h2>
+    <ul>
+      {coreCountries.map((country) => (
+        <li>
+          {hasFile(country.slug) ? (
+            <a href={`/countries/${country.slug}`}>{country.name}</a>
+          ) : (
+            <>{country.name} <span class="coming-soon">(coming soon)</span></>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Relationships</h2>
+    {relationships.length === 0 ? (
+      <p>Coming soon.</p>
+    ) : (
+      <ul>
+        {relationships.map((relationship) => (
+          <li><a href={`/relationships/${relationship.slug}`}>{relationship.name}</a></li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <section>
+    <h2>External powers</h2>
+    <p>These appear through their relationships with the region, listed above:</p>
+    <ul>
+      {externalPowers.map((country) => <li>{country.name}</li>)}
+    </ul>
+  </section>
+</BaseLayout>

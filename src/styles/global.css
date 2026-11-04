@@ -1,0 +1,335 @@
+/* Colours and sizes used across the site, kept here so they're easy to change. */
+:root {
+  --navy: #0b1730;
+  --ink: #1b2536;
+  --muted: #5a6577;
+  --line: #dde2ea;
+  --paper: #ffffff;
+  --page: #f5f7fa;
+  --link: #1557b0;
+  --todo-bg: #fff3c4;
+  --todo-ink: #6b4e00;
+}
+
+/* Makes widths include padding, which keeps layouts simpler to reason about. */
+* {
+  box-sizing: border-box;
+}
+
+/* Make sure anything marked "hidden" stays hidden, even if a later rule sets
+   its display. Without this, a class with display: inline-block would show it. */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--link);
+}
+
+/* Top navigation */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--navy);
+}
+.site-header a {
+  color: #fff;
+  text-decoration: none;
+}
+.site-header a:hover {
+  text-decoration: underline;
+}
+.site-name {
+  font-weight: 700;
+}
+.site-header nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* The white column of text on content pages */
+.page {
+  max-width: 46rem;
+  margin: 1.5rem auto;
+  padding: 1.5rem 1.25rem 2.5rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+h2 {
+  margin: 1.75rem 0 0.4rem;
+  font-size: 1.25rem;
+}
+h3 {
+  margin: 1rem 0 0.25rem;
+  font-size: 1rem;
+}
+p {
+  margin: 0 0 0.75rem;
+}
+ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.lead {
+  font-size: 1.15rem;
+}
+.eyebrow {
+  margin-bottom: 0.25rem;
+  color: var(--muted);
+}
+
+/* Label-and-value grid. It drops to one column on narrow screens. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  margin: 0.5rem 0 0;
+}
+.facts div {
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.facts dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Highlight for fields that are still placeholders */
+.todo {
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+  background: var(--todo-bg);
+  color: var(--todo-ink);
+  font-weight: 500;
+}
+
+.sources {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+}
+.coming-soon {
+  color: var(--muted);
+}
+.last-updated {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  /* On small screens the white column fills the whole width. */
+  .page {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
+}
+
+/* ---------- Globe homepage ---------- */
+.globe-page {
+  overflow: hidden; /* The globe fills the window, so the page shouldn't scroll. */
+  background: var(--navy);
+  color: #fff;
+}
+
+#globe {
+  width: 100vw;
+  /* dvh allows for mobile browser bars. The vh line is a fallback for older browsers. */
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* The title and legend float above the globe. They let mouse events pass through
+   so you can still drag the globe underneath them, except on the links. */
+.globe-header,
+.legend {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+}
+.globe-header {
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+  padding: 0.9rem 1.25rem;
+}
+.globe-header h1 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.globe-header a {
+  color: #fff;
+  pointer-events: auto;
+}
+.globe-nav {
+  display: flex;
+  gap: 1rem;
+}
+/* A dark outline keeps white text readable when bright countries pass behind it. */
+.globe-header,
+.legend {
+  text-shadow: 0 0 3px var(--navy), 0 0 6px var(--navy), 0 1px 2px var(--navy);
+}
+
+.legend {
+  bottom: 1rem;
+  left: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.legend-hint {
+  margin-top: 0.25rem;
+  opacity: 0.85;
+}
+.swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 3px;
+}
+/* These two match COLOURS in src/scripts/globe.ts. */
+.swatch-core {
+  background: #2dd4bf;
+}
+.swatch-external {
+  background: #f59e0b;
+}
+
+.globe-message {
+  position: fixed;
+  top: 40%;
+  left: 1.25rem;
+  right: 1.25rem;
+  max-width: 30rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.globe-message a {
+  color: #fff;
+}
+
+/* ---------- Side panel ---------- */
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: min(24rem, 100%);
+  padding: 1.25rem;
+  overflow-y: auto;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.35);
+  /* Hidden off to the right until it's opened. "visibility" also stops keyboard
+     users tabbing into it while it's closed. */
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.25s ease, visibility 0.25s;
+}
+.panel.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+.panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.panel-type {
+  margin: 1rem 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.panel-hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.panel-link {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+.panel-reset {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--page);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.panel-reset:hover {
+  border-color: var(--muted);
+}
+
+/* A clear outline for people moving around the site with the keyboard. */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+/* ---------- Phones: the side panel becomes a bottom sheet ---------- */
+@media (max-width: 800px) {
+  .panel {
+    top: auto;
+    left: 0;
+    width: 100%;
+    max-height: 55vh;
+    max-height: 55dvh;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.35);
+    /* Hidden below the screen until it's opened. */
+    transform: translateY(100%);
+  }
+  .panel.is-open {
+    transform: translateY(0);
+  }
+  .panel h2 {
+    font-size: 1.25rem;
+  }
+  /* A bigger button that's comfortable to tap with a finger. */
+  .panel-reset {
+    min-height: 44px;
+  }
+}

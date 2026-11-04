@@ -1,0 +1,20 @@
+---
+// Shows one data value. Numbers get commas and dates get written out.
+// Placeholder text is highlighted so unfinished fields are easy to spot.
+import { TODO } from '../data/countries';
+
+interface Props {
+  value: string | number | Date;
+}
+const { value } = Astro.props;
+
+let shown = String(value);
+if (typeof value === 'number') {
+  shown = value.toLocaleString('en-US');
+} else if (value instanceof Date) {
+  // Markdown dates have no time zone, so we read them as UTC. Otherwise some
+  // visitors would see the day before.
+  shown = value.toLocaleDateString('en-GB', { dateStyle: 'long', timeZone: 'UTC' });
+}
+---
+{value === TODO ? <span class="todo">{shown}</span> : shown}

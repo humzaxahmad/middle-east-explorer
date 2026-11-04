@@ -1,0 +1,29 @@
+---
+// The homepage. It has its own full-screen shell instead of BaseLayout,
+// because the globe fills the whole window.
+import '../styles/global.css';
+import Globe from '../components/Globe.astro';
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Middle East Explorer</title>
+    <meta name="description" content="An interactive globe for learning about the economics and geopolitics of the Middle East." />
+  </head>
+  <body class="globe-page">
+    <header class="globe-header">
+      <h1>Middle East Explorer</h1>
+      <nav class="globe-nav"><a href="/browse">Browse</a> <a href="/about">About</a></nav>
+    </header>
+    <main>
+      <Globe />
+    </main>
+    <ul class="legend">
+      <li><span class="swatch swatch-core"></span>Core countries</li>
+      <li><span class="swatch swatch-external"></span>External powers</li>
+      <li class="legend-hint">Click or tap a coloured country to begin</li>
+    </ul>
+  </body>
+</html>

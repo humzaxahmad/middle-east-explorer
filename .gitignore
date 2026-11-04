@@ -1,0 +1,12 @@
+# Downloaded libraries: anyone can recreate this folder with "npm install"
+node_modules/
+
+# Files Astro generates: recreated on every build
+dist/
+.astro/
+
+# Vercel's local settings
+.vercel/
+
+# Mac system files
+.DS_Store

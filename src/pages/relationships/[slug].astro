@@ -1,0 +1,72 @@
+---
+// Builds one page per relationship file, such as /relationships/uae-uk.
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sources from '../../components/Sources.astro';
+import Value from '../../components/Value.astro';
+import { findCountry } from '../../data/countries';
+
+export async function getStaticPaths() {
+  const relationships = await getCollection('relationships');
+  return relationships.map((relationship) => ({
+    params: { slug: relationship.id },
+    props: { relationship },
+  }));
+}
+
+interface Props {
+  relationship: CollectionEntry<'relationships'>;
+}
+const { relationship } = Astro.props;
+const data = relationship.data;
+const { Content } = await render(relationship);
+
+// The schema already checked both codes, so the "!" is safe: they will be found.
+const countryA = findCountry(data.countryA)!;
+const countryB = findCountry(data.countryB)!;
+const pairName = `${countryA.name} and ${countryB.name}`;
+
+// Only link to a country if its page exists. That means a core country with a
+// Markdown file, since external powers have no page of their own.
+const coreFiles = await getCollection('countries', (entry) => entry.data.region === 'core');
+const hasPage = (slug: string) => coreFiles.some((entry) => entry.id === slug);
+---
+<BaseLayout title={pairName}>
+  <p class="eyebrow">
+    {hasPage(countryA.slug) ? <a href={`/countries/${countryA.slug}`}>{countryA.name}</a> : countryA.name}
+    {' and '}
+    {hasPage(countryB.slug) ? <a href={`/countries/${countryB.slug}`}>{countryB.name}</a> : countryB.name}
+  </p>
+  <h1><Value value={data.title} /></h1>
+  <p class="lead"><Value value={data.summary} /></p>
+
+  <section>
+    <h2>Trade</h2>
+    <dl class="facts">
+      <div><dt>{countryA.name} to {countryB.name}</dt><dd><Value value={data.tradeAtoB} /></dd></div>
+      <div><dt>{countryB.name} to {countryA.name}</dt><dd><Value value={data.tradeBtoA} /></dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Investment flows</h2>
+    <p><Value value={data.investmentFlows} /></p>
+    <h2>Energy ties</h2>
+    <p><Value value={data.energyTies} /></p>
+    <h2>Security ties</h2>
+    <p><Value value={data.securityTies} /></p>
+    <h2>Recent developments</h2>
+    <ul>{data.recentDevelopments.map((item) => <li><Value value={item} /></li>)}</ul>
+    <h2>Why it matters</h2>
+    <p><Value value={data.whyItMatters} /></p>
+    <h2>Interview angle</h2>
+    <p><Value value={data.interviewAngle} /></p>
+  </section>
+
+  <section class="prose">
+    <h2>Analysis</h2>
+    <Content />
+  </section>
+
+  <Sources sources={data.sources} lastUpdated={data.lastUpdated} />
+</BaseLayout>
