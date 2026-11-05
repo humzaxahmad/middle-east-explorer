@@ -1,0 +1,59 @@
+---
+name: "South Korea"
+iso3: "KOR"
+region: "external"
+gdpUsdBn: 1870
+gdpPerCapitaUsd: 36227
+population: 51684564
+oilGasShareOfExportsPct: 6.7
+notes:
+  - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers. The page gives no year for these figures."
+  - "GDP, GDP per person and population: World Bank, 2025."
+  - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
+  - "Top exports: main export sectors. World's Top Exports reports broader categories for 2025, so this list has no percentages."
+  - "Korea Investment Corporation assets: Global SWF figure, October 2026."
+  - "Kuwait and Iraq shares: Kuwait's is from 2024 CEPII BACI data shown by World Trade Atlas, and Iraq's ranking covers crude only, from Shafaq News."
+topExports:
+  - "Semiconductors"
+  - "Automobiles"
+  - "Petrochemicals"
+  - "Shipbuilding"
+  - "Steel"
+topPartners:
+  - "China (18%)"
+  - "United States (17%)"
+  - "Vietnam (9%)"
+  - "Taiwan (7%)"
+  - "Hong Kong (5%)"
+sovereignWealthFunds:
+  - name: "Korea Investment Corporation (KIC)"
+    aumUsdBn: 232
+    note: "Global SWF figure, October 2026."
+currencyRegime: "South Korean won (floating)"
+diversificationPlan: "Not applicable — South Korea has a large, diversified advanced economy."
+keyRisks:
+  - "Oil prices: in March 2026 Korean research institutes estimated that a prolonged Iran war could cut growth by up to 0.8 percentage points, pushing it into the low 1% range, or toward zero if the conflict lasts a year."
+  - "Energy dependence: South Korea relies heavily on Middle Eastern crude, and Morgan Stanley lists it among the economies most exposed to oil and gas deficits."
+  - "Inflation and the won: a weaker won on top of higher oil prices raises inflation, which could force the Bank of Korea to keep interest rates higher for longer."
+summary: "South Korea is a major buyer of Gulf energy. In 2024 it was Kuwait's second-largest export destination, taking 13% of Kuwait's exports, and the third-largest buyer of Iraqi crude. It ranked second among Qatar's export destinations in 2023, and Qatar supplied about 15% of its LNG in 2025, making Gulf energy security a direct concern for Seoul."
+sources:
+  - title: "World Bank Open Data, South Korea"
+    url: "https://data.worldbank.org/country/korea-rep"
+  - title: "World's Top Exports, \"South Korea's Top Exports 2025\""
+    url: "https://www.worldstopexports.com/south-koreas-top-10-exports/"
+  - title: "Global SWF, \"Investor ranking\" (updated October 2026)"
+    url: "https://globalswf.com/ranking"
+  - title: "World Trade Atlas, Kuwait (CEPII BACI data, 2024)"
+    url: "https://world-trade-atlas.vercel.app/countries/KWT"
+  - title: "Shafaq News, \"China, India lead Iraqi oil imports in 2024\" (January 2025)"
+    url: "https://shafaq.com/en/Economy/China-India-lead-Iraqi-oil-imports-in-2024"
+  - title: "World Bank WITS, Qatar exports by country (2023)"
+    url: "https://wits.worldbank.org/CountryProfile/en/Country/QAT/Year/LTST/TradeFlow/Export/Partner/by-country"
+  - title: "Baird Maritime, \"South Korea downplays LNG supply risk after Qatar plant damage\" (March 2026)"
+    url: "https://www.bairdmaritime.com/amp/story/shipping/tankers/gas/south-korea-downplays-lng-supply-risk-after-qatar-plant-damage"
+  - title: "Korea Times, \"Prolonged Iran crisis could drag Korea's growth rate toward 0%\" (March 2026)"
+    url: "https://www.koreatimes.co.kr/economy/policy/20260317/prolonged-iran-crisis-could-drag-koreas-growth-rate-toward-0-report"
+lastUpdated: 2026-11-05
+---
+
+TODO — fill in

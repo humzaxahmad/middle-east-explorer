@@ -7,6 +7,7 @@ gdpPerCapitaUsd: 60496
 population: 83491249
 oilGasShareOfExportsPct: 1.9
 notes:
+  - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers. The page gives no year for these figures."
   - "GDP, GDP per person and population: World Bank."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
   - "Defense exports: the previous German government blocked several export licences for Gulf nations. In February 2026 Chancellor Merz pledged a less restrictive approach, and a temporary licence eased exports of air and naval defense equipment to the six Gulf states and Ukraine from March 20 to September 15, 2026."
@@ -17,12 +18,18 @@ topExports:
   - "Chemicals"
   - "Arms & defense equipment"
 topPartners:
-  - "TODO — fill in"
+  - "United States (9%)"
+  - "France (8%)"
+  - "Netherlands (7%)"
+  - "Poland (6%)"
+  - "Italy (5%)"
 sovereignWealthFunds: []
 currencyRegime: "Euro"
 diversificationPlan: "Not applicable — Germany has a large, diversified advanced economy."
 keyRisks:
-  - "TODO — fill in"
+  - "Energy supply: the IMF calls the extent of energy-market disruption from the Middle East war the euro area's largest source of uncertainty, and says a slower restoration of supply would damp growth and raise inflation."
+  - "Slower growth: in July 2026 the IMF projected euro-area growth of 0.9% in 2026, 0.5 percentage points below its pre-war forecast, with inflation rising to 2.9%."
+  - "Reliance on Middle East arms buyers: the region took 37% of Germany's arms exports in 2020-24, so instability or policy changes there directly affect its defense industry."
 summary: "Germany supplied 7.6% of the Middle East's arms imports in 2020-24, and the region was the largest destination for German arms exports, at 37%. In 2026 it eased arms exports to the Gulf, after the previous government blocked several licences. In July 2026 the IMF said the Middle East war was weakening the euro area, which includes Germany, taking 0.5 percentage points off 2026 growth and raising inflation."
 sources:
   - title: "World Bank Open Data, Germany"
@@ -39,6 +46,8 @@ sources:
     url: "https://www.ukrinform.net/amp/rubric-economy/4103755-germany-eases-arms-export-rules-for-ukraine-gulf-states-to-boost-air-defense.html"
   - title: "IMF, \"IMF Executive Board Concludes 2026 Consultation with Euro Area\" (July 2026)"
     url: "https://www.imf.org/en/news/articles/2026/07/16/pr26247-euro-area-imf-concludes-2026-consultation"
+  - title: "World's Top Exports, \"Germany's Top Exports 2025\""
+    url: "https://www.worldstopexports.com/germanys-top-10-exports/"
 lastUpdated: 2026-11-05
 ---
 

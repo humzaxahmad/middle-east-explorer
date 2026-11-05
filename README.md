@@ -45,6 +45,8 @@ Each country has a code, used inside files, and a slug, used for filenames and U
 | India | `IND` | `ind` | external |
 | Russia | `RUS` | `rus` | external |
 | United Kingdom | `GBR` | `uk` | external |
+| South Korea | `KOR` | `kor` | external |
+| Japan | `JPN` | `jpn` | external |
 | France | `FRA` | `fra` | external |
 | Germany | `DEU` | `deu` | external |
 | Italy | `ITA` | `ita` | external |

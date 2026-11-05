@@ -35,6 +35,8 @@ export const COUNTRIES = [
   { code: 'IND', slug: 'ind', name: 'India', region: 'external', lat: 21, lng: 79 },
   { code: 'RUS', slug: 'rus', name: 'Russia', region: 'external', lat: 60, lng: 95 },
   { code: 'GBR', slug: 'uk', name: 'United Kingdom', region: 'external', lat: 54, lng: -2 },
+  { code: 'KOR', slug: 'kor', name: 'South Korea', region: 'external', lat: 36.5, lng: 127.8 },
+  { code: 'JPN', slug: 'jpn', name: 'Japan', region: 'external', lat: 36.5, lng: 138 },
   // France, Germany and Italy are EU members, but each is clickable on its own.
   { code: 'FRA', slug: 'fra', name: 'France', region: 'external', lat: 46.5, lng: 2.5 },
   { code: 'DEU', slug: 'deu', name: 'Germany', region: 'external', lat: 51, lng: 10 },
