@@ -24,20 +24,30 @@ export const COUNTRIES = [
   { code: 'EGY', slug: 'egy', name: 'Egypt', region: 'core', lat: 26.5, lng: 30 },
   { code: 'TUR', slug: 'tur', name: 'Turkey', region: 'core', lat: 39, lng: 35 },
   { code: 'IRQ', slug: 'irq', name: 'Iraq', region: 'core', lat: 33, lng: 44 },
+  { code: 'JOR', slug: 'jor', name: 'Jordan', region: 'core', lat: 31, lng: 36.5 },
+  { code: 'SYR', slug: 'syr', name: 'Syria', region: 'core', lat: 35, lng: 38.5 },
+  { code: 'LBN', slug: 'lbn', name: 'Lebanon', region: 'core', lat: 33.9, lng: 35.9 },
+  { code: 'PSE', slug: 'pse', name: 'Palestine', region: 'core', lat: 31.9, lng: 35.25 },
+  { code: 'YEM', slug: 'yem', name: 'Yemen', region: 'core', lat: 15.5, lng: 47.5 },
   // External powers
   { code: 'USA', slug: 'usa', name: 'United States', region: 'external', lat: 39, lng: -98 },
   { code: 'CHN', slug: 'chn', name: 'China', region: 'external', lat: 35, lng: 103 },
   { code: 'IND', slug: 'ind', name: 'India', region: 'external', lat: 21, lng: 79 },
   { code: 'RUS', slug: 'rus', name: 'Russia', region: 'external', lat: 60, lng: 95 },
   { code: 'GBR', slug: 'uk', name: 'United Kingdom', region: 'external', lat: 54, lng: -2 },
+  // France, Germany and Italy are EU members, but each is clickable on its own.
+  { code: 'FRA', slug: 'fra', name: 'France', region: 'external', lat: 46.5, lng: 2.5 },
+  { code: 'DEU', slug: 'deu', name: 'Germany', region: 'external', lat: 51, lng: 10 },
+  { code: 'ITA', slug: 'ita', name: 'Italy', region: 'external', lat: 42.8, lng: 12.5 },
   // The EU has no ISO3 country code, so we use the World Bank's code for it.
-  { code: 'EUU', slug: 'eu', name: 'European Union', region: 'external', lat: 50, lng: 10 },
+  { code: 'EUU', slug: 'eu', name: 'European Union', region: 'external', lat: 50.8, lng: 4.4 },
 ] as const;
 
-// The 27 EU members, which the globe treats as one clickable group.
+// The EU members the globe treats as one clickable group. There are 24 here,
+// because France, Germany and Italy have their own entries above.
 export const EU_MEMBERS = [
   'AUT', 'BEL', 'BGR', 'HRV', 'CYP', 'CZE', 'DNK', 'EST', 'FIN',
-  'FRA', 'DEU', 'GRC', 'HUN', 'IRL', 'ITA', 'LVA', 'LTU', 'LUX',
+  'GRC', 'HUN', 'IRL', 'LVA', 'LTU', 'LUX',
   'MLT', 'NLD', 'POL', 'PRT', 'ROU', 'SVK', 'SVN', 'ESP', 'SWE',
 ];
 
@@ -57,7 +67,9 @@ export function relationshipSlug(codeA: unknown, codeB: unknown) {
 }
 
 // Takes a code from the map and finds which clickable entry it belongs to:
-// 'FRA' gives the EU, 'ARE' gives the UAE, and 'BRA' gives undefined (greyed out).
+// 'ESP' gives the EU, 'ARE' gives the UAE, and 'BRA' gives undefined (greyed out).
 export function findCountryOnMap(mapCode: string) {
+  // The map calls Palestine 'PSX', while the World Bank and our files use 'PSE'.
+  if (mapCode === 'PSX') return findCountry('PSE');
   return findCountry(EU_MEMBERS.includes(mapCode) ? 'EUU' : mapCode);
 }

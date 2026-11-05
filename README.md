@@ -35,11 +35,19 @@ Each country has a code, used inside files, and a slug, used for filenames and U
 | Egypt | `EGY` | `egy` | core |
 | Turkey | `TUR` | `tur` | core |
 | Iraq | `IRQ` | `irq` | core |
+| Jordan | `JOR` | `jor` | core |
+| Syria | `SYR` | `syr` | core |
+| Lebanon | `LBN` | `lbn` | core |
+| Palestine | `PSE` | `pse` | core |
+| Yemen | `YEM` | `yem` | core |
 | United States | `USA` | `usa` | external |
 | China | `CHN` | `chn` | external |
 | India | `IND` | `ind` | external |
 | Russia | `RUS` | `rus` | external |
 | United Kingdom | `GBR` | `uk` | external |
+| France | `FRA` | `fra` | external |
+| Germany | `DEU` | `deu` | external |
+| Italy | `ITA` | `ita` | external |
 | European Union | `EUU` | `eu` | external |
 
 ## Add a country

@@ -7,18 +7,20 @@ gdpPerCapitaUsd: 30597
 population: 1600366
 oilGasShareOfExportsPct: 38.2
 notes:
+  - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers."
+  - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: mineral fuels as a share of total exports, 2025, from World's Top Exports. The World Bank's fuel figures for Bahrain since 2021 are near zero, so they aren't used here."
 topExports:
-  - "Aluminum"
-  - "Refined petroleum products & crude oil"
-  - "Iron ore/agglomerates"
-  - "Articles of iron or steel"
+  - "Refined petroleum products & crude oil (38%)"
+  - "Aluminum (26%)"
+  - "Iron ore/agglomerates (8%)"
+  - "Articles of iron or steel (3%)"
 topPartners:
-  - "Saudi Arabia"
-  - "United States"
-  - "United Arab Emirates"
-  - "Netherlands"
+  - "Saudi Arabia (20%)"
+  - "United Arab Emirates (12%)"
+  - "United States (7%)"
+  - "Netherlands (3%)"
 sovereignWealthFunds:
   - name: "Mumtalakat Holding Company"
     aumUsdBn: 18
@@ -30,7 +32,7 @@ keyRisks:
   - "Foreign reserves cover just over two months of prospective non-hydrocarbon imports (IMF), leaving the currency peg vulnerable to external shocks"
   - "Heavy reliance on financial support from Saudi Arabia and Gulf neighbors"
   - "The IMF expected hydrocarbons to provide about half of 2025 government revenue (via AGBI), even though Bahrain is furthest along in diversification among Gulf states"
-summary: "Bahrain is the Gulf's most diversified economy, with aluminum and financial services now rivaling oil as export earners, but that diversification was funded by debt rather than savings. Public debt of about 142% of GDP in 2025 and thin foreign reserves make it the most fiscally exposed economy in the Gulf, and in October 2026 the IMF projected an 11.3% contraction in 2026, followed by 13.9% growth in 2027."
+summary: "Bahrain is the Gulf's most diversified economy, with aluminum and financial services now rivaling oil as export earners, but that diversification was funded by debt rather than savings. Public debt of about 142% of GDP in 2025 and thin foreign reserves make it the most fiscally exposed economy in the Gulf, and with the Iran war closing the Strait of Hormuz, the IMF in October 2026 projected an 11.3% contraction in 2026, followed by 13.9% growth in 2027."
 sources:
   - title: "IMF, \"IMF Executive Board Concludes 2025 Article IV Consultation with The Kingdom of Bahrain\" (press release)"
     url: "https://www.imf.org/en/news/articles/2026/01/27/pr-26023-the-kingdom-of-bahrain-imf-executive-board-concludes-2025-article-iv-consultation"

@@ -31,6 +31,15 @@ interface Pair {
   second: Entry;
 }
 
+// A click area for a country too small to click on the map.
+interface Dot {
+  entry: Entry;
+  lat: number;
+  lng: number;
+  radius: number;
+  visible: boolean;
+}
+
 // What we track as the visitor moves around.
 let hoveredCode: string | null = null;
 let selectedCodes: string[] = []; // Holds zero, one or two codes, like ['ARE', 'GBR']
@@ -163,8 +172,17 @@ async function startGlobe() {
   if (!response.ok) throw new Error('Could not load the map data.');
   const map: { features: MapCountry[] } = await response.json();
 
-  // Bahrain is too small to click at this scale, so it also gets a dot.
-  const dots: Entry[] = [findCountry('BHR')!];
+  // Bahrain, the West Bank and Gaza are too small to click at this scale, so they
+  // get invisible click areas (radius is in degrees). Bahrain also gets a small
+  // visible dot, because its shape is only a pixel or two wide.
+  const bahrain = findCountry('BHR')!;
+  const palestine = findCountry('PSE')!;
+  const dots: Dot[] = [
+    { entry: bahrain, lat: bahrain.lat, lng: bahrain.lng, radius: 0.55, visible: false },
+    { entry: bahrain, lat: bahrain.lat, lng: bahrain.lng, radius: 0.22, visible: true },
+    { entry: palestine, lat: palestine.lat, lng: palestine.lng, radius: 0.42, visible: false }, // West Bank
+    { entry: palestine, lat: 31.42, lng: 34.37, radius: 0.3, visible: false }, // Gaza
+  ];
 
   // globe.gl only recolours when it's given new colour functions, so highlights
   // are applied by calling this after anything changes.
@@ -174,7 +192,8 @@ async function startGlobe() {
         const entry = entryFor(country as MapCountry);
         return entry ? colourFor(entry) : COLOURS.other;
       })
-      .pointColor((dot) => colourFor(dot as Entry));
+      // An alpha of 0 makes a click area see-through, but it can still be clicked.
+      .pointColor((dot) => ((dot as Dot).visible ? colourFor((dot as Dot).entry) : 'rgba(0,0,0,0)'));
   }
 
   function setHovered(code: string | null) {
@@ -275,10 +294,10 @@ async function startGlobe() {
     })
     .pointsData(dots)
     .pointAltitude(0.012)
-    .pointRadius(0.7)
-    .pointLabel((dot) => (dot as Entry).name)
-    .onPointHover((dot) => setHovered(dot ? (dot as Entry).code : null))
-    .onPointClick((dot) => selectCountry((dot as Entry).code))
+    .pointRadius((dot) => (dot as Dot).radius)
+    .pointLabel((dot) => (dot as Dot).entry.name)
+    .onPointHover((dot) => setHovered(dot ? (dot as Dot).entry.code : null))
+    .onPointClick((dot) => selectCountry((dot as Dot).entry.code))
     // The arc is drawn from the first selected country to the second. Its dashes
     // move along the line, which is what makes it look animated.
     .arcStartLat((arc) => (arc as Pair).first.lat)

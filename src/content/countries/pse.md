@@ -1,0 +1,50 @@
+---
+name: "Palestine"
+iso3: "PSE"
+region: "core"
+gdpUsdBn: 17.17
+gdpPerCapitaUsd: 3171
+population: 5413596
+oilGasShareOfExportsPct: 0
+notes:
+  - "Top exports: percentages are shares of total exports in 2023, from World's Top Exports, rounded to whole numbers."
+  - "GDP, GDP per person and population: World Bank, 2025."
+  - "Population: the Palestinian Central Bureau of Statistics separately estimated 5.6 million as of December 2024, including 3.32 million in the West Bank and 2.4 million in Gaza."
+  - "Top exports and partners: World's Top Exports, 2023 data. Partner percentages are shares of total exports, rounded to whole numbers."
+  - "Sovereign wealth funds: none."
+topExports:
+  - "Iron & steel (45%)"
+  - "Fruits & nuts (28%)"
+  - "Animal & vegetable fats and oils (3%)"
+  - "Meat & seafood preparations (3%)"
+  - "Cereal & milk preparations (2%)"
+topPartners:
+  - "Israel (85%)"
+  - "Jordan (7%)"
+  - "United Arab Emirates (2%)"
+  - "United States (1%)"
+  - "Turkey (1%)"
+sovereignWealthFunds: []
+currencyRegime: "No independent currency — the Israeli shekel is used as the primary circulating currency, alongside the Jordanian dinar and US dollar"
+diversificationPlan: "No formal national diversification plan under current conditions; the economy is fragmented into sharply different West Bank and Gaza trajectories rather than following one unified policy direction."
+keyRisks:
+  - "Gaza's economy contracted an estimated 83% in 2024 and was effectively at a standstill in early 2025, while the West Bank economy separately grew 3.2% in 2025"
+  - "Unemployment stood at 69% in Gaza and 29% in the West Bank"
+  - "Trade is heavily dependent on and constrained by Israel (which absorbs the large majority of Palestinian exports and supplies the bulk of imports)"
+  - "Political fragmentation limits unified economic policy"
+summary: "Palestine's economy is sharply divided and remains far below its level before October 2023. A ceasefire in October 2025 halted two years of conflict, but Gaza's roughly 30% growth in 2025 only reflected the collapse the year before, with unemployment at 78% and recovery needs of about $71.5 billion. The West Bank grew about 3% in 2025, while the Palestinian Authority faces a severe cash crisis because the tax revenue Israel collects for it has been suspended since May 2025. UNCTAD says overall GDP shrank a further 6.6% in the first quarter of 2026, and the World Bank says the regional war adds pressure through higher energy and import costs. Reliable unified economic data is difficult to produce given this fragmentation."
+sources:
+  - title: "World Bank Open Data, West Bank and Gaza"
+    url: "https://data.worldbank.org/country/west-bank-and-gaza"
+  - title: "World Bank, \"Impacts of the Conflict in the Middle East on the Palestinian Economy\" (Sept 2025)"
+    url: "https://thedocs.worldbank.org/en/doc/88b250e19a55174787bafafd5322360e-0280012025/original/Palestinian-Economic-Update-Sept2025-FINAL.pdf"
+  - title: "World's Top Exports, \"Palestine's Top Exports\""
+    url: "https://www.worldstopexports.com/palestines-top-10-exports/"
+  - title: "World Bank, \"Economic Update on the West Bank and Gaza\" (May 2026)"
+    url: "https://thedocs.worldbank.org/en/doc/caf69bb9db6d729c6b35254c5815df9a-0280012026/original/Palestinian-Economic-Monitor-5-19-26web.pdf"
+  - title: "Qatar News Agency, \"UNCTAD warns of severe Palestinian economic collapse\" (September 2026)"
+    url: "https://qna.org.qa/en/News-Area/News/2026-9/25/unctad-warns-of-severe-palestinian-economic-collapse"
+lastUpdated: 2026-11-05
+---
+
+TODO — fill in

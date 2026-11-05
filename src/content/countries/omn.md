@@ -7,21 +7,22 @@ gdpPerCapitaUsd: 19947
 population: 5494691
 oilGasShareOfExportsPct: 72.4
 notes:
+  - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Natural gas & LNG uses the figure for petroleum gases."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
-  - "Top partners: export destinations in 2024 BACI trade data, via World Trade Atlas."
+  - "Top partners: export destinations in 2024 BACI trade data, via World Trade Atlas. Percentages are calculated from the export values and total shown there, and rounded to whole numbers."
 topExports:
-  - "Crude oil"
-  - "Refined petroleum products"
-  - "Natural gas & LNG"
-  - "Plastics"
+  - "Crude oil (36%)"
+  - "Refined petroleum products (21%)"
+  - "Natural gas & LNG (9%)"
+  - "Plastics (4%)"
 topPartners:
-  - "China"
-  - "South Korea"
-  - "India"
-  - "Saudi Arabia"
-  - "South Africa"
-  - "Japan"
+  - "China (44%)"
+  - "South Korea (8%)"
+  - "India (6%)"
+  - "Saudi Arabia (5%)"
+  - "South Africa (4%)"
+  - "Japan (4%)"
 sovereignWealthFunds:
   - name: "Oman Investment Authority (OIA)"
     aumUsdBn: 60

@@ -7,21 +7,23 @@ gdpPerCapitaUsd: 50274
 population: 10986300
 oilGasShareOfExportsPct: 68.2
 notes:
+  - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers."
+  - "Top partners: the percentages have no confirmed source yet."
   - "GDP and GDP per person: World Bank, 2024. The World Bank has not published a 2025 GDP figure for the UAE."
   - "Population: derived from 2024 GDP divided by 2024 GDP per person, so the three figures are consistent. The World Bank's population series already runs to 2025, while its GDP data lags to 2024."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2023. This includes coal and leaves out services. The figure of about 62% non-oil exports elsewhere on this page comes from a different source and measure, so the two do not add up to 100%."
 topExports:
-  - "Unwrought gold"
-  - "Crude oil"
-  - "Refined petroleum products"
-  - "Petroleum gases"
-  - "Diamonds"
+  - "Unwrought gold (32%)"
+  - "Crude oil (30%)"
+  - "Refined petroleum products (10%)"
+  - "Petroleum gases (4%)"
+  - "Diamonds (4%)"
 topPartners:
-  - "India"
-  - "Japan"
-  - "China"
-  - "Switzerland"
-  - "Saudi Arabia"
+  - "India (12%)"
+  - "Japan (9%)"
+  - "China (8%)"
+  - "Saudi Arabia (6%)"
+  - "Switzerland (5%)"
 sovereignWealthFunds:
   - name: "Abu Dhabi Investment Authority (ADIA)"
     aumUsdBn: 1128
@@ -58,6 +60,8 @@ sources:
     url: "https://www.imf.org/en/news/articles/2025/10/02/pr-25326-united-arab-emirates-imf-staff-completes-2025-article-iv-mission"
   - title: "Central Bank of the UAE, exchange rate table (August 2026)"
     url: "https://centralbank.ae/media/jqkdbidg/fx_aug26_en.pdf"
+  - title: "World's Top Exports, \"UAE's Top Exports 2025\""
+    url: "https://www.worldstopexports.com/uaes-top-10-exports/"
 lastUpdated: 2026-11-05
 ---
 

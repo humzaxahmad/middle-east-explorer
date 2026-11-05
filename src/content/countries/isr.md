@@ -30,7 +30,7 @@ keyRisks:
   - "Heavy reliance on a concentrated high-tech sector makes growth sensitive to global tech cycles"
   - "An active regional war is a direct risk to the economy"
   - "Its small natural-gas sovereign fund offers limited buffering capacity against currency swings"
-summary: "Israel runs a highly diversified, technology-driven economy, with high-tech products and services making up more than half of exports. A sharply appreciating shekel, which reached a 31-year high against the dollar in April 2026, has become a growing risk to export competitiveness."
+summary: "Israel runs a highly diversified, technology-driven economy, with high-tech products and services making up more than half of exports. A sharply appreciating shekel, which reached a 31-year high against the dollar in April 2026, has become a growing risk to export competitiveness. The Iran war that began in February 2026 shrank GDP at an annualized 3.3% in the first quarter, but in October the IMF projected 4.5% growth for 2026."
 sources:
   - title: "World Bank Open Data, Israel"
     url: "https://data.worldbank.org/country/israel"
@@ -42,6 +42,10 @@ sources:
     url: "https://en.globes.co.il/en/article-israels-sovereign-wealth-fund-accumulates-nis-88b-1001531729"
   - title: "World's Top Exports, \"Israel's Top Exports 2025\""
     url: "https://www.worldstopexports.com/israels-top-10-exports/"
+  - title: "JNS, \"Israeli economy contracts amid war with Iran but expected to bounce back\" (May 2026)"
+    url: "https://www.jns.org/news/israel-news/israeli-economy-contracts-amid-war-with-iran-but-expected-to-bounce-back"
+  - title: "Xinhua via The Star, \"IMF expects Israel's economy to grow 4.5 percent in 2026\" (October 2026)"
+    url: "https://www.thestar.com.my/news/world/2026/10/14/imf-expects-israel039s-economy-to-grow-45-percent-in-2026"
 lastUpdated: 2026-11-05
 ---
 

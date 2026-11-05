@@ -34,7 +34,7 @@ keyRisks:
   - "Renewed escalation of trade tensions, with exports to the US down 20% in 2025"
   - "Persistent deflationary pressures"
   - "Unsustainable local government financing vehicle debt, which the IMF says should be restructured"
-summary: "China's export-driven economy ran a record $1.189 trillion goods trade surplus in 2025, even as exports to the US fell 20%. The IMF says its overarching priority should be a shift to consumption-led growth, with persistent deflation and the property sector among the main concerns."
+summary: "China's export-driven economy ran a record $1.189 trillion goods trade surplus in 2025, even as exports to the US fell 20%. The IMF says its overarching priority should be a shift to consumption-led growth, with persistent deflation and the property sector among the main concerns. The Iran war and the closure of the Strait of Hormuz threaten its energy supply, since China, India, Japan and South Korea together take about 75-80% of the oil passing through the strait. In October 2026 the IMF projected 4.5% growth for 2026."
 sources:
   - title: "World Bank Open Data, China"
     url: "https://data.worldbank.org/country/china"
@@ -52,6 +52,10 @@ sources:
     url: "https://en.people.cn/n3/2026/1009/c90000-20506303.html"
   - title: "CGTN, \"China sets key development targets in 15th Five-Year Plan\""
     url: "https://news.cgtn.com/news/2026-03-14/Graphics-China-sets-key-development-targets-in-15th-Five-Year-Plan-1LtMurV7feE/p.html"
+  - title: "Asia Financial, \"War in Iran could hit some of Asia's biggest economies hard\" (March 2026)"
+    url: "https://www.asiafinancial.com/war-in-iran-could-hit-some-of-asias-biggest-economies-hard"
+  - title: "The National, \"IMF cuts 2026 growth forecasts for Gulf economies due to prolonged Hormuz closure\" (October 2026)"
+    url: "https://thenationalnews.com/business/economy/2026/10/13/imf-cuts-2026-growth-forecasts-for-gulf-economies-due-to-prolonged-hormuz-closure/"
 lastUpdated: 2026-11-05
 ---
 

@@ -7,22 +7,24 @@ gdpPerCapitaUsd: 34537
 population: 36973555
 oilGasShareOfExportsPct: 78.7
 notes:
+  - "Top exports: percentages are shares of total exports in 2024, from World's Top Exports, rounded to whole numbers. Crude oil & refined petroleum uses the figure for all mineral fuels."
+  - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Public Investment Fund assets: Global SWF figure, October 2026."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
 topExports:
-  - "Crude oil & refined petroleum"
-  - "Plastics"
-  - "Organic chemicals"
-  - "Electrical machinery"
-  - "Fertilizers"
+  - "Crude oil & refined petroleum (73%)"
+  - "Plastics (6%)"
+  - "Organic chemicals (4%)"
+  - "Electrical machinery (3%)"
+  - "Fertilizers (2%)"
 topPartners:
-  - "China"
-  - "South Korea"
-  - "Japan"
-  - "India"
-  - "United Arab Emirates"
-  - "United States"
+  - "China (15%)"
+  - "South Korea (9%)"
+  - "Japan (9%)"
+  - "India (9%)"
+  - "United Arab Emirates (8%)"
+  - "United States (4%)"
 sovereignWealthFunds:
   - name: "Public Investment Fund (PIF)"
     aumUsdBn: 906
