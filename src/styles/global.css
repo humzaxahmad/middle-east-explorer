@@ -134,6 +134,16 @@ ul {
   padding-top: 0.5rem;
   border-top: 1px solid var(--line);
 }
+.fund-note {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.figure-notes {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 .coming-soon {
   color: var(--muted);
 }
@@ -279,6 +289,20 @@ ul {
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
+.panel-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0 0 0.75rem;
+}
+.panel-stats dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.panel-stats dd {
+  margin: 0;
+  font-weight: 600;
+}
 .panel-hint {
   color: var(--muted);
   font-size: 0.9rem;
@@ -315,8 +339,8 @@ button:focus-visible {
     top: auto;
     left: 0;
     width: 100%;
-    max-height: 55vh;
-    max-height: 55dvh;
+    max-height: 65vh;
+    max-height: 65dvh;
     border-radius: 16px 16px 0 0;
     box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.35);
     /* Hidden below the screen until it's opened. */
@@ -328,8 +352,19 @@ button:focus-visible {
   .panel h2 {
     font-size: 1.25rem;
   }
-  /* A bigger button that's comfortable to tap with a finger. */
+  /* A bigger button that's comfortable to tap with a finger. It sits in the top
+     corner, beside the label, so the summary and stats stay in view. */
   .panel-reset {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
     min-height: 44px;
+  }
+  .panel-type {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0;
+    padding-right: 9.5rem; /* Keeps the label clear of the button */
   }
 }

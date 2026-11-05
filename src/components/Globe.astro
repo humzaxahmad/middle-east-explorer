@@ -11,6 +11,8 @@ const panelData = {
   countries: countries.map((country) => ({
     code: country.data.iso3,
     summary: country.data.summary,
+    gdpUsdBn: country.data.gdpUsdBn,
+    population: country.data.population,
   })),
   relationships: relationships.map((relationship) => ({
     slug: relationship.id,

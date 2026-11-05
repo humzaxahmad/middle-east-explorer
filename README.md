@@ -83,6 +83,18 @@ What you'll get:
 - **Core country:** a page at `/countries/<slug>`, a summary in the globe's panel, and a link on `/browse`.
 - **External power:** a summary in the globe's panel only, with no page of its own.
 
+### Notes on figures
+
+Every field in the template is required, except `notes`, which is optional and isn't in the template. Use it to show readers a figure's date or caveats. Add it below `oilGasShareOfExportsPct`, or leave it out completely:
+
+```yaml
+notes:
+  - "GDP: 2024 nominal."
+  - "Fund assets: external estimate."
+```
+
+These values only show the format. They aren't real data.
+
 ### Country fields
 
 | Field | Type | Notes |
@@ -93,10 +105,11 @@ What you'll get:
 | `gdpUsdBn` | number | US$ billions |
 | `gdpPerCapitaUsd` | number | US$ |
 | `population` | number | Whole number of people |
-| `oilGasShareOfExportsPct` | number | 0 to 100, with no `%` sign |
+| `oilGasShareOfExportsPct` | number | 0 to 100, with no `%` sign. Use exactly `"Not available"` if no reliable source gives it |
+| `notes` | list of text | **Optional.** Dates and caveats shown under Key figures |
 | `topExports` | list of text | At least one item |
 | `topPartners` | list of text | At least one item |
-| `sovereignWealthFunds` | list of `name` and `aumUsdBn` | Use `[]` if the country has none |
+| `sovereignWealthFunds` | list of `name` and `aumUsdBn`, plus an optional `note` | Use `[]` if the country has none. `note` appears right beside the amount |
 | `currencyRegime` | text | |
 | `diversificationPlan` | text | |
 | `keyRisks` | list of text | At least one item |

@@ -3,7 +3,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { COUNTRIES, TODO, findCountry, relationshipSlug } from './data/countries';
+import { COUNTRIES, NOT_AVAILABLE, TODO, findCountry, relationshipSlug } from './data/countries';
 
 // The exact placeholder allowed in fields that haven't been filled in yet.
 const todo = z.literal(TODO);
@@ -15,8 +15,8 @@ const text = z.string().min(1, 'This field cannot be empty.');
 const numberOrTodo = z.union([z.number().nonnegative(), todo], {
   error: `Must be a number with no quotes or commas (like 1250.5), or exactly "${TODO}".`,
 });
-const percentOrTodo = z.union([z.number().min(0).max(100), todo], {
-  error: `Must be a number from 0 to 100 with no % sign, or exactly "${TODO}".`,
+const percentOrTodo = z.union([z.number().min(0).max(100), todo, z.literal(NOT_AVAILABLE)], {
+  error: `Must be a number from 0 to 100 with no % sign, or exactly "${TODO}" or "${NOT_AVAILABLE}".`,
 });
 const urlOrTodo = z.union([z.url(), todo], {
   error: `Must be a full web address starting with https://, or exactly "${TODO}".`,
@@ -68,10 +68,15 @@ const countries = defineCollection({
       gdpPerCapitaUsd: numberOrTodo,
       population: numberOrTodo,
       oilGasShareOfExportsPct: percentOrTodo,
+      // Optional: dates and caveats for the figures, shown under Key figures.
+      notes: textList.optional(),
       topExports: textList,
       topPartners: textList,
       // This list may be empty, because not every country has one of these funds.
-      sovereignWealthFunds: z.array(z.object({ name: text, aumUsdBn: numberOrTodo })),
+      sovereignWealthFunds: z.array(
+        // note is optional: a caveat shown right beside the fund's amount.
+        z.object({ name: text, aumUsdBn: numberOrTodo, note: text.optional() }),
+      ),
       currencyRegime: text,
       diversificationPlan: text,
       keyRisks: textList,

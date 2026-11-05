@@ -5,6 +5,10 @@
 // The placeholder text for fields that haven't been filled in yet.
 export const TODO = 'TODO — fill in';
 
+// For a figure no reliable source gives. This is different from a TODO: the
+// research has been done, and the honest answer is that the number doesn't exist.
+export const NOT_AVAILABLE = 'Not available';
+
 // lat and lng are rough map positions, used only to place arcs and Bahrain's dot.
 // They point at the main landmass, such as the mainland US rather than Alaska.
 export const COUNTRIES = [

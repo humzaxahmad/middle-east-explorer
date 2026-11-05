@@ -34,6 +34,12 @@ const { Content } = await render(country); // Turns the Markdown body into HTML
       <div><dt>Population</dt><dd><Value value={data.population} /></dd></div>
       <div><dt>Oil and gas share of exports (%)</dt><dd><Value value={data.oilGasShareOfExportsPct} /></dd></div>
     </dl>
+    {data.notes && (
+      <div class="figure-notes">
+        <h3>Notes on these figures</h3>
+        <ul>{data.notes.map((note) => <li><Value value={note} /></li>)}</ul>
+      </div>
+    )}
   </section>
 
   <section>
@@ -52,8 +58,9 @@ const { Content } = await render(country); // Turns the Markdown body into HTML
       <ul>
         {data.sovereignWealthFunds.map((fund) => (
           <li>
-            <Value value={fund.name} />: assets under management (US$ billions):{' '}
+            <Value value={fund.name} />: assets (US$ billions):{' '}
             <Value value={fund.aumUsdBn} />
+            {fund.note && <span class="fund-note">{fund.note}</span>}
           </li>
         ))}
       </ul>

@@ -53,7 +53,13 @@ function colourFor(entry: Entry) {
 
 // Reads the summaries that Globe.astro stored in the page at build time.
 const panelData: {
-  countries: { code: string; summary: string }[];
+  countries: {
+    code: string;
+    summary: string;
+    // A number, or the TODO text if it hasn't been filled in yet.
+    gdpUsdBn: number | string;
+    population: number | string;
+  }[];
   relationships: { slug: string; summary: string }[];
 } = JSON.parse(document.getElementById('panel-data')!.textContent!);
 
@@ -61,8 +67,17 @@ const panel = document.getElementById('panel')!;
 const panelType = document.getElementById('panel-type')!;
 const panelTitle = document.getElementById('panel-title')!;
 const panelSummary = document.getElementById('panel-summary')!;
+const panelStats = document.getElementById('panel-stats')!;
+const panelGdp = document.getElementById('panel-gdp')!;
+const panelPopulation = document.getElementById('panel-population')!;
 const panelHint = document.getElementById('panel-hint')!;
 const panelLink = document.getElementById('panel-link') as HTMLAnchorElement;
+
+// Shows one stat with commas, or highlights it if it's still a placeholder.
+function fillStat(element: HTMLElement, value: number | string) {
+  element.textContent = typeof value === 'number' ? value.toLocaleString('en-US') : value;
+  element.classList.toggle('todo', value === TODO);
+}
 
 // Fills in the panel's text. Missing text shows "Coming soon", and a missing
 // link address hides the link.
@@ -72,12 +87,18 @@ function fillPanel(content: {
   summary: string | undefined;
   hint: string;
   link?: { href: string; text: string };
+  stats?: { gdpUsdBn: number | string; population: number | string };
 }) {
   panelType.textContent = content.type;
   panelTitle.textContent = content.title;
   panelSummary.textContent = content.summary ?? 'Coming soon';
   // Placeholders get the same yellow highlight they have on the content pages.
   panelSummary.classList.toggle('todo', content.summary === TODO);
+  panelStats.hidden = !content.stats;
+  if (content.stats) {
+    fillStat(panelGdp, content.stats.gdpUsdBn);
+    fillStat(panelPopulation, content.stats.population);
+  }
   panelHint.textContent = content.hint;
   panelLink.hidden = !content.link;
   if (content.link) {
@@ -94,6 +115,7 @@ function showCountryPanel(entry: Entry) {
     type: isCore ? 'Core country' : 'External power',
     title: entry.name,
     summary: file?.summary,
+    stats: file,
     hint: isCore
       ? 'Click another country to see how the two are connected.'
       : 'Click a core country to see its relationship with this one.',
