@@ -1,0 +1,193 @@
+---
+// The diversification tracker: non-oil GDP share, 2016 vs now, for the six GCC
+// states. A dumbbell chart, not a line chart: we only have two honest,
+// verifiable data points per country, not a dense time series, so a line
+// connecting two dots is the accurate form rather than implying a smooth trend.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DIVERSIFICATION } from '../data/diversification';
+
+// Sorted by how far each country has moved, not by current share: that's what
+// answers "who's escaping oil fastest" directly.
+const rows = [...DIVERSIFICATION].sort((a, b) => (b.now.value - b.then.value) - (a.now.value - a.then.value));
+
+// Chart geometry. A fixed, hand-computed layout is fine for six rows.
+const chartWidth = 640;
+const plotLeft = 170;
+const plotRight = 610;
+const plotWidth = plotRight - plotLeft;
+const rowHeight = 50;
+const rowStart = 36;
+const chartHeight = rowStart + rows.length * rowHeight + 30;
+const x = (value: number) => plotLeft + (value / 100) * plotWidth;
+const axisTicks = [0, 25, 50, 75, 100];
+---
+<BaseLayout title="Diversification tracker">
+  <h1>Diversification tracker</h1>
+  <p class="lead">Who's escaping oil fastest?</p>
+  <p>
+    Oman and Qatar have moved the furthest since 2016, each gaining more than 20 percentage points of non-oil GDP share.
+    A rising share isn't purely a diversification win, though: it also rises mechanically whenever oil GDP itself
+    shrinks, so a widening gap can mean a falling oil price as much as a growing non-oil economy.
+  </p>
+
+  <div class="viz-root">
+    <div class="chart-legend">
+      <span><span class="swatch swatch-then"></span>2016</span>
+      <span><span class="swatch swatch-now"></span>Latest available</span>
+    </div>
+    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} role="img" aria-label="Non-oil GDP share, 2016 versus the latest available year, for six GCC countries, sorted by the size of the increase">
+      {axisTicks.map((tick) => (
+        <line x1={x(tick)} y1={rowStart - 16} x2={x(tick)} y2={rowStart + rows.length * rowHeight - 20} class="gridline" />
+      ))}
+      {axisTicks.map((tick) => (
+        <text x={x(tick)} y={rowStart + rows.length * rowHeight - 2} class="axis-label" text-anchor="middle">{tick}%</text>
+      ))}
+      {rows.map((row, i) => {
+        const y = rowStart + i * rowHeight;
+        const xThen = x(row.then.value);
+        const xNow = x(row.now.value);
+        return (
+          <g>
+            <text x={plotLeft - 14} y={y + 5} class="row-label" text-anchor="end">{row.shortName ?? row.name}</text>
+            <line x1={xThen} y1={y} x2={xNow} y2={y} class="connector" />
+            <circle cx={xThen} cy={y} r="6" class="dot dot-then" />
+            <circle cx={xNow} cy={y} r="6" class="dot dot-now" />
+            <text x={xThen} y={y - 13} class="value-label" text-anchor="middle">{row.then.value}%</text>
+            <text x={xNow} y={y - 13} class="value-label value-label-now" text-anchor="middle">{row.now.value}%</text>
+          </g>
+        );
+      })}
+    </svg>
+  </div>
+
+  <table class="diversification-table">
+    <caption>Non-oil GDP share by country, 2016 vs the latest available year</caption>
+    <thead>
+      <tr><th>Country</th><th>2016</th><th>Latest</th><th>Change</th></tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td><a href={`/countries/${row.slug}`}>{row.name}</a></td>
+          <td>{row.then.value}%</td>
+          <td>{row.now.value}% ({row.now.year})</td>
+          <td>+{(row.now.value - row.then.value).toFixed(1)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <section class="sources">
+    <h2>Sources and notes</h2>
+    <ul>
+      {rows.map((row) => (
+        <li>
+          <strong>{row.name}</strong>: 2016 figure from {row.thenSource}. {row.now.year} figure from {row.now.source}.
+        </li>
+      ))}
+    </ul>
+    <p class="figure-notes">
+      The 2016 figures come from a single comparison source compiling national statistics, not each country's
+      original statistics agency directly, so treat them as approximate. The current-year figures match the
+      <code>nonOilGdpSharePct</code> field on each country's own page, sourced there individually. Methodologies
+      differ by country (real vs nominal GDP, what counts as an "oil" sector), so cross-country comparisons of the
+      exact level should be read with some caution; the direction and rough size of each country's own move is the
+      more reliable signal.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #ffffff;
+    --text-primary: #1b2536;
+    --text-secondary: #5a6577;
+    --gridline: #e1e0d9;
+    --dot-then: #86b6ef;
+    --dot-now: #1c5cab;
+    margin: 1rem 0 1.5rem;
+  }
+  .chart-legend {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .chart-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .swatch {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+  }
+  .swatch-then {
+    background: var(--dot-then);
+  }
+  .swatch-now {
+    background: var(--dot-now);
+  }
+  svg {
+    width: 100%;
+    height: auto;
+  }
+  .gridline {
+    stroke: var(--gridline);
+    stroke-width: 1;
+  }
+  .axis-label {
+    fill: var(--text-secondary);
+    font-size: 11px;
+  }
+  .row-label {
+    fill: var(--text-primary);
+    font-size: 13px;
+  }
+  .connector {
+    stroke: var(--text-secondary);
+    stroke-width: 2;
+    opacity: 0.4;
+  }
+  .dot {
+    stroke: var(--surface-1);
+    stroke-width: 2;
+  }
+  .dot-then {
+    fill: var(--dot-then);
+  }
+  .dot-now {
+    fill: var(--dot-now);
+  }
+  .value-label {
+    fill: var(--text-secondary);
+    font-size: 11px;
+  }
+  .value-label-now {
+    fill: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .diversification-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .diversification-table caption {
+    text-align: left;
+    color: #5a6577;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+  .diversification-table th,
+  .diversification-table td {
+    text-align: left;
+    padding: 0.4rem 0.75rem 0.4rem 0;
+    border-bottom: 1px solid #dde2ea;
+  }
+</style>
