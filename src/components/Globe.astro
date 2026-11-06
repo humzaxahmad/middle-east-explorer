@@ -2,7 +2,7 @@
 // The full-screen globe area, plus a fallback message and the page's data.
 import { getCollection } from 'astro:content';
 import InfoPanel from './InfoPanel.astro';
-import { TODO } from '../data/countries';
+import { TODO, findCountry } from '../data/countries';
 import { INDICATORS, exposureHeader, indicatorsFor, shortIndicator } from '../data/indicators';
 
 // Runs at build time. Gathers just what the panel needs from the Markdown files,
@@ -10,6 +10,15 @@ import { INDICATORS, exposureHeader, indicatorsFor, shortIndicator } from '../da
 const countries = await getCollection('countries');
 const chokepoints = await getCollection('chokepoints');
 const chains = await getCollection('chains');
+const flows = await getCollection('flows');
+
+// "1.57 million barrels a day (2024)", or the bare TODO text if the volume
+// hasn't been sourced yet, same convention as every other indicator field.
+function formatVolume(volume: (typeof flows)[number]['data']['volume'], unit: string) {
+  if (typeof volume === 'string') return volume;
+  const number = 'low' in volume ? `${volume.low} to ${volume.high}` : volume.value.toLocaleString('en-US');
+  return `${number} ${unit} (${volume.year})`;
+}
 const panelData = {
   countries: countries.map(({ data }) => ({
     code: data.iso3,
@@ -50,6 +59,26 @@ const panelData = {
       href: chains.some((c) => c.id === data.relatedChainSlug) ? `/chains/${data.relatedChainSlug}` : undefined,
     },
   })),
+  // Energy flow arcs: who supplies whom. Unknown codes are skipped rather
+  // than crashing the build, the same pattern as the chain page's country list.
+  flows: flows
+    .map(({ data }) => {
+      const from = findCountry(data.from);
+      const to = findCountry(data.to);
+      if (!from || !to) return undefined;
+      return {
+        fromName: from.name,
+        toName: to.name,
+        fromLat: from.lat,
+        fromLng: from.lng,
+        toLat: to.lat,
+        toLng: to.lng,
+        type: data.type,
+        volumeText: formatVolume(data.volume, data.unit),
+        explainer: data.explainer,
+      };
+    })
+    .filter((flow) => flow !== undefined),
 };
 
 // The "<" replacement stops any text in the data from closing the script tag early.

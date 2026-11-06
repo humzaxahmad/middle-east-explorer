@@ -37,6 +37,15 @@ const CHOKEPOINT_COLOURS: Record<string, string> = {
   disputed: '#fbbf24',
 };
 
+// Flow arc colours, by the commodity's family: oil or gas. More distinctions
+// than that would make the globe harder to read at a glance.
+const FLOW_COLOURS: Record<string, string> = {
+  'crude-oil': '#fbbf24',
+  'pipeline-oil': '#fbbf24',
+  lng: '#60a5fa',
+  'pipeline-gas': '#60a5fa',
+};
+
 // Lightens a "#rrggbb" colour toward white, for hover highlights. Keeping this
 // as one function avoids hand-picking a hover shade for every colour above.
 function lighten(hex: string, amount: number) {
@@ -85,6 +94,7 @@ type MapPoint = Dot | Pin;
 let hoveredCode: string | null = null;
 let selectedCodes: string[] = []; // Holds zero or one code, like ['ARE']
 let selectedChokepoint: string | null = null; // A chokepoint id, such as 'hormuz'
+let selectedFlow: number | null = null; // An index into panelData.flows
 
 // Gets the clickable entry a map shape belongs to, or undefined for grey countries.
 function entryFor(country: MapCountry) {
@@ -138,6 +148,17 @@ const panelData: {
     status: string;
     statusText: string;
     chain: { text: string; href?: string };
+  }[];
+  flows: {
+    fromName: string;
+    toName: string;
+    fromLat: number;
+    fromLng: number;
+    toLat: number;
+    toLng: number;
+    type: string;
+    volumeText: string;
+    explainer: string;
   }[];
 } = JSON.parse(document.getElementById('panel-data')!.textContent!);
 
@@ -248,6 +269,25 @@ function showCountryPanel(entry: Entry) {
   });
 }
 
+const FLOW_TYPE_LABELS: Record<string, string> = {
+  'crude-oil': 'Crude oil',
+  'pipeline-oil': 'Oil pipeline',
+  lng: 'LNG',
+  'pipeline-gas': 'Gas pipeline',
+};
+
+function showFlowPanel(flow: (typeof panelData.flows)[number]) {
+  // Skips the awkward "TODO: fill in. <explainer>" when the volume isn't
+  // sourced yet; the explainer alone still carries the point.
+  const summary = flow.volumeText === TODO ? flow.explainer : `${flow.volumeText}. ${flow.explainer}`;
+  fillPanel({
+    type: `Flow · ${FLOW_TYPE_LABELS[flow.type] ?? flow.type}`,
+    title: `${flow.fromName} → ${flow.toName}`,
+    summary,
+    hint: 'Click a country, chokepoint or another flow to see more.',
+  });
+}
+
 function showChokepointPanel(point: (typeof panelData.chokepoints)[number]) {
   fillPanel({
     type: `Chokepoint · ${point.status.charAt(0).toUpperCase()}${point.status.slice(1)}`,
@@ -302,8 +342,9 @@ async function startGlobe() {
   }));
   const points: MapPoint[] = [...dots, ...pins];
 
-  // globe.gl only recolours when it's given new colour functions, so highlights
-  // are applied by calling this after anything changes.
+  // globe.gl only redraws an accessor-driven property when it's given a new
+  // function, so every property that depends on hover/selection state (not
+  // just colour) is re-set here, and this is called after anything changes.
   function refreshColours() {
     globe
       .polygonCapColor((country) => {
@@ -315,7 +356,18 @@ async function startGlobe() {
         if (p.kind === 'dot') return p.visible ? colourFor(p.entry) : 'rgba(0,0,0,0)'; // Invisible, but still clickable.
         if (p.id === selectedChokepoint) return COLOURS.selected;
         return CHOKEPOINT_COLOURS[p.status] ?? COLOURS.pending;
-      });
+      })
+      .pointRadius((point) => {
+        const p = point as MapPoint;
+        if (p.kind === 'dot') return p.radius;
+        return p.id === selectedChokepoint ? 0.75 : 0.55;
+      })
+      .arcColor((flow: object) => {
+        const index = panelData.flows.indexOf(flow as (typeof panelData.flows)[number]);
+        if (index === selectedFlow) return COLOURS.selected;
+        return FLOW_COLOURS[(flow as (typeof panelData.flows)[number]).type] ?? COLOURS.pending;
+      })
+      .arcStroke((flow: object) => (panelData.flows.indexOf(flow as (typeof panelData.flows)[number]) === selectedFlow ? 1 : 0.4));
   }
 
   function setHovered(code: string | null) {
@@ -342,6 +394,11 @@ async function startGlobe() {
       [CHOKEPOINT_COLOURS.disputed, 'Chokepoint: disputed'],
       [CHOKEPOINT_COLOURS.closed, 'Chokepoint: closed'],
     ];
+    // Flow arcs: oil and gas, regardless of pipeline or tanker.
+    const flowRows: [string, string][] = [
+      [FLOW_COLOURS['crude-oil'], 'Flow: oil'],
+      [FLOW_COLOURS.lng, 'Flow: gas'],
+    ];
     const swatchRow = (colour: string, label: string) => {
       const li = document.createElement('li');
       const swatch = document.createElement('span');
@@ -353,6 +410,7 @@ async function startGlobe() {
     legend.replaceChildren(
       ...rows.map(([colour, label]) => swatchRow(colour, label)),
       ...pinRows.map(([colour, label]) => swatchRow(colour, label)),
+      ...flowRows.map(([colour, label]) => swatchRow(colour, label)),
       make('li', 'Click or tap a coloured country to begin', 'legend-hint'),
     );
   }
@@ -370,10 +428,11 @@ async function startGlobe() {
   }
 
   // Clicking a selected country clears the selection. Clicking any other
-  // country replaces it, and clears any selected chokepoint: the panel only
-  // ever shows one thing at a time.
+  // country replaces it, and clears any selected chokepoint or flow: the
+  // panel only ever shows one thing at a time.
   function selectCountry(code: string) {
     selectedChokepoint = null;
+    selectedFlow = null;
     selectedCodes = selectedCodes.includes(code) ? [] : [code];
     showSelection();
   }
@@ -381,13 +440,23 @@ async function startGlobe() {
   // Same idea, for chokepoint pins instead of countries.
   function selectChokepoint(id: string) {
     selectedCodes = [];
+    selectedFlow = null;
     selectedChokepoint = selectedChokepoint === id ? null : id;
+    showSelection();
+  }
+
+  // Same idea, for a flow arc instead of a country or chokepoint.
+  function selectFlow(index: number) {
+    selectedCodes = [];
+    selectedChokepoint = null;
+    selectedFlow = selectedFlow === index ? null : index;
     showSelection();
   }
 
   function resetSelection() {
     selectedCodes = [];
     selectedChokepoint = null;
+    selectedFlow = null;
     showSelection();
   }
 
@@ -395,8 +464,11 @@ async function startGlobe() {
   function showSelection() {
     const [first] = selectedCodes.map((code) => findCountry(code)!);
     const pin = selectedChokepoint ? panelData.chokepoints.find((p) => p.id === selectedChokepoint) : undefined;
+    const flow = selectedFlow !== null ? panelData.flows[selectedFlow] : undefined;
     if (pin) {
       showChokepointPanel(pin);
+    } else if (flow) {
+      showFlowPanel(flow);
     } else if (first) {
       showCountryPanel(first);
     } else {
@@ -409,7 +481,7 @@ async function startGlobe() {
   // On phones, slides the globe up so the bottom sheet doesn't cover it.
   function updateOffset() {
     const isBottomSheet = window.innerWidth <= 800; // Matches the CSS breakpoint
-    const isOpen = selectedCodes.length > 0 || selectedChokepoint !== null;
+    const isOpen = selectedCodes.length > 0 || selectedChokepoint !== null || selectedFlow !== null;
     globe.globeOffset(isBottomSheet && isOpen ? [0, -panel.offsetHeight / 2] : [0, 0]);
   }
 
@@ -436,11 +508,6 @@ async function startGlobe() {
     })
     .pointsData(points)
     .pointAltitude((point) => ((point as MapPoint).kind === 'pin' ? 0.018 : 0.012))
-    .pointRadius((point) => {
-      const p = point as MapPoint;
-      if (p.kind === 'dot') return p.radius;
-      return p.id === selectedChokepoint ? 0.75 : 0.55;
-    })
     .pointLabel((point) => {
       const p = point as MapPoint;
       return p.kind === 'dot' ? p.entry.name : `${p.name} (${p.status})`;
@@ -451,9 +518,25 @@ async function startGlobe() {
       if (p.kind === 'dot') selectCountry(p.entry.code);
       else selectChokepoint(p.id);
     })
+    // Energy flow arcs: who supplies whom. A separate globe.gl layer from the
+    // points above, so it needs its own click/hover handling.
+    .arcsData(panelData.flows)
+    .arcStartLat((flow) => (flow as (typeof panelData.flows)[number]).fromLat)
+    .arcStartLng((flow) => (flow as (typeof panelData.flows)[number]).fromLng)
+    .arcEndLat((flow) => (flow as (typeof panelData.flows)[number]).toLat)
+    .arcEndLng((flow) => (flow as (typeof panelData.flows)[number]).toLng)
+    .arcAltitudeAutoScale(0.3)
+    .arcDashLength(0.4)
+    .arcDashGap(0.15)
+    .arcDashAnimateTime(2500)
+    .arcLabel((flow) => {
+      const f = flow as (typeof panelData.flows)[number];
+      return `${f.fromName} → ${f.toName} (${FLOW_TYPE_LABELS[f.type] ?? f.type})`;
+    })
+    .onArcClick((flow) => selectFlow(panelData.flows.indexOf(flow as (typeof panelData.flows)[number])))
     // Only show the hand cursor over things that can be clicked.
     .showPointerCursor((type, item) => {
-      if (type === 'point') return true;
+      if (type === 'point' || type === 'arc') return true;
       return type === 'polygon' && Boolean(entryFor(item as MapCountry));
     });
 

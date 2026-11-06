@@ -1,1 +1,164 @@
-[]
+[
+  {
+    "id": "sau-chn-crude",
+    "from": "SAU",
+    "to": "CHN",
+    "type": "crude-oil",
+    "unit": "million barrels a day",
+    "volume": { "value": 1.57, "year": 2024, "source": "China Global South Project / OilPrice.com reporting on Saudi-China crude flows" },
+    "explainer": "China is Saudi Arabia's largest single oil customer by far. If this flow were cut, Saudi Arabia would need to find other Asian buyers at a discount, and China would need to replace its single largest crude supplier."
+  },
+  {
+    "id": "omn-chn-crude",
+    "from": "OMN",
+    "to": "CHN",
+    "type": "crude-oil",
+    "unit": "million barrels a year",
+    "volume": { "value": 289.21, "year": 2024, "source": "The Arabian Stories, citing Omani customs data" },
+    "explainer": "Oman sells almost all its oil to one buyer. That concentration is a risk for Oman, but the flow itself is largely insulated from a Hormuz shock, since Oman's export terminals sit on the Gulf of Oman, outside the strait."
+  },
+  {
+    "id": "rus-eu-gas",
+    "from": "RUS",
+    "to": "EUU",
+    "type": "pipeline-gas",
+    "unit": "bcm a year",
+    "volume": { "value": 18, "year": 2025, "source": "Reuters, via The Moscow Times and United24 Media (TurkStream data)" },
+    "explainer": "This flow has collapsed from 152.4 bcm in 2021 to a fraction of that since the EU deliberately diversified away from it. The remaining volume runs through a single route, TurkStream, into Hungary, Slovakia and Serbia."
+  },
+  {
+    "id": "rus-chn-gas",
+    "from": "RUS",
+    "to": "CHN",
+    "type": "pipeline-gas",
+    "unit": "bcm a year",
+    "volume": { "value": 38.8, "year": 2025, "source": "Gazprom data, via MarketScreener and World-Energy" },
+    "explainer": "As Russia's gas sales to Europe collapsed, China became its substitute buyer. The Power of Siberia pipeline has little spare capacity left, which is why Russia and China are now discussing a second, larger line."
+  },
+  {
+    "id": "qat-kor-lng",
+    "from": "QAT",
+    "to": "KOR",
+    "type": "lng",
+    "unit": "million tonnes a year",
+    "volume": { "value": 8.6, "year": 2023, "source": "S&P Global Commodity Insights, citing South Korean import data (19.5% of Korea's total LNG imports)" },
+    "explainer": "South Korea leans on Qatar for roughly a fifth of its LNG imports. A Hormuz disruption threatens this flow directly, since Qatari LNG has no bypass route around the strait."
+  },
+  {
+    "id": "qat-jpn-lng",
+    "from": "QAT",
+    "to": "JPN",
+    "type": "lng",
+    "unit": "tonnes in the month shown",
+    "volume": { "value": 293598, "year": 2025, "source": "S&P Global Commodity Insights, one month's Japanese import data (5.4% of Japan's total LNG imports that month)" },
+    "explainer": "A smaller but steady flow. Japan diversifies its LNG suppliers more than South Korea does, so a Qatari disruption would be a squeeze rather than a crisis for Japan specifically."
+  },
+  {
+    "id": "irq-tur-crude",
+    "from": "IRQ",
+    "to": "TUR",
+    "type": "pipeline-oil",
+    "unit": "barrels a day",
+    "volume": { "value": 500000, "year": 2026, "source": "Iraqi News, citing Iraqi oil ministry data" },
+    "explainer": "Iraq's one real bypass route around Hormuz, agreed with Turkey in August 2026. It covers a small fraction of Iraq's total exports, most of which still move through the Gulf."
+  },
+  {
+    "id": "irn-irq-gas",
+    "from": "IRN",
+    "to": "IRQ",
+    "type": "pipeline-gas",
+    "unit": "million cubic metres a day",
+    "volume": { "value": 7, "year": 2025, "source": "Tehran Times and OilPrice.com, down from a contracted 50 mcm/day under US sanctions pressure" },
+    "explainer": "Iraq depends on Iranian gas to keep its power plants running, but US sanctions pressure has repeatedly cut this flow well below what was contracted, forcing recurring electricity shortages."
+  },
+  {
+    "id": "sau-usa-crude",
+    "from": "SAU",
+    "to": "USA",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "Once Saudi Arabia's top customer, the US now takes a small share of its exports after the shale revolution made America a net oil exporter in its own right."
+  },
+  {
+    "id": "sau-ind-crude",
+    "from": "SAU",
+    "to": "IND",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "India's fast-growing economy makes it an increasingly important buyer of Saudi crude, competing with China for supply."
+  },
+  {
+    "id": "are-ind-crude",
+    "from": "ARE",
+    "to": "IND",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "India is one of the UAE's largest oil customers, part of a broader trade relationship that also includes gold and other goods."
+  },
+  {
+    "id": "are-jpn-crude",
+    "from": "ARE",
+    "to": "JPN",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "Japan has bought UAE crude for decades under long-term supply agreements, part of why Japan has pushed the UAE and Saudi Arabia on new Hormuz-bypass pipeline capacity."
+  },
+  {
+    "id": "qat-chn-lng",
+    "from": "QAT",
+    "to": "CHN",
+    "type": "lng",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "China buys more Qatari LNG than any other country, under long-term contracts that give Qatar unusually stable, locked-in revenue."
+  },
+  {
+    "id": "qat-ind-lng",
+    "from": "QAT",
+    "to": "IND",
+    "type": "lng",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "Qatar is India's single largest LNG supplier. A sustained Hormuz disruption would force India to compete harder for cargoes from the US, Australia or elsewhere."
+  },
+  {
+    "id": "egy-eu-lng",
+    "from": "EGY",
+    "to": "EUU",
+    "type": "lng",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "Once a major LNG supplier to Europe, Egypt's exports have shrunk as rising domestic demand turned it into a net gas importer by 2024, a reminder that export flows can disappear from the demand side, not just the supply side."
+  },
+  {
+    "id": "kwt-chn-crude",
+    "from": "KWT",
+    "to": "CHN",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "China is a major buyer of Kuwaiti crude, but unlike Oman, Kuwait's entire export route runs through the Gulf and the strait, with no bypass pipeline of its own."
+  },
+  {
+    "id": "irq-chn-crude",
+    "from": "IRQ",
+    "to": "CHN",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "China is Iraq's largest single oil customer, buying around a third of its crude exports."
+  },
+  {
+    "id": "irq-ind-crude",
+    "from": "IRQ",
+    "to": "IND",
+    "type": "crude-oil",
+    "unit": "TODO: fill in",
+    "volume": "TODO: fill in",
+    "explainer": "India is Iraq's second-largest crude buyer. Both of Iraq's top two customers depend on oil that has to cross the Strait of Hormuz to reach them."
+  }
+]
