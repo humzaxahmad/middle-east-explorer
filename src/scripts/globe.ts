@@ -1,7 +1,7 @@
 // Everything the globe does in the browser: drawing the map, colours, rotation,
 // hover names, the panel, and the arc between two selected countries.
 import Globe from 'globe.gl';
-import { TODO, findCountry, findCountryOnMap, relationshipSlug } from '../data/countries';
+import { TODO, findCountry, findCountryOnMap, hasFullPage, relationshipSlug } from '../data/countries';
 
 const COLOURS = {
   background: '#0b1730',
@@ -53,9 +53,9 @@ function entryFor(country: MapCountry) {
 function colourFor(entry: Entry) {
   if (selectedCodes.includes(entry.code)) return COLOURS.selected;
   if (entry.code === hoveredCode) {
-    return entry.region === 'core' ? COLOURS.coreHover : COLOURS.externalHover;
+    return hasFullPage(entry.region) ? COLOURS.coreHover : COLOURS.externalHover;
   }
-  return COLOURS[entry.region];
+  return hasFullPage(entry.region) ? COLOURS.core : COLOURS.external;
 }
 
 // ---------- The panel ----------
@@ -65,9 +65,10 @@ const panelData: {
   countries: {
     code: string;
     summary: string;
-    // A number, or the TODO text if it hasn't been filled in yet.
-    gdpUsdBn: number | string;
-    population: number | string;
+    header: string;
+    indicators: { label: string; value: string }[];
+    hittingNow: string;
+    chain?: { text: string; href?: string };
   }[];
   relationships: { slug: string; summary: string }[];
 } = JSON.parse(document.getElementById('panel-data')!.textContent!);
@@ -76,16 +77,33 @@ const panel = document.getElementById('panel')!;
 const panelType = document.getElementById('panel-type')!;
 const panelTitle = document.getElementById('panel-title')!;
 const panelSummary = document.getElementById('panel-summary')!;
-const panelStats = document.getElementById('panel-stats')!;
-const panelGdp = document.getElementById('panel-gdp')!;
-const panelPopulation = document.getElementById('panel-population')!;
+const panelChain = document.getElementById('panel-chain')!;
+const panelIndicators = document.getElementById('panel-indicators')!;
+const panelHitting = document.getElementById('panel-hitting')!;
+const panelHittingText = document.getElementById('panel-hitting-text')!;
 const panelHint = document.getElementById('panel-hint')!;
 const panelLink = document.getElementById('panel-link') as HTMLAnchorElement;
 
-// Shows one stat with commas, or highlights it if it's still a placeholder.
-function fillStat(element: HTMLElement, value: number | string) {
-  element.textContent = typeof value === 'number' ? value.toLocaleString('en-US') : value;
-  element.classList.toggle('todo', value === TODO);
+// Makes one element with some text, highlighted yellow if it's a placeholder.
+// textContent (not innerHTML) keeps any text from being treated as code.
+function make(tag: string, text: string, className = '') {
+  const element = document.createElement(tag);
+  element.textContent = text;
+  element.className = className;
+  element.classList.toggle('todo', text === TODO || text.endsWith(TODO));
+  return element;
+}
+
+// Draws the chain button: a real link once the chain page exists, and plain
+// "coming soon" text until then.
+function fillChain(chain: { text: string; href?: string }) {
+  if (chain.href) {
+    const link = make('a', `${chain.text} →`, 'chain-button');
+    (link as HTMLAnchorElement).href = chain.href;
+    panelChain.replaceChildren(link);
+  } else {
+    panelChain.replaceChildren(make('span', `${chain.text} (coming soon)`, 'chain-button is-disabled'));
+  }
 }
 
 // Fills in the panel's text. Missing text shows "Coming soon", and a missing
@@ -96,17 +114,35 @@ function fillPanel(content: {
   summary: string | undefined;
   hint: string;
   link?: { href: string; text: string };
-  stats?: { gdpUsdBn: number | string; population: number | string };
+  // These three only exist for a single country.
+  indicators?: { label: string; value: string }[];
+  hittingNow?: string;
+  chain?: { text: string; href?: string };
 }) {
   panelType.textContent = content.type;
   panelTitle.textContent = content.title;
+  // An empty string hides the summary (country panels lead with indicators instead).
+  panelSummary.hidden = content.summary === '';
   panelSummary.textContent = content.summary ?? 'Coming soon';
   // Placeholders get the same yellow highlight they have on the content pages.
   panelSummary.classList.toggle('todo', content.summary === TODO);
-  panelStats.hidden = !content.stats;
-  if (content.stats) {
-    fillStat(panelGdp, content.stats.gdpUsdBn);
-    fillStat(panelPopulation, content.stats.population);
+
+  panelChain.hidden = !content.chain;
+  if (content.chain) fillChain(content.chain);
+
+  panelIndicators.hidden = !content.indicators;
+  panelIndicators.replaceChildren(
+    ...(content.indicators ?? []).map(({ label, value }) => {
+      const row = document.createElement('div');
+      row.append(make('dt', label), make('dd', value));
+      return row;
+    }),
+  );
+
+  panelHitting.hidden = content.hittingNow === undefined;
+  if (content.hittingNow !== undefined) {
+    panelHittingText.textContent = content.hittingNow;
+    panelHittingText.classList.toggle('todo', content.hittingNow === TODO);
   }
   panelHint.textContent = content.hint;
   panelLink.hidden = !content.link;
@@ -119,16 +155,20 @@ function fillPanel(content: {
 
 function showCountryPanel(entry: Entry) {
   const file = panelData.countries.find((item) => item.code === entry.code);
-  const isCore = entry.region === 'core';
+  const isCore = hasFullPage(entry.region);
   fillPanel({
-    type: isCore ? 'Core country' : 'External power',
+    // Middle East countries get their exposure header, like "EXPORTER · Partly protected".
+    type: isCore && file ? file.header : 'External power',
     title: entry.name,
-    summary: file?.summary,
-    stats: file,
+    // Middle East countries lead with their exposure; external powers keep a summary.
+    summary: isCore && file ? '' : file?.summary,
+    indicators: file?.indicators,
+    hittingNow: file?.hittingNow,
+    chain: file?.chain,
     hint: isCore
-      ? 'Click another country to see how the two are connected.'
-      : 'Click a core country to see its relationship with this one.',
-    // Only core countries with a Markdown file have a full page to link to.
+      ? 'Click a chokepoint or buyer to see the link.'
+      : 'Click a Middle East country to see its relationship with this one.',
+    // Only non-external countries with a Markdown file have a full page to link to.
     link:
       isCore && file
         ? { href: `/countries/${entry.slug}`, text: 'Read the full profile' }

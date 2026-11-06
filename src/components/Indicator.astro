@@ -1,0 +1,30 @@
+---
+// Shows one exposure indicator with its year and source, such as
+// "21.3 (2023, World Bank)" or "80 to 96 (2026, ...)". A TODO is highlighted.
+import { TODO } from '../data/countries';
+import { indicatorNumber, type IndicatorValue } from '../data/indicators';
+
+interface Props {
+  value: IndicatorValue;
+}
+const { value } = Astro.props;
+
+// Spell out the import-dependence method, so readers know how it was measured.
+const METHODS: Record<string, string> = {
+  eurostat: 'net imports / gross available energy',
+  worldbank: 'net energy imports as % of energy use',
+};
+---
+{value === TODO ? (
+  <span class="todo">{TODO}</span>
+) : typeof value === 'string' ? (
+  // "Not applicable" or "Not available": shown as plain text.
+  value
+) : (
+  <>
+    {indicatorNumber(value)}{' '}
+    <span class="indicator-meta">
+      ({value.year}, {value.source}{'method' in value && value.method && `; ${METHODS[value.method]}`})
+    </span>
+  </>
+)}

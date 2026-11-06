@@ -2,17 +2,35 @@
 // The full-screen globe area, plus a fallback message and the page's data.
 import { getCollection } from 'astro:content';
 import InfoPanel from './InfoPanel.astro';
+import { TODO } from '../data/countries';
+import { INDICATORS, exposureHeader, indicatorsFor, shortIndicator } from '../data/indicators';
 
 // Runs at build time. Gathers just what the panel needs from the Markdown files,
 // so the browser doesn't have to download whole profiles.
 const countries = await getCollection('countries');
 const relationships = await getCollection('relationships');
+const chokepoints = await getCollection('chokepoints');
 const panelData = {
-  countries: countries.map((country) => ({
-    code: country.data.iso3,
-    summary: country.data.summary,
-    gdpUsdBn: country.data.gdpUsdBn,
-    population: country.data.population,
+  countries: countries.map(({ data }) => ({
+    code: data.iso3,
+    summary: data.summary,
+    header: exposureHeader(data.exposureType, data.protectionStatus, TODO),
+    // Only the headline indicators for this country's exposure type, already
+    // turned into short text like "54.6% (2025)".
+    indicators: indicatorsFor(data.exposureType).map((key) => ({
+      label: INDICATORS[key].label,
+      value: shortIndicator(key, data[key]),
+    })),
+    hittingNow: data.hittingNow,
+    // The button text comes from the chokepoint that shares this chain's slug,
+    // such as "See the Strait of Hormuz shock". Chain pages don't exist yet, so
+    // the button says "coming soon" for now.
+    chain: data.relatedChainSlug
+      ? {
+          text: `See the ${chokepoints.find((c) => c.data.relatedChainSlug === data.relatedChainSlug)?.data.name ?? 'related'} shock`,
+          href: undefined as string | undefined,
+        }
+      : undefined,
   })),
   relationships: relationships.map((relationship) => ({
     slug: relationship.id,

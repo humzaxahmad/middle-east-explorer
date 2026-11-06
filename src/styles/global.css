@@ -234,6 +234,11 @@ ul {
   border-radius: 3px;
 }
 /* These two match COLOURS in src/scripts/globe.ts. */
+.indicator-meta {
+  color: #5b6577;
+  font-size: 0.9em;
+}
+
 .swatch-core {
   background: #2dd4bf;
 }
@@ -252,6 +257,97 @@ ul {
 }
 .globe-message a {
   color: #fff;
+}
+
+/* ---------- Exposure badges and reference data ---------- */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.5rem;
+}
+.badge {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.badge-exporter {
+  background: #fde7c7;
+  border-color: #f2b56b;
+}
+.badge-importer {
+  background: #d7e8fb;
+  border-color: #8db8ea;
+}
+.badge-mixed {
+  background: #e7e0f7;
+  border-color: #b5a3e3;
+}
+.badge-protected {
+  background: #d8f1e3;
+  border-color: #86cfa5;
+}
+.badge-partly-protected {
+  background: #fdf3c7;
+  border-color: #e6cc63;
+}
+.badge-exposed {
+  background: #fbdcdc;
+  border-color: #ea9b9b;
+}
+.chain-link {
+  font-weight: 600;
+}
+/* The "See the ... shock" button in the globe panel. */
+.chain-button {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  background: #0b1730;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.chain-button.is-disabled {
+  background: var(--line);
+  color: var(--muted);
+}
+.reference {
+  margin: 2rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.reference summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+.panel-indicators {
+  margin: 0 0 0.75rem;
+}
+.panel-indicators div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.panel-indicators dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.panel-indicators dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+.panel-subhead {
+  margin: 1rem 0 0.25rem;
+  font-size: 0.95rem;
 }
 
 /* ---------- Side panel ---------- */
@@ -288,20 +384,6 @@ ul {
   font-size: 0.85rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-}
-.panel-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0 0 0.75rem;
-}
-.panel-stats dt {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-.panel-stats dd {
-  margin: 0;
-  font-weight: 600;
 }
 .panel-hint {
   color: var(--muted);

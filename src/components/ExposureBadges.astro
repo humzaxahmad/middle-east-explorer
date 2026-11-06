@@ -1,0 +1,25 @@
+---
+// The two badges at the top of a country page: exposure type and protection status.
+// A placeholder shows in yellow, like every other unfinished field.
+import { TODO } from '../data/countries';
+import { EXPOSURE_LABELS, PROTECTION_LABELS } from '../data/indicators';
+
+interface Props {
+  exposureType: string;
+  protectionStatus: string;
+}
+const { exposureType, protectionStatus } = Astro.props;
+---
+<p class="badges">
+  {exposureType === TODO ? (
+    <span class="badge todo">Exposure type: {TODO}</span>
+  ) : (
+    <span class={`badge badge-${exposureType}`}>{EXPOSURE_LABELS[exposureType]}</span>
+  )}
+  {protectionStatus === TODO ? (
+    <span class="badge todo">Protection: {TODO}</span>
+  ) : (
+    // "partly protected" becomes the class name "badge-partly-protected".
+    <span class={`badge badge-${protectionStatus.replace(' ', '-')}`}>{PROTECTION_LABELS[protectionStatus]}</span>
+  )}
+</p>

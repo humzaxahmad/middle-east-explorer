@@ -1,12 +1,24 @@
 ---
 name: "Jordan"
 iso3: "JOR"
-region: "core"
+region: "importer"
 gdpUsdBn: 61.61
 gdpPerCapitaUsd: 5348
 population: 11520684
 oilGasShareOfExportsPct: 0
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 0.1, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: { value: 81.7, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 10.9, year: 2024, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not applicable"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Garments combines knit and non-knit clothing, and the phosphates figure combines phosphates and phosphoric acid."
   - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers."
   - "GDP, GDP per person and population: World Bank, 2025."
@@ -46,7 +58,13 @@ sources:
     url: "https://www.jordannews.jo/Section-112/Economy/European-Bank-Commends-Jordan-s-Measures-in-Handling-Fallout-of-the-Iran-War-51776"
   - title: "The National, \"IMF cuts 2026 growth forecasts for Gulf economies due to prolonged Hormuz closure\" (October 2026)"
     url: "https://thenationalnews.com/business/economy/2026/10/13/imf-cuts-2026-growth-forecasts-for-gulf-economies-due-to-prolonged-hormuz-closure/"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

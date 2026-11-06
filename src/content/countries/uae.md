@@ -1,12 +1,25 @@
 ---
 name: "United Arab Emirates"
 iso3: "ARE"
-region: "core"
+region: "producer"
 gdpUsdBn: 552.32
 gdpPerCapitaUsd: 50274
 population: 10986300
 oilGasShareOfExportsPct: 68.2
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 17.6, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: { value: 50, year: 2024, source: "IMF REO May 2025" }
+energyImportDependencePct: { value: -139.6, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 4.5, year: 2023, source: "World Bank WDI" }
+nonOilGdpSharePct: { value: 75.5, year: 2024, source: "FCSC via Gulf News" }
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
+  - "Non-oil share of GDP: real GDP (constant prices)."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers."
   - "Top partners: the percentages have no confirmed source yet."
   - "GDP and GDP per person: World Bank, 2024. The World Bank has not published a 2025 GDP figure for the UAE."
@@ -62,7 +75,17 @@ sources:
     url: "https://centralbank.ae/media/jqkdbidg/fx_aug26_en.pdf"
   - title: "World's Top Exports, \"UAE's Top Exports 2025\""
     url: "https://www.worldstopexports.com/uaes-top-10-exports/"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+  - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
+    url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
+  - title: "Gulf News, \"UAE GDP hits Dh1.776 trillion in 2024, driven by 5% growth in non-oil sectors\" (FCSC data)"
+    url: "https://gulfnews.com/business/banking/uae-gdp-hits-dh1776-trillion-in-2024-driven-by-5-growth-in-non-oil-sectors-1.500164247"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

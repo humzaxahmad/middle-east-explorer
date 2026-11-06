@@ -1,12 +1,24 @@
 ---
 name: "Yemen"
 iso3: "YEM"
-region: "core"
+region: "importer"
 gdpUsdBn: 10.98
 gdpPerCapitaUsd: 263
 population: 41773878
 oilGasShareOfExportsPct: 0
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: "Not available"
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: { value: 71.7, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 12.8, year: 2024, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not available"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: categories and shares of total exports in 2025, from World's Top Exports, rounded to whole numbers."
   - "Top partners: the percentages have no confirmed source yet."
   - "GDP: 2026 IMF estimate. The World Bank's own GDP series for Yemen has not been updated since 2018, a striking data gap reflecting how badly the war has disrupted statistics collection."
@@ -27,14 +39,14 @@ topPartners:
   - "Japan (16%)"
   - "Oman (7%)"
 sovereignWealthFunds: []
-currencyRegime: "Yemen effectively has two separate currency systems — in internationally recognized government areas (around Aden), the rial hit a record 2,905 per dollar in July 2025, then recovered to 1,676 by early August; in Houthi-controlled areas (around Sana'a, ~70% of the population), a separate, more tightly controlled rate has stayed near 530 per dollar"
+currencyRegime: "Yemen effectively has two separate currency systems. In internationally recognized government areas (around Aden), the rial hit a record 2,905 per dollar in July 2025, then recovered to 1,676 by early August; in Houthi-controlled areas (around Sana'a, ~70% of the population), a separate, more tightly controlled rate has stayed near 530 per dollar"
 diversificationPlan: "No national economic plan exists given the ongoing civil war and territorial division; the country is split between a Houthi-controlled north and an internationally recognized government in the south, each running separate, uncoordinated economic systems."
 keyRisks:
-  - "GDP data is so degraded that the World Bank's own series hasn't been updated since 2018 — itself a signal of how deep the crisis runs"
+  - "GDP data is so degraded that the World Bank's own series hasn't been updated since 2018, itself a signal of how deep the crisis runs"
   - "Oil export revenue, once the government's main income source, has been cut off for years by Houthi attacks on export infrastructure"
   - "Real GDP per capita has fallen an estimated 58% since 2015"
   - "Two competing currencies and governments make any unified economic assessment inherently unreliable"
-summary: "Yemen's economy has been devastated by over a decade of civil war, split between a Houthi-controlled north and an internationally recognized government in the south, each with its own currency system. Fighting has also escalated: in October 2026 the Houthis and the Saudi-led coalition exchanged heavy strikes, and in May the World Bank projected a further 0.5% contraction in 2026, after a 1.5% fall in 2025, saying the regional conflict had clouded the outlook. Economic data is so degraded that the World Bank's own GDP series hasn't been updated since 2018 — a telling sign of how far outside normal economic tracking this country now sits."
+summary: "Yemen's economy has been devastated by over a decade of civil war, split between a Houthi-controlled north and an internationally recognized government in the south, each with its own currency system. Fighting has also escalated: in October 2026 the Houthis and the Saudi-led coalition exchanged heavy strikes, and in May the World Bank projected a further 0.5% contraction in 2026, after a 1.5% fall in 2025, saying the regional conflict had clouded the outlook. Economic data is so degraded that the World Bank's own GDP series hasn't been updated since 2018, a telling sign of how far outside normal economic tracking this country now sits."
 sources:
   - title: "World Bank Open Data, Yemen"
     url: "https://data.worldbank.org/country/yemen-rep"
@@ -48,7 +60,11 @@ sources:
     url: "https://www.worldbank.org/en/news/press-release/2026/05/21/economic-strain-deepens-in-yemen-as-regional-risks-intensify"
   - title: "World's Top Exports, \"Yemen's Top Exports 2025\""
     url: "https://www.worldstopexports.com/yemens-top-10-exports/"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

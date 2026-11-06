@@ -1,0 +1,28 @@
+# The chokepoints shown as pins on the globe. Each one is a name followed by its
+# fields. When a status changes in the real world, update status, statusAsOf and
+# statusSource here, and the globe follows. No code change is needed.
+#
+# status is one of: open, closed, disputed.
+# lat and lng are the pin's position on the map, in degrees.
+
+hormuz:
+  name: "Strait of Hormuz"
+  lat: 26.57
+  lng: 56.25
+  status: closed
+  statusAsOf: 2026-10-13
+  # The National, October 2026: "the prolonged closure of the Strait of Hormuz",
+  # with the IMF assuming a phased reopening from March 2027.
+  statusSource: "https://thenationalnews.com/business/economy/2026/10/13/imf-cuts-2026-growth-forecasts-for-gulf-economies-due-to-prolonged-hormuz-closure/"
+  relatedChainSlug: hormuz-closure
+
+bab-el-mandeb:
+  name: "Bab el-Mandeb"
+  lat: 12.58
+  lng: 43.33
+  status: disputed
+  statusAsOf: 2026-10-23
+  # Fortune, October 2026: the Houthis declared a maritime blockade of Saudi
+  # Arabia in July and seized control of the area around the strait in September.
+  statusSource: "https://fortune.com/2026/10/23/aramco-east-west-pipeline-10-million-barrels-oil-prices-strait-of-hormuz/"
+  relatedChainSlug: red-sea-shipping

@@ -1,9 +1,9 @@
 // The rules every Markdown file must follow. If a field is missing or has the
 // wrong type, the build stops and names the file and the field.
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { COUNTRIES, NOT_AVAILABLE, TODO, findCountry, relationshipSlug } from './data/countries';
+import { COUNTRIES, NOT_APPLICABLE, NOT_AVAILABLE, TODO, findCountry, relationshipSlug } from './data/countries';
 
 // The exact placeholder allowed in fields that haven't been filled in yet.
 const todo = z.literal(TODO);
@@ -25,6 +25,41 @@ const urlOrTodo = z.union([z.url(), todo], {
 const dateOrTodo = z.union([z.date(), todo], {
   error: `Must be a date like 2026-01-31 with no quotes, or exactly "${TODO}".`,
 });
+
+// One exposure indicator: a number plus the year and source it comes from, so
+// every figure on the site is dated and cited. Or exactly the TODO text.
+// Numbers may be negative: a net energy exporter has negative import dependence.
+// "Not applicable" is for a measure that doesn't fit the country (a breakeven oil
+// price for an oil importer). "Not available" means no reliable source gives it.
+const noValue = [todo, z.literal(NOT_APPLICABLE), z.literal(NOT_AVAILABLE)] as const;
+const noValueHelp = `"${TODO}", "${NOT_APPLICABLE}" or "${NOT_AVAILABLE}"`;
+const year = z.number().int().min(1990).max(2100);
+const singleValue = z.object({ value: z.number(), year, source: text });
+// A range, for when respected estimates disagree, like a breakeven of $80 to $96.
+const rangeValue = z
+  .object({ low: z.number(), high: z.number(), year, source: text })
+  .refine((range) => range.low < range.high, { message: 'low must be smaller than high.' });
+const indicatorOrTodo = z.union([singleValue, rangeValue, ...noValue], {
+  error: `Must be { value, year, source } or { low, high, year, source }, like { value: 12.5, year: 2023, source: "World Bank" }, or exactly ${noValueHelp}.`,
+});
+// Import dependence also records its method. "eurostat" means net imports divided
+// by gross available energy. "worldbank" is the simpler fallback, net energy
+// imports as a share of energy use, for countries where the first can't be computed.
+const importDependenceOrTodo = z.union(
+  [
+    z.object({
+      value: z.number(),
+      year: z.number().int().min(1990).max(2100),
+      source: text,
+      method: z.enum(['eurostat', 'worldbank']),
+    }),
+    ...noValue,
+  ],
+  { error: `Must be { value, year, source, method } with method "eurostat" or "worldbank", or exactly ${noValueHelp}.` },
+);
+
+// A page name made of lowercase letters, numbers and hyphens, like "hormuz-closure".
+const slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Use lowercase letters, numbers and hyphens only, like "hormuz-closure".');
 
 // A list that must contain at least one item.
 const textList = z.array(text).min(1, 'List at least one item.');
@@ -63,11 +98,36 @@ const countries = defineCollection({
     .object({
       name: text,
       iso3: countryCode,
-      region: z.enum(['core', 'external']),
+      // producer, importer (an importer or chokepoint case), other (no forced
+      // energy angle), or external (a major buyer or competing exporter).
+      region: z.enum(['producer', 'importer', 'other', 'external']),
+      exposureType: z.union([z.enum(['exporter', 'importer', 'mixed']), todo], {
+        error: `Must be exporter, importer or mixed, or exactly "${TODO}".`,
+      }),
+      protectionStatus: z.union([z.enum(['protected', 'partly protected', 'exposed']), todo], {
+        error: `Must be protected, partly protected or exposed, or exactly "${TODO}".`,
+      }),
       gdpUsdBn: numberOrTodo,
       gdpPerCapitaUsd: numberOrTodo,
       population: numberOrTodo,
       oilGasShareOfExportsPct: percentOrTodo,
+      // Exposure indicators. The globe's risk views colour countries by these.
+      resourceRentsPctGdp: indicatorOrTodo,
+      oilShareOfGovRevenuePct: indicatorOrTodo,
+      fiscalBreakevenOilPriceUsd: indicatorOrTodo,
+      energyImportDependencePct: importDependenceOrTodo,
+      fuelImportsPctOfImports: indicatorOrTodo,
+      nonOilGdpSharePct: indicatorOrTodo,
+      // Short text for the globe's exposure panel.
+      hittingNow: text,
+      marketImpact: text,
+      // How the country gets its oil or gas out, and any route that avoids a
+      // chokepoint. "Not applicable" for countries that don't export energy.
+      exportRouteStatus: text,
+      // The slug of the shock chain that hits this country hardest, such as
+      // "hormuz-closure". Optional: the globe panel only shows a chain button
+      // when this is set.
+      relatedChainSlug: slug.optional(),
       // Optional: dates and caveats for the figures, shown under Key figures.
       notes: textList.optional(),
       topExports: textList,
@@ -130,4 +190,20 @@ const relationships = defineCollection({
     }),
 });
 
-export const collections = { countries, relationships };
+// Chokepoints: a small hand-curated data file, not full pages. The globe reads
+// "status" to decide how each pin looks, so when the real world changes, you edit
+// src/content/chokepoints.yaml and nothing else.
+const chokepoints = defineCollection({
+  loader: file('src/content/chokepoints.yaml'),
+  schema: z.object({
+    name: text,
+    lat: z.number().min(-90).max(90),
+    lng: z.number().min(-180).max(180),
+    status: z.enum(['open', 'closed', 'disputed'], { error: 'Must be open, closed or disputed.' }),
+    statusAsOf: z.date({ error: 'Must be a date like 2026-10-13 with no quotes.' }),
+    statusSource: z.url({ error: 'Must be a full web address starting with https://.' }),
+    relatedChainSlug: slug,
+  }),
+});
+
+export const collections = { countries, relationships, chokepoints };

@@ -4,13 +4,13 @@
 // and screen-reader users, and it gives search engines links they can follow.
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { COUNTRIES, findCountry } from '../data/countries';
+import { COUNTRIES, findCountry, hasFullPage } from '../data/countries';
 
 const countryFiles = await getCollection('countries');
 const relationshipFiles = await getCollection('relationships');
 
-// Every core country appears, whether or not its file exists yet.
-const coreCountries = COUNTRIES.filter((country) => country.region === 'core');
+// Every country with a full page appears, whether or not its file exists yet.
+const coreCountries = COUNTRIES.filter((country) => hasFullPage(country.region));
 const externalPowers = COUNTRIES.filter((country) => country.region === 'external');
 const hasFile = (slug: string) => countryFiles.some((file) => file.id === slug);
 
@@ -27,7 +27,7 @@ const relationships = relationshipFiles
   <p class="lead">Everything on the globe, as a simple list.</p>
 
   <section>
-    <h2>Core countries</h2>
+    <h2>Countries</h2>
     <ul>
       {coreCountries.map((country) => (
         <li>

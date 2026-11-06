@@ -6,7 +6,19 @@ gdpUsdBn: 1870
 gdpPerCapitaUsd: 36227
 population: 51684564
 oilGasShareOfExportsPct: 6.7
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 0, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: { value: 83.2, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 22.2, year: 2025, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not applicable"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers. The page gives no year for these figures."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
@@ -30,7 +42,7 @@ sovereignWealthFunds:
     aumUsdBn: 232
     note: "Global SWF figure, October 2026."
 currencyRegime: "South Korean won (floating)"
-diversificationPlan: "Not applicable — South Korea has a large, diversified advanced economy."
+diversificationPlan: "Not applicable: South Korea has a large, diversified advanced economy."
 keyRisks:
   - "Oil prices: in March 2026 Korean research institutes estimated that a prolonged Iran war could cut growth by up to 0.8 percentage points, pushing it into the low 1% range, or toward zero if the conflict lasts a year."
   - "Energy dependence: South Korea relies heavily on Middle Eastern crude, and Morgan Stanley lists it among the economies most exposed to oil and gas deficits."
@@ -53,7 +65,13 @@ sources:
     url: "https://www.bairdmaritime.com/amp/story/shipping/tankers/gas/south-korea-downplays-lng-supply-risk-after-qatar-plant-damage"
   - title: "Korea Times, \"Prolonged Iran crisis could drag Korea's growth rate toward 0%\" (March 2026)"
     url: "https://www.koreatimes.co.kr/economy/policy/20260317/prolonged-iran-crisis-could-drag-koreas-growth-rate-toward-0-report"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

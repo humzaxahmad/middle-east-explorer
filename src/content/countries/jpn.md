@@ -6,7 +6,19 @@ gdpUsdBn: 4440
 gdpPerCapitaUsd: 35951
 population: 123366734
 oilGasShareOfExportsPct: 1.2
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 0, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: { value: 87.3, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 19.6, year: 2025, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not applicable"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers. The page gives no year for these figures."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
@@ -30,7 +42,7 @@ sovereignWealthFunds:
     aumUsdBn: 1962
     note: "Global SWF figure, October 2026. This is a public pension fund, not a sovereign wealth fund."
 currencyRegime: "Japanese yen (floating)"
-diversificationPlan: "Not applicable — Japan has a large, diversified advanced economy."
+diversificationPlan: "Not applicable: Japan has a large, diversified advanced economy."
 keyRisks:
   - "Oil dependence: over 90% of Japan's crude oil comes from the Middle East, which leaves it highly exposed to the closure of the Strait of Hormuz."
   - "Inflation: in the Bank of Japan's April 2026 risk scenario, with oil at about $105 a barrel and a 10% weaker yen, core inflation would reach 3.1% in fiscal 2026 and stay around 3% in 2027, well above its 2% target."
@@ -53,7 +65,13 @@ sources:
     url: "https://finance.yahoo.com/economy/policy/articles/boj-sees-inflation-moving-around-055247842.html"
   - title: "Jiji Press via Adnkronos, \"Japan buffering oil price shock: IMF official\" (April 2026)"
     url: "https://english.adnkronos.com/2026/04/14/japan-buffering-oil-price-shock-imf-official/"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

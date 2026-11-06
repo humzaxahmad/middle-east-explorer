@@ -1,12 +1,25 @@
 ---
 name: "Bahrain"
 iso3: "BHR"
-region: "core"
+region: "producer"
 gdpUsdBn: 48.97
 gdpPerCapitaUsd: 30597
 population: 1600366
 oilGasShareOfExportsPct: 38.2
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 16.6, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: { value: 160.8, year: 2024, source: "IMF REO May 2025" }
+energyImportDependencePct: { value: -48.5, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 2.6, year: 2024, source: "World Bank WDI" }
+nonOilGdpSharePct: { value: 85.8, year: 2025, source: "Bahrain Economic Report via Arab News" }
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
+  - "Non-oil share of GDP: constant prices, preliminary."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers."
   - "Top partners: share of total exports, from World's Top Exports, rounded to whole numbers."
   - "GDP, GDP per person and population: World Bank, 2025."
@@ -52,7 +65,17 @@ sources:
     url: "https://www.agbi.com/analysis/economy/2025/10/tough-decisions-ahead-for-bahrain-as-debt-looms-large/"
   - title: "World's Top Exports, \"Bahrain's Top Exports 2025\""
     url: "https://www.worldstopexports.com/bahrains-top-10-exports/"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+  - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
+    url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
+  - title: "Arab News, \"Bahrain's economy grows 3.5% in 2025 as non-oil sectors drive expansion\" (Bahrain Economic Report 2025, iGA data)"
+    url: "https://www.arabnews.com/node/2639863/amp"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

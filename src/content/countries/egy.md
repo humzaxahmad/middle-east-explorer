@@ -1,12 +1,24 @@
 ---
 name: "Egypt"
 iso3: "EGY"
-region: "core"
+region: "producer"
 gdpUsdBn: 365.25
 gdpPerCapitaUsd: 3086
 population: 118365995
 oilGasShareOfExportsPct: 12
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 5.1, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: { value: 26.4, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 21.4, year: 2025, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not applicable"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Textiles & agricultural goods spans several categories, so it has no single percentage."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "The Sovereign Fund of Egypt: assets under management per the Sovereign Wealth Fund Institute, as of 2024-12-31. Global SWF lists a much lower $2bn for October 2026."
@@ -30,7 +42,7 @@ sovereignWealthFunds:
     aumUsdBn: 12
     note: "Sovereign Wealth Fund Institute figure, as of 2024-12-31."
 currencyRegime: "Egyptian pound under a managed float since March 2024, after the central bank devalued it roughly 38% in a single move to end years of an unsustainable quasi-fixed peg"
-diversificationPlan: "Egypt's economy is already diversified relative to Gulf oil states — built on Suez Canal transit fees, tourism, remittances, agriculture, and manufacturing rather than a single resource. Current reform priority, under an $8bn IMF Extended Fund Facility, is shrinking the state and military's footprint in the economy to attract private investment."
+diversificationPlan: "Egypt's economy is already diversified relative to Gulf oil states, built on Suez Canal transit fees, tourism, remittances, agriculture, and manufacturing rather than a single resource. Current reform priority, under an $8bn IMF Extended Fund Facility, is shrinking the state and military's footprint in the economy to attract private investment."
 keyRisks:
   - "Interest payments absorb roughly 83% of tax revenue, among the highest debt-servicing burdens in the world"
   - "Heavy reliance on short-term domestic debt (~60% of domestic debt) exposes Egypt to rollover and interest-rate risk"
@@ -54,7 +66,13 @@ sources:
     url: "https://www.worldstopexports.com/egypts-top-10-exports/"
   - title: "Sovereign Wealth Fund Institute profile of TSFE, cited via Wikipedia summary"
     url: "https://en.wikipedia.org/wiki/The_Sovereign_Fund_of_Egypt"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

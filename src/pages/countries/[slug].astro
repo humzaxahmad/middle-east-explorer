@@ -1,14 +1,19 @@
 ---
-// Builds one page per core country, such as /countries/uae.
-// External powers have no page of their own: they appear through relationships.
+// Builds one page per country that isn't an external power, such as /countries/sau.
+// Order: exposure, what's hitting it now, market impact, escape plan, then the
+// reference data, collapsed at the bottom.
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Sources from '../../components/Sources.astro';
 import Value from '../../components/Value.astro';
+import Indicator from '../../components/Indicator.astro';
+import ExposureBadges from '../../components/ExposureBadges.astro';
+import { NOT_APPLICABLE, hasFullPage } from '../../data/countries';
+import { INDICATORS, indicatorsFor, type IndicatorKey } from '../../data/indicators';
 
 // Astro runs this during the build to learn which pages to create.
 export async function getStaticPaths() {
-  const countries = await getCollection('countries', (entry) => entry.data.region === 'core');
+  const countries = await getCollection('countries', (entry) => hasFullPage(entry.data.region));
   return countries.map((country) => ({
     params: { slug: country.id },
     props: { country },
@@ -21,37 +26,87 @@ interface Props {
 const { country } = Astro.props;
 const data = country.data;
 const { Content } = await render(country); // Turns the Markdown body into HTML
+
+// The exporter set or the importer set, never both. Every other indicator still
+// appears under Reference data, so nothing is hidden for good.
+const headline = indicatorsFor(data.exposureType);
+const otherIndicators = (Object.keys(INDICATORS) as IndicatorKey[]).filter(
+  (key) => !headline.includes(key),
+);
+const label = (key: IndicatorKey) => `${INDICATORS[key].label} (${INDICATORS[key].unit})`;
+
+// The chain this country links to, named after the chokepoint that shares its slug.
+const chokepoints = await getCollection('chokepoints');
+const chokepoint = chokepoints.find((entry) => entry.data.relatedChainSlug === data.relatedChainSlug);
+const chainName = chokepoint ? `${chokepoint.data.name} shock chain` : 'shock chain';
 ---
 <BaseLayout title={data.name}>
+  <ExposureBadges exposureType={data.exposureType} protectionStatus={data.protectionStatus} />
   <h1>{data.name}</h1>
   <p class="lead"><Value value={data.summary} /></p>
 
   <section>
-    <h2>Key figures</h2>
+    <h2>1. Exposure</h2>
+    {headline.length === 0 ? (
+      <p class="todo">Set exposureType to exporter or importer to choose which indicators show here.</p>
+    ) : (
+      <dl class="facts">
+        {headline.map((key) => (
+          <div><dt>{label(key)}</dt><dd><Indicator value={data[key]} /></dd></div>
+        ))}
+      </dl>
+    )}
+    {data.exportRouteStatus !== NOT_APPLICABLE && (
+      <>
+        <h3>Export routes and bypasses</h3>
+        <p><Value value={data.exportRouteStatus} /></p>
+      </>
+    )}
+  </section>
+
+  <section>
+    <h2>2. What's hitting it now</h2>
+    <p><Value value={data.hittingNow} /></p>
+  </section>
+
+  <section>
+    <h2>3. Market impact</h2>
+    <p><Value value={data.marketImpact} /></p>
+    {/* The full chain lives only on its own page, so country pages never drift
+        out of sync with it. Chain pages arrive in a later step. */}
+    {data.relatedChainSlug && (
+      <p class="chain-link">Full chain: {chainName} <span class="coming-soon">(coming soon)</span></p>
+    )}
+  </section>
+
+  <section>
+    <h2>4. Escape plan</h2>
+    <p><Value value={data.diversificationPlan} /></p>
+    <h3>Key risks</h3>
+    <ul>{data.keyRisks.map((item) => <li><Value value={item} /></li>)}</ul>
+  </section>
+
+  {/* <details> is a built-in HTML box that opens and closes with no JavaScript. */}
+  <details class="reference">
+    <summary>5. Reference data</summary>
+
+    <h3>Key figures</h3>
     <dl class="facts">
       <div><dt>GDP (US$ billions)</dt><dd><Value value={data.gdpUsdBn} /></dd></div>
       <div><dt>GDP per person (US$)</dt><dd><Value value={data.gdpPerCapitaUsd} /></dd></div>
       <div><dt>Population</dt><dd><Value value={data.population} /></dd></div>
       <div><dt>Oil and gas share of exports (%)</dt><dd><Value value={data.oilGasShareOfExportsPct} /></dd></div>
+      {otherIndicators.map((key) => (
+        <div><dt>{label(key)}</dt><dd><Indicator value={data[key]} /></dd></div>
+      ))}
     </dl>
-    {data.notes && (
-      <div class="figure-notes">
-        <h3>Notes on these figures</h3>
-        <ul>{data.notes.map((note) => <li><Value value={note} /></li>)}</ul>
-      </div>
-    )}
-  </section>
 
-  <section>
-    <h2>Trade</h2>
     <h3>Top exports</h3>
     <ul>{data.topExports.map((item) => <li><Value value={item} /></li>)}</ul>
     <h3>Top partners</h3>
     <ul>{data.topPartners.map((item) => <li><Value value={item} /></li>)}</ul>
-  </section>
 
-  <section>
-    <h2>Sovereign wealth funds</h2>
+    <h3>Sovereign wealth funds</h3>
     {data.sovereignWealthFunds.length === 0 ? (
       <p>None listed.</p>
     ) : (
@@ -65,16 +120,17 @@ const { Content } = await render(country); // Turns the Markdown body into HTML
         ))}
       </ul>
     )}
-  </section>
 
-  <section>
-    <h2>Currency regime</h2>
+    <h3>Currency regime</h3>
     <p><Value value={data.currencyRegime} /></p>
-    <h2>Diversification plan</h2>
-    <p><Value value={data.diversificationPlan} /></p>
-    <h2>Key risks</h2>
-    <ul>{data.keyRisks.map((item) => <li><Value value={item} /></li>)}</ul>
-  </section>
+
+    {data.notes && (
+      <div class="figure-notes">
+        <h3>Notes on these figures</h3>
+        <ul>{data.notes.map((note) => <li><Value value={note} /></li>)}</ul>
+      </div>
+    )}
+  </details>
 
   <section class="prose">
     <h2>Analysis</h2>

@@ -1,12 +1,25 @@
 ---
 name: "Oman"
 iso3: "OMN"
-region: "core"
+region: "producer"
 gdpUsdBn: 109.6
 gdpPerCapitaUsd: 19947
 population: 5494691
 oilGasShareOfExportsPct: 72.4
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 29.2, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: { value: 53.7, year: 2024, source: "IMF REO May 2025" }
+energyImportDependencePct: { value: -202.7, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 21.4, year: 2025, source: "World Bank WDI" }
+nonOilGdpSharePct: { value: 69.2, year: 2025, source: "Oman Ministry of Economy" }
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
+  - "Non-oil share of GDP: current prices."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Natural gas & LNG uses the figure for petroleum gases."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2025. This includes coal and leaves out services."
@@ -51,7 +64,17 @@ sources:
     url: "https://www.worldstopexports.com/omans-top-10-exports/"
   - title: "World Trade Atlas, Oman (BACI data, 2024)"
     url: "https://world-trade-atlas.vercel.app/countries/OMN"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+  - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
+    url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
+  - title: "Oman Ministry of Economy, \"Oman Economic Performance Bulletin\" (March 2026, NCSI data)"
+    url: "https://economy.gov.om/en/PDF/Oman_Economic_Performance_Bulletin_March_2026_EN.pdf"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

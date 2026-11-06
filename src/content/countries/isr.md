@@ -1,12 +1,24 @@
 ---
 name: "Israel"
 iso3: "ISR"
-region: "core"
+region: "producer"
 gdpUsdBn: 610.78
 gdpPerCapitaUsd: 60337
 population: 10122800
 oilGasShareOfExportsPct: "Not available"
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 0.4, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: { value: 4.7, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 8.3, year: 2025, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not applicable"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: no reliable source gives this as a share of total export value. See Analysis."
   - "Top partners: goods export destinations, from World's Top Exports."
@@ -46,9 +58,15 @@ sources:
     url: "https://www.jns.org/news/israel-news/israeli-economy-contracts-amid-war-with-iran-but-expected-to-bounce-back"
   - title: "Xinhua via The Star, \"IMF expects Israel's economy to grow 4.5 percent in 2026\" (October 2026)"
     url: "https://www.thestar.com.my/news/world/2026/10/14/imf-expects-israel039s-economy-to-grow-45-percent-in-2026"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-Israel is not a significant oil/gas exporter by export value — its economy is defined by high-tech. It became a modest regional gas exporter to Egypt and Jordan only in recent years, exporting about 49% of its gas production by volume in 2024, but no reliable source gives this as a share of total export value.
+Israel is not a significant oil/gas exporter by export value. Its economy is defined by high-tech. It became a modest regional gas exporter to Egypt and Jordan only in recent years, exporting about 49% of its gas production by volume in 2024, but no reliable source gives this as a share of total export value.
 
-TODO — fill in
+TODO: fill in

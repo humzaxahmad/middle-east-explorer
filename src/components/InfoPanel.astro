@@ -1,23 +1,22 @@
 ---
-// The side panel. It starts empty, and src/scripts/globe.ts fills it in when a
-// country is clicked. aria-live makes screen readers announce the new content.
+// The side panel (a bottom sheet on phones). It starts empty, and
+// src/scripts/globe.ts fills it in when a country is clicked. aria-live makes
+// screen readers announce the new content.
 ---
 <aside id="panel" class="panel" aria-live="polite">
   <button id="panel-reset" class="panel-reset" type="button">Reset selection</button>
+  <!-- The header line, such as "EXPORTER · Partly protected". -->
   <p id="panel-type" class="panel-type"></p>
   <h2 id="panel-title"></h2>
   <p id="panel-summary"></p>
-  <!-- Two quick stats, shown for a single country that has a Markdown file. -->
-  <dl id="panel-stats" class="panel-stats" hidden>
-    <div>
-      <dt>GDP (US$ bn)</dt>
-      <dd id="panel-gdp"></dd>
-    </div>
-    <div>
-      <dt>Population</dt>
-      <dd id="panel-population"></dd>
-    </div>
-  </dl>
+  <!-- The exporter or importer indicators for one country. -->
+  <dl id="panel-indicators" class="panel-indicators" hidden></dl>
+  <div id="panel-hitting" hidden>
+    <h3 class="panel-subhead">What's hitting it now</h3>
+    <p id="panel-hitting-text"></p>
+  </div>
+  <!-- The chain button. Shown only when the country has a related chain. -->
+  <p id="panel-chain" class="panel-chain" hidden></p>
   <p id="panel-hint" class="panel-hint"></p>
   <a id="panel-link" class="panel-link" href="/"></a>
 </aside>

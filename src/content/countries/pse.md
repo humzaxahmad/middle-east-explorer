@@ -1,12 +1,24 @@
 ---
 name: "Palestine"
 iso3: "PSE"
-region: "core"
+region: "other"
 gdpUsdBn: 17.17
 gdpPerCapitaUsd: 3171
 population: 5413596
 oilGasShareOfExportsPct: 0
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 0, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "Not applicable"
+fiscalBreakevenOilPriceUsd: "Not applicable"
+energyImportDependencePct: "Not available"
+fuelImportsPctOfImports: { value: 21.2, year: 2023, source: "World Bank WDI" }
+nonOilGdpSharePct: "Not applicable"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "Not applicable"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: percentages are shares of total exports in 2023, from World's Top Exports, rounded to whole numbers."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Population: the Palestinian Central Bureau of Statistics separately estimated 5.6 million as of December 2024, including 3.32 million in the West Bank and 2.4 million in Gaza."
@@ -25,7 +37,7 @@ topPartners:
   - "United States (1%)"
   - "Turkey (1%)"
 sovereignWealthFunds: []
-currencyRegime: "No independent currency — the Israeli shekel is used as the primary circulating currency, alongside the Jordanian dinar and US dollar"
+currencyRegime: "No independent currency: the Israeli shekel is used as the primary circulating currency, alongside the Jordanian dinar and US dollar"
 diversificationPlan: "No formal national diversification plan under current conditions; the economy is fragmented into sharply different West Bank and Gaza trajectories rather than following one unified policy direction."
 keyRisks:
   - "Gaza's economy contracted an estimated 83% in 2024 and was effectively at a standstill in early 2025, while the West Bank economy separately grew 3.2% in 2025"
@@ -44,7 +56,11 @@ sources:
     url: "https://thedocs.worldbank.org/en/doc/caf69bb9db6d729c6b35254c5815df9a-0280012026/original/Palestinian-Economic-Monitor-5-19-26web.pdf"
   - title: "Qatar News Agency, \"UNCTAD warns of severe Palestinian economic collapse\" (September 2026)"
     url: "https://qna.org.qa/en/News-Area/News/2026-9/25/unctad-warns-of-severe-palestinian-economic-collapse"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

@@ -1,12 +1,25 @@
 ---
 name: "Kuwait"
 iso3: "KWT"
-region: "core"
+region: "producer"
 gdpUsdBn: 157.21
 gdpPerCapitaUsd: 32312
 population: 4865298
 oilGasShareOfExportsPct: 93
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 29.3, year: 2020, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: { value: 88.2, year: 2024, source: "IMF REO May 2025" }
+energyImportDependencePct: { value: -218.7, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 0.6, year: 2025, source: "World Bank WDI" }
+nonOilGdpSharePct: { value: 52.1, year: 2024, source: "CSB via Times Kuwait" }
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
+  - "Non-oil share of GDP: constant prices. At current prices it was 56.6%."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Petrochemicals uses the figure for organic chemicals."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Kuwait Investment Authority assets: Global SWF figure, October 2026."
@@ -53,7 +66,17 @@ sources:
     url: "https://www.fpri.org/article/2025/11/debt-decree-and-development-kuwaits-unnoticed-transitions/"
   - title: "World Trade Atlas, Kuwait (CEPII BACI data, 2024)"
     url: "https://world-trade-atlas.vercel.app/countries/KWT"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+  - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
+    url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
+  - title: "Times Kuwait, Central Statistical Bureau GDP figures for 2024 (May 2025)"
+    url: "https://timeskuwait.com/?p=44239"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

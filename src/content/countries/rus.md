@@ -6,7 +6,19 @@ gdpUsdBn: 2561.31
 gdpPerCapitaUsd: 17547
 population: 143513328
 oilGasShareOfExportsPct: 53.9
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 18.5, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: "TODO: fill in"
+energyImportDependencePct: { value: -70.7, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 0.8, year: 2021, source: "World Bank WDI" }
+nonOilGdpSharePct: "TODO: fill in"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: fuel and energy products as a share of exports, 2025, from the Gaidar Institute. The World Bank has reported no fuel share for Russia since 2021, when it was 43.1%. The two measures may not be directly comparable."
   - "Top partners: the largest buyers of Russian fossil fuels in October 2025, not all exports."
@@ -44,7 +56,13 @@ sources:
     url: "https://www.iep.ru/en/monitoring/outcomes-of-russia-s-foreign-trade-in-2025.html"
   - title: "The Moscow Times, \"Did the Mideast Conflict Just Rescue Russia's War Budget?\" (March 2026)"
     url: "https://www.themoscowtimes.com/2026/03/11/did-the-mideast-conflict-just-rescue-russias-war-budget"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

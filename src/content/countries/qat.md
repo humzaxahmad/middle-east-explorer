@@ -1,12 +1,25 @@
 ---
 name: "Qatar"
 iso3: "QAT"
-region: "core"
+region: "producer"
 gdpUsdBn: 215.56
 gdpPerCapitaUsd: 72525
 population: 2972215
 oilGasShareOfExportsPct: 83.8
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 27.3, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: { value: 47.1, year: 2024, source: "IMF REO May 2025" }
+energyImportDependencePct: { value: -395.5, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 6.2, year: 2024, source: "World Bank WDI" }
+nonOilGdpSharePct: { value: 64, year: 2024, source: "NPC via The Peninsula" }
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
+  - "Non-oil share of GDP: the source says \"nearly 64%\"."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Qatar Investment Authority assets: Global SWF figure, October 2026. QIA does not publicly disclose its assets under management."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2024. This includes coal and leaves out services."
@@ -51,7 +64,17 @@ sources:
     url: "https://thenationalnews.com/business/economy/2026/10/13/imf-cuts-2026-growth-forecasts-for-gulf-economies-due-to-prolonged-hormuz-closure/"
   - title: "World Bank WITS, Qatar exports by country (2023)"
     url: "https://wits.worldbank.org/CountryProfile/en/Country/QAT/Year/LTST/TradeFlow/Export/Partner/by-country"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+  - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
+    url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
+  - title: "The Peninsula, \"Qatari economy grows 2.4% YoY in 2024\" (National Planning Council data)"
+    url: "https://thepeninsulaqatar.com/article/20/03/2025/qatari-economy-grows-24-yoy-in-2024"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

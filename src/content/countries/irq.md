@@ -1,12 +1,24 @@
 ---
 name: "Iraq"
 iso3: "IRQ"
-region: "core"
+region: "producer"
 gdpUsdBn: 254.37
 gdpPerCapitaUsd: 5410
 population: 47020774
 oilGasShareOfExportsPct: 99
+exposureType: "TODO: fill in"
+protectionStatus: "TODO: fill in"
+resourceRentsPctGdp: { value: 43.4, year: 2021, source: "World Bank WDI" }
+oilShareOfGovRevenuePct: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: { value: 83.8, year: 2024, source: "IMF REO May 2025" }
+energyImportDependencePct: { value: -223.3, year: 2024, source: "World Bank WDI", method: worldbank }
+fuelImportsPctOfImports: { value: 5.2, year: 2024, source: "World Bank WDI" }
+nonOilGdpSharePct: "TODO: fill in"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
+exportRouteStatus: "TODO: fill in"
 notes:
+  - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2024. See Key risks for the separate revenue share."
@@ -22,7 +34,7 @@ topPartners:
   - "United States (7%)"
 sovereignWealthFunds: []
 currencyRegime: "Iraqi dinar under a managed/controlled exchange rate (not freely floating); since January 2024, domestic commercial transactions must be conducted in dinar rather than US dollars"
-diversificationPlan: "Iraq has no Vision-style national diversification plan comparable to Gulf peers. Prime Minister Ali al-Zaidi, who took office in May 2026, has focused on increasing oil production and diversifying export routes — including a push to sell more crude to Europe — rather than reducing the economy's overall oil dependence."
+diversificationPlan: "Iraq has no Vision-style national diversification plan comparable to Gulf peers. Prime Minister Ali al-Zaidi, who took office in May 2026, has focused on increasing oil production and diversifying export routes, including a push to sell more crude to Europe, rather than reducing the economy's overall oil dependence."
 keyRisks:
   - "Oil provides about 99% of goods exports (World Bank, 2024) and about 90% of federal government revenue, among the most oil-dependent economies in the world"
   - "Shrinking foreign exchange reserves increase vulnerability to oil price shocks"
@@ -44,7 +56,15 @@ sources:
     url: "https://enterpriseam.com/ksa/2026/10/14/imf-slashes-mena-growth-as-hormuz-closure-disrupts-oil-and-shipping/"
   - title: "World's Top Exports, \"Iraq's Top Exports 2025\""
     url: "https://www.worldstopexports.com/iraqs-top-10-exports/"
-lastUpdated: 2026-11-05
+  - title: "World Bank WDI, \"Total natural resources rents (% of GDP)\""
+    url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
+  - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
+    url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
+  - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
+    url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
+  - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
+    url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
+lastUpdated: 2026-11-06
 ---
 
-TODO — fill in
+TODO: fill in

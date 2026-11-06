@@ -16,7 +16,7 @@ Press Ctrl + C to stop the dev server.
 
 ## The content rule
 
-Never guess a figure or fact. Every real figure must be sourced and cited. If you don't have a sourced value yet, leave the field as exactly `TODO — fill in`, which shows up in yellow on the site.
+Never guess a figure or fact. Every real figure must be sourced and cited. If you don't have a sourced value yet, leave the field as exactly `TODO: fill in`, which shows up in yellow on the site.
 
 ## URL names and codes
 
@@ -24,22 +24,22 @@ Each country has a code, used inside files, and a slug, used for filenames and U
 
 | Country | Code | Slug | Type |
 |---|---|---|---|
-| United Arab Emirates | `ARE` | `uae` | core |
-| Saudi Arabia | `SAU` | `sau` | core |
-| Qatar | `QAT` | `qat` | core |
-| Kuwait | `KWT` | `kwt` | core |
-| Oman | `OMN` | `omn` | core |
-| Bahrain | `BHR` | `bhr` | core |
-| Iran | `IRN` | `irn` | core |
-| Israel | `ISR` | `isr` | core |
-| Egypt | `EGY` | `egy` | core |
-| Turkey | `TUR` | `tur` | core |
-| Iraq | `IRQ` | `irq` | core |
-| Jordan | `JOR` | `jor` | core |
-| Syria | `SYR` | `syr` | core |
-| Lebanon | `LBN` | `lbn` | core |
-| Palestine | `PSE` | `pse` | core |
-| Yemen | `YEM` | `yem` | core |
+| United Arab Emirates | `ARE` | `uae` | producer |
+| Saudi Arabia | `SAU` | `sau` | producer |
+| Qatar | `QAT` | `qat` | producer |
+| Kuwait | `KWT` | `kwt` | producer |
+| Oman | `OMN` | `omn` | producer |
+| Bahrain | `BHR` | `bhr` | producer |
+| Iran | `IRN` | `irn` | producer |
+| Israel | `ISR` | `isr` | producer |
+| Egypt | `EGY` | `egy` | producer |
+| Turkey | `TUR` | `tur` | producer |
+| Iraq | `IRQ` | `irq` | producer |
+| Jordan | `JOR` | `jor` | importer |
+| Syria | `SYR` | `syr` | other |
+| Lebanon | `LBN` | `lbn` | importer |
+| Palestine | `PSE` | `pse` | other |
+| Yemen | `YEM` | `yem` | importer |
 | United States | `USA` | `usa` | external |
 | China | `CHN` | `chn` | external |
 | India | `IND` | `ind` | external |
@@ -47,9 +47,6 @@ Each country has a code, used inside files, and a slug, used for filenames and U
 | United Kingdom | `GBR` | `uk` | external |
 | South Korea | `KOR` | `kor` | external |
 | Japan | `JPN` | `jpn` | external |
-| France | `FRA` | `fra` | external |
-| Germany | `DEU` | `deu` | external |
-| Italy | `ITA` | `ita` | external |
 | European Union | `EUU` | `eu` | external |
 
 ## Add a country
@@ -63,34 +60,42 @@ Each country has a code, used inside files, and a slug, used for filenames and U
 name: "Saudi Arabia"
 iso3: "SAU"
 region: "core"
-gdpUsdBn: "TODO — fill in"
-gdpPerCapitaUsd: "TODO — fill in"
-population: "TODO — fill in"
-oilGasShareOfExportsPct: "TODO — fill in"
+gdpUsdBn: "TODO: fill in"
+gdpPerCapitaUsd: "TODO: fill in"
+population: "TODO: fill in"
+oilGasShareOfExportsPct: "TODO: fill in"
+exposureType: "TODO: fill in"
+resourceRentsPctGdp: "TODO: fill in"
+fiscalBreakevenOilPriceUsd: "TODO: fill in"
+energyImportDependencePct: "TODO: fill in"
+fuelImportsPctOfImports: "TODO: fill in"
+nonOilGdpSharePct: "TODO: fill in"
+hittingNow: "TODO: fill in"
+marketImpact: "TODO: fill in"
 topExports:
-  - "TODO — fill in"
+  - "TODO: fill in"
 topPartners:
-  - "TODO — fill in"
+  - "TODO: fill in"
 sovereignWealthFunds:
-  - name: "TODO — fill in"
-    aumUsdBn: "TODO — fill in"
-currencyRegime: "TODO — fill in"
-diversificationPlan: "TODO — fill in"
+  - name: "TODO: fill in"
+    aumUsdBn: "TODO: fill in"
+currencyRegime: "TODO: fill in"
+diversificationPlan: "TODO: fill in"
 keyRisks:
-  - "TODO — fill in"
-summary: "TODO — fill in"
+  - "TODO: fill in"
+summary: "TODO: fill in"
 sources:
-  - title: "TODO — fill in"
-    url: "TODO — fill in"
-lastUpdated: "TODO — fill in"
+  - title: "TODO: fill in"
+    url: "TODO: fill in"
+lastUpdated: "TODO: fill in"
 ---
 
-TODO — fill in: the longer written analysis goes here.
+TODO: fill in: the longer written analysis goes here.
 ```
 
 What you'll get:
 
-- **Core country:** a page at `/countries/<slug>`, a summary in the globe's panel, and a link on `/browse`.
+- **Producer, importer or other:** a page at `/countries/<slug>`, a summary in the globe's panel, and a link on `/browse`.
 - **External power:** a summary in the globe's panel only, with no page of its own.
 
 ### Notes on figures
@@ -111,11 +116,15 @@ These values only show the format. They aren't real data.
 |---|---|---|
 | `name` | text | Display name |
 | `iso3` | code | From the table above |
-| `region` | `core` or `external` | Must match the table above |
+| `region` | `producer`, `importer`, `other` or `external` | Must match the table above |
+| `exposureType` | `exporter`, `importer` or `mixed` | |
 | `gdpUsdBn` | number | US$ billions |
 | `gdpPerCapitaUsd` | number | US$ |
 | `population` | number | Whole number of people |
 | `oilGasShareOfExportsPct` | number | 0 to 100, with no `%` sign. Use exactly `"Not available"` if no reliable source gives it |
+| `resourceRentsPctGdp`, `fiscalBreakevenOilPriceUsd`, `fuelImportsPctOfImports`, `nonOilGdpSharePct` | indicator | `{ value: 12.5, year: 2023, source: "World Bank" }`. Numbers may be negative |
+| `energyImportDependencePct` | indicator plus `method` | As above, plus `method: eurostat` (net imports / gross available energy) or `method: worldbank` (net energy imports as % of energy use, the fallback where the first can't be computed) |
+| `hittingNow`, `marketImpact` | text | Short text for the globe's exposure panel |
 | `notes` | list of text | **Optional.** Dates and caveats shown under Key figures |
 | `topExports` | list of text | At least one item |
 | `topPartners` | list of text | At least one item |
@@ -138,24 +147,24 @@ These values only show the format. They aren't real data.
 ---
 countryA: "ARE"
 countryB: "USA"
-title: "TODO — fill in"
-summary: "TODO — fill in"
-tradeAtoB: "TODO — fill in"
-tradeBtoA: "TODO — fill in"
-investmentFlows: "TODO — fill in"
-energyTies: "TODO — fill in"
-securityTies: "TODO — fill in"
+title: "TODO: fill in"
+summary: "TODO: fill in"
+tradeAtoB: "TODO: fill in"
+tradeBtoA: "TODO: fill in"
+investmentFlows: "TODO: fill in"
+energyTies: "TODO: fill in"
+securityTies: "TODO: fill in"
 recentDevelopments:
-  - "TODO — fill in"
-whyItMatters: "TODO — fill in"
-interviewAngle: "TODO — fill in"
+  - "TODO: fill in"
+whyItMatters: "TODO: fill in"
+interviewAngle: "TODO: fill in"
 sources:
-  - title: "TODO — fill in"
-    url: "TODO — fill in"
-lastUpdated: "TODO — fill in"
+  - title: "TODO: fill in"
+    url: "TODO: fill in"
+lastUpdated: "TODO: fill in"
 ---
 
-TODO — fill in: the longer written analysis goes here.
+TODO: fill in: the longer written analysis goes here.
 ```
 
 You'll get a page at `/relationships/<slug-slug>`, a summary and link when someone clicks both countries on the globe (in either order), and a link on `/browse`.
@@ -182,7 +191,7 @@ The text below the second `---` is the longer written analysis.
 
 ## Filling in real values
 
-Every number, web address and date field accepts either a real value or exactly `TODO — fill in`:
+Every number, web address and date field accepts either a real value or exactly `TODO: fill in`:
 
 ```yaml
 gdpUsdBn: 1250.5                  # Numbers have no quotes or commas
@@ -198,7 +207,7 @@ The values above only show the format. They aren't real data.
 
 ```text
 countries → uae data does not match collection schema.
-gdpUsdBn: Must be a number with no quotes or commas (like 1250.5), or exactly "TODO — fill in".
+gdpUsdBn: Must be a number with no quotes or commas (like 1250.5), or exactly "TODO: fill in".
 ```
 
 The rules are in `src/content.config.ts`.
