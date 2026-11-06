@@ -17,6 +17,7 @@ nonOilGdpSharePct: "Not applicable"
 hittingNow: "TODO: fill in"
 marketImpact: "TODO: fill in"
 exportRouteStatus: "Not applicable"
+relatedChainSlug: red-sea-shipping
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "GDP, GDP per person and population: World Bank, 2025."

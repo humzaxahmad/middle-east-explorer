@@ -17,6 +17,7 @@ nonOilGdpSharePct: "Not applicable"
 hittingNow: "TODO: fill in"
 marketImpact: "TODO: fill in"
 exportRouteStatus: "Not applicable"
+relatedChainSlug: red-sea-shipping
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Textiles & agricultural goods spans several categories, so it has no single percentage."
