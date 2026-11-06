@@ -9,6 +9,7 @@ import { INDICATORS, exposureHeader, indicatorsFor, shortIndicator } from '../da
 // so the browser doesn't have to download whole profiles.
 const countries = await getCollection('countries');
 const chokepoints = await getCollection('chokepoints');
+const chains = await getCollection('chains');
 const panelData = {
   countries: countries.map(({ data }) => ({
     code: data.iso3,
@@ -22,12 +23,12 @@ const panelData = {
     })),
     hittingNow: data.hittingNow,
     // The button text comes from the chokepoint that shares this chain's slug,
-    // such as "See the Strait of Hormuz shock". Chain pages don't exist yet, so
-    // the button says "coming soon" for now.
+    // such as "See the Strait of Hormuz shock". The link only appears once the
+    // chain file itself exists; until then the button says "coming soon".
     chain: data.relatedChainSlug
       ? {
           text: `See the ${chokepoints.find((c) => c.data.relatedChainSlug === data.relatedChainSlug)?.data.name ?? 'related'} shock`,
-          href: undefined as string | undefined,
+          href: chains.some((c) => c.id === data.relatedChainSlug) ? `/chains/${data.relatedChainSlug}` : undefined,
         }
       : undefined,
   })),

@@ -1,0 +1,121 @@
+---
+// Builds one page per chain file, such as /chains/hormuz-closure.
+// Order: trigger, energy hit, economy hit, sectors, countries, what to watch,
+// interview angle, then sources. No difficulty levels yet (deferred).
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sources from '../../components/Sources.astro';
+import Value from '../../components/Value.astro';
+import { findCountry, hasFullPage } from '../../data/countries';
+
+export async function getStaticPaths() {
+  const chains = await getCollection('chains');
+  return chains.map((chain) => ({
+    params: { slug: chain.id },
+    props: { chain },
+  }));
+}
+
+interface Props {
+  chain: CollectionEntry<'chains'>;
+}
+const { chain } = Astro.props;
+const data = chain.data;
+const { Content } = await render(chain);
+
+// Only link to a country if its page exists. That means a core country with a
+// Markdown file, since external powers have no page of their own.
+const countryFiles = await getCollection('countries', (entry) => hasFullPage(entry.data.region));
+const hasPage = (slug: string) => countryFiles.some((entry) => entry.id === slug);
+
+// Turns a list of codes into displayable, optionally linked entries. Unknown
+// codes (a typo in the content file) are skipped rather than crashing the page.
+function countryList(codes: readonly string[]) {
+  return codes
+    .map((code) => findCountry(code))
+    .filter((entry) => entry !== undefined)
+    .map((entry) => ({ name: entry.name, href: hasPage(entry.slug) ? `/countries/${entry.slug}` : undefined }));
+}
+const exposed = countryList(data.countriesExposed);
+const protectedCountries = countryList(data.countriesProtected);
+---
+<BaseLayout title={data.title}>
+  <p class="badges">
+    <span class={`badge badge-${data.speed}`}>{data.speed === 'fast' ? 'Fast shock' : 'Slow shock'}</span>
+  </p>
+  <h1>{data.title}</h1>
+  <p class="lead"><Value value={data.summary} /></p>
+
+  <section>
+    <h2>1. Trigger</h2>
+    <p><Value value={data.trigger} /></p>
+  </section>
+
+  <section>
+    <h2>2. Energy hit</h2>
+    <p><Value value={data.energyHit} /></p>
+  </section>
+
+  <section>
+    <h2>3. Economy hit</h2>
+    <p><Value value={data.economyHit} /></p>
+  </section>
+
+  <section>
+    <h2>4. Sectors</h2>
+    <div class="sectors-grid">
+      <div>
+        <h3>Usually gain</h3>
+        <ul>{data.sectorsWinners.map((item) => <li><Value value={item} /></li>)}</ul>
+      </div>
+      <div>
+        <h3>Usually lose</h3>
+        <ul>{data.sectorsLosers.map((item) => <li><Value value={item} /></li>)}</ul>
+      </div>
+    </div>
+    <p class="coming-soon">Full sector cheat sheet (coming soon)</p>
+  </section>
+
+  <section>
+    <h2>5. Countries</h2>
+    <div class="sectors-grid">
+      <div>
+        <h3>Exposed</h3>
+        <ul>
+          {exposed.map((country) => (
+            <li>{country.href ? <a href={country.href}>{country.name}</a> : country.name}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Protected</h3>
+        {protectedCountries.length === 0 ? (
+          <p class="coming-soon">None.</p>
+        ) : (
+          <ul>
+            {protectedCountries.map((country) => (
+              <li>{country.href ? <a href={country.href}>{country.name}</a> : country.name}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>6. What to watch</h2>
+    <p><Value value={data.whatToWatch} /></p>
+  </section>
+
+  <section>
+    <h2>7. Interview angle</h2>
+    <p><Value value={data.interviewAngle} /></p>
+  </section>
+
+  <section class="prose">
+    <h2>Analysis</h2>
+    <Content />
+  </section>
+
+  <Sources sources={data.sources} lastUpdated={data.lastUpdated} />
+</BaseLayout>

@@ -7,11 +7,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { COUNTRIES, hasFullPage } from '../data/countries';
 
 const countryFiles = await getCollection('countries');
+const chainFiles = await getCollection('chains');
+const chokepoints = await getCollection('chokepoints');
 
 // Every country with a full page appears, whether or not its file exists yet.
 const coreCountries = COUNTRIES.filter((country) => hasFullPage(country.region));
 const externalPowers = COUNTRIES.filter((country) => country.region === 'external');
 const hasFile = (slug: string) => countryFiles.some((file) => file.id === slug);
+
+// Every chain a chokepoint already points to appears, whether or not its file
+// exists yet, the same pattern as countries above.
+const plannedChains = [...new Set(chokepoints.map((c) => c.data.relatedChainSlug))]
+  .map((slug) => ({ slug, name: chainFiles.find((file) => file.id === slug)?.data.title ?? slug }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+const hasChainFile = (slug: string) => chainFiles.some((file) => file.id === slug);
 ---
 <BaseLayout title="Browse">
   <h1>Browse all pages</h1>
@@ -26,6 +35,21 @@ const hasFile = (slug: string) => countryFiles.some((file) => file.id === slug);
             <a href={`/countries/${country.slug}`}>{country.name}</a>
           ) : (
             <>{country.name} <span class="coming-soon">(coming soon)</span></>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Chains</h2>
+    <ul>
+      {plannedChains.map((chain) => (
+        <li>
+          {hasChainFile(chain.slug) ? (
+            <a href={`/chains/${chain.slug}`}>{chain.name}</a>
+          ) : (
+            <>{chain.name} <span class="coming-soon">(coming soon)</span></>
           )}
         </li>
       ))}

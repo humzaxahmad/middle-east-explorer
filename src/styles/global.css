@@ -299,8 +299,23 @@ ul {
   background: #fbdcdc;
   border-color: #ea9b9b;
 }
+.badge-fast {
+  background: #fbdcdc;
+  border-color: #ea9b9b;
+}
+.badge-slow {
+  background: #d7e8fb;
+  border-color: #8db8ea;
+}
 .chain-link {
   font-weight: 600;
+}
+/* Side-by-side columns on a chain page: sector winners/losers, countries
+   exposed/protected. Drops to one column on narrow screens. */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0 1.5rem;
 }
 /* The "See the ... shock" button in the globe panel. */
 .chain-button {

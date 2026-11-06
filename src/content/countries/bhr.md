@@ -17,6 +17,7 @@ nonOilGdpSharePct: { value: 85.8, year: 2025, source: "Bahrain Economic Report v
 hittingNow: "TODO: fill in"
 marketImpact: "TODO: fill in"
 exportRouteStatus: "TODO: fill in"
+relatedChainSlug: hormuz-closure
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Non-oil share of GDP: constant prices, preliminary."
