@@ -29,6 +29,14 @@ const COLOURS = {
   pending: '#6b7591',
 };
 
+// Chokepoint pin colours, by status. Unaffected by the exporter/importer
+// toggle: a closed strait matters to both views.
+const CHOKEPOINT_COLOURS: Record<string, string> = {
+  open: '#34d399',
+  closed: '#f87171',
+  disputed: '#fbbf24',
+};
+
 // Lightens a "#rrggbb" colour toward white, for hover highlights. Keeping this
 // as one function avoids hand-picking a hover shade for every colour above.
 function lighten(hex: string, amount: number) {
@@ -51,6 +59,7 @@ type Entry = NonNullable<ReturnType<typeof findCountry>>;
 
 // A click area for a country too small to click on the map.
 interface Dot {
+  kind: 'dot';
   entry: Entry;
   lat: number;
   lng: number;
@@ -58,9 +67,24 @@ interface Dot {
   visible: boolean;
 }
 
+// A chokepoint pin, from chokepoints.yaml via Globe.astro.
+interface Pin {
+  kind: 'pin';
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  status: string;
+}
+
+// The two kinds of thing shown as a globe.gl "point": the small click areas
+// for countries too tiny to tap, and the chokepoint pins.
+type MapPoint = Dot | Pin;
+
 // What we track as the visitor moves around.
 let hoveredCode: string | null = null;
 let selectedCodes: string[] = []; // Holds zero or one code, like ['ARE']
+let selectedChokepoint: string | null = null; // A chokepoint id, such as 'hormuz'
 
 // Gets the clickable entry a map shape belongs to, or undefined for grey countries.
 function entryFor(country: MapCountry) {
@@ -105,6 +129,15 @@ const panelData: {
     indicators: { label: string; value: string }[];
     hittingNow: string;
     chain?: { text: string; href?: string };
+  }[];
+  chokepoints: {
+    id: string;
+    name: string;
+    lat: number;
+    lng: number;
+    status: string;
+    statusText: string;
+    chain: { text: string; href?: string };
   }[];
 } = JSON.parse(document.getElementById('panel-data')!.textContent!);
 
@@ -215,6 +248,16 @@ function showCountryPanel(entry: Entry) {
   });
 }
 
+function showChokepointPanel(point: (typeof panelData.chokepoints)[number]) {
+  fillPanel({
+    type: `Chokepoint · ${point.status.charAt(0).toUpperCase()}${point.status.slice(1)}`,
+    title: point.name,
+    summary: point.statusText,
+    chain: point.chain,
+    hint: 'Click a country to see who it affects.',
+  });
+}
+
 function closePanel() {
   panel.classList.remove('is-open');
 }
@@ -244,11 +287,20 @@ async function startGlobe() {
   const bahrain = findCountry('BHR')!;
   const palestine = findCountry('PSE')!;
   const dots: Dot[] = [
-    { entry: bahrain, lat: bahrain.lat, lng: bahrain.lng, radius: 0.55, visible: false },
-    { entry: bahrain, lat: bahrain.lat, lng: bahrain.lng, radius: 0.22, visible: true },
-    { entry: palestine, lat: palestine.lat, lng: palestine.lng, radius: 0.42, visible: false }, // West Bank
-    { entry: palestine, lat: 31.42, lng: 34.37, radius: 0.3, visible: false }, // Gaza
+    { kind: 'dot', entry: bahrain, lat: bahrain.lat, lng: bahrain.lng, radius: 0.55, visible: false },
+    { kind: 'dot', entry: bahrain, lat: bahrain.lat, lng: bahrain.lng, radius: 0.22, visible: true },
+    { kind: 'dot', entry: palestine, lat: palestine.lat, lng: palestine.lng, radius: 0.42, visible: false }, // West Bank
+    { kind: 'dot', entry: palestine, lat: 31.42, lng: 34.37, radius: 0.3, visible: false }, // Gaza
   ];
+  const pins: Pin[] = panelData.chokepoints.map((point) => ({
+    kind: 'pin',
+    id: point.id,
+    name: point.name,
+    lat: point.lat,
+    lng: point.lng,
+    status: point.status,
+  }));
+  const points: MapPoint[] = [...dots, ...pins];
 
   // globe.gl only recolours when it's given new colour functions, so highlights
   // are applied by calling this after anything changes.
@@ -258,8 +310,12 @@ async function startGlobe() {
         const entry = entryFor(country as MapCountry);
         return entry ? colourFor(entry) : COLOURS.other;
       })
-      // An alpha of 0 makes a click area see-through, but it can still be clicked.
-      .pointColor((dot) => ((dot as Dot).visible ? colourFor((dot as Dot).entry) : 'rgba(0,0,0,0)'));
+      .pointColor((point) => {
+        const p = point as MapPoint;
+        if (p.kind === 'dot') return p.visible ? colourFor(p.entry) : 'rgba(0,0,0,0)'; // Invisible, but still clickable.
+        if (p.id === selectedChokepoint) return COLOURS.selected;
+        return CHOKEPOINT_COLOURS[p.status] ?? COLOURS.pending;
+      });
   }
 
   function setHovered(code: string | null) {
@@ -279,15 +335,24 @@ async function startGlobe() {
       [COLOURS.pending, 'Data pending'],
       [COLOURS.external, 'External power (buyer)'],
     ];
+    // Chokepoint pins use their own colour scheme (by status, not exposure),
+    // since a closed strait matters the same way in both views.
+    const pinRows: [string, string][] = [
+      [CHOKEPOINT_COLOURS.open, 'Chokepoint: open'],
+      [CHOKEPOINT_COLOURS.disputed, 'Chokepoint: disputed'],
+      [CHOKEPOINT_COLOURS.closed, 'Chokepoint: closed'],
+    ];
+    const swatchRow = (colour: string, label: string) => {
+      const li = document.createElement('li');
+      const swatch = document.createElement('span');
+      swatch.className = 'swatch';
+      swatch.style.background = colour;
+      li.append(swatch, label);
+      return li;
+    };
     legend.replaceChildren(
-      ...rows.map(([colour, label]) => {
-        const li = document.createElement('li');
-        const swatch = document.createElement('span');
-        swatch.className = 'swatch';
-        swatch.style.background = colour;
-        li.append(swatch, label);
-        return li;
-      }),
+      ...rows.map(([colour, label]) => swatchRow(colour, label)),
+      ...pinRows.map(([colour, label]) => swatchRow(colour, label)),
       make('li', 'Click or tap a coloured country to begin', 'legend-hint'),
     );
   }
@@ -305,21 +370,34 @@ async function startGlobe() {
   }
 
   // Clicking a selected country clears the selection. Clicking any other
-  // country replaces it: only one country is selected at a time.
+  // country replaces it, and clears any selected chokepoint: the panel only
+  // ever shows one thing at a time.
   function selectCountry(code: string) {
+    selectedChokepoint = null;
     selectedCodes = selectedCodes.includes(code) ? [] : [code];
+    showSelection();
+  }
+
+  // Same idea, for chokepoint pins instead of countries.
+  function selectChokepoint(id: string) {
+    selectedCodes = [];
+    selectedChokepoint = selectedChokepoint === id ? null : id;
     showSelection();
   }
 
   function resetSelection() {
     selectedCodes = [];
+    selectedChokepoint = null;
     showSelection();
   }
 
   // Updates the panel and the colours to match the current selection.
   function showSelection() {
     const [first] = selectedCodes.map((code) => findCountry(code)!);
-    if (first) {
+    const pin = selectedChokepoint ? panelData.chokepoints.find((p) => p.id === selectedChokepoint) : undefined;
+    if (pin) {
+      showChokepointPanel(pin);
+    } else if (first) {
       showCountryPanel(first);
     } else {
       closePanel();
@@ -331,7 +409,8 @@ async function startGlobe() {
   // On phones, slides the globe up so the bottom sheet doesn't cover it.
   function updateOffset() {
     const isBottomSheet = window.innerWidth <= 800; // Matches the CSS breakpoint
-    globe.globeOffset(isBottomSheet && selectedCodes.length > 0 ? [0, -panel.offsetHeight / 2] : [0, 0]);
+    const isOpen = selectedCodes.length > 0 || selectedChokepoint !== null;
+    globe.globeOffset(isBottomSheet && isOpen ? [0, -panel.offsetHeight / 2] : [0, 0]);
   }
 
   const globe = new Globe(container)
@@ -355,12 +434,23 @@ async function startGlobe() {
       const entry = entryFor(country as MapCountry);
       if (entry) selectCountry(entry.code);
     })
-    .pointsData(dots)
-    .pointAltitude(0.012)
-    .pointRadius((dot) => (dot as Dot).radius)
-    .pointLabel((dot) => (dot as Dot).entry.name)
-    .onPointHover((dot) => setHovered(dot ? (dot as Dot).entry.code : null))
-    .onPointClick((dot) => selectCountry((dot as Dot).entry.code))
+    .pointsData(points)
+    .pointAltitude((point) => ((point as MapPoint).kind === 'pin' ? 0.018 : 0.012))
+    .pointRadius((point) => {
+      const p = point as MapPoint;
+      if (p.kind === 'dot') return p.radius;
+      return p.id === selectedChokepoint ? 0.75 : 0.55;
+    })
+    .pointLabel((point) => {
+      const p = point as MapPoint;
+      return p.kind === 'dot' ? p.entry.name : `${p.name} (${p.status})`;
+    })
+    .onPointHover((point) => setHovered(point && (point as MapPoint).kind === 'dot' ? (point as Dot).entry.code : null))
+    .onPointClick((point) => {
+      const p = point as MapPoint;
+      if (p.kind === 'dot') selectCountry(p.entry.code);
+      else selectChokepoint(p.id);
+    })
     // Only show the hand cursor over things that can be clicked.
     .showPointerCursor((type, item) => {
       if (type === 'point') return true;
