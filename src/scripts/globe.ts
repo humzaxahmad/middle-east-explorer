@@ -46,6 +46,14 @@ const FLOW_COLOURS: Record<string, string> = {
   'pipeline-gas': '#60a5fa',
 };
 
+// "Play the shock" overrides, while it's running: a different red/green from
+// the exposure scale, so a shock in progress reads as a distinct mode rather
+// than just another protectionStatus.
+const SHOCK_COLOURS = {
+  exposed: '#ef4444',
+  protected: '#22c55e',
+};
+
 // Lightens a "#rrggbb" colour toward white, for hover highlights. Keeping this
 // as one function avoids hand-picking a hover shade for every colour above.
 function lighten(hex: string, amount: number) {
@@ -96,6 +104,21 @@ let selectedCodes: string[] = []; // Holds zero or one code, like ['ARE']
 let selectedChokepoint: string | null = null; // A chokepoint id, such as 'hormuz'
 let selectedFlow: number | null = null; // An index into panelData.flows
 
+// "Play the shock" state. Empty/null whenever playback isn't running.
+let shockExposed: string[] = [];
+let shockProtected: string[] = [];
+let shockFlowIndexes: Set<number> = new Set();
+let pulsingChokepoint: string | null = null;
+let shockTimer: ReturnType<typeof setInterval> | null = null;
+let pulseTimer: ReturnType<typeof setInterval> | null = null;
+
+// Set once by startGlobe, once the globe instance exists. playShock/stopShock
+// and fillPanel are module-level (so the panel-filling functions can call
+// each other regardless of which one the globe's click handlers reach first),
+// but recolouring the globe is only possible once startGlobe has run -- so
+// they call this indirection rather than a function declared inside it.
+let refreshColours: () => void = () => {};
+
 // Gets the clickable entry a map shape belongs to, or undefined for grey countries.
 function entryFor(country: MapCountry) {
   return findCountryOnMap(country.properties.code);
@@ -106,6 +129,11 @@ function entryFor(country: MapCountry) {
 // East country is only shaded by protectionStatus when its own exposureType
 // matches the active view (or is "mixed", which shows in both).
 function baseColourFor(entry: Entry) {
+  // A running "play the shock" sequence overrides the normal exposure scale
+  // for exactly the countries that chain names, so the shock reads as its
+  // own mode rather than blending into the everyday colouring.
+  if (shockExposed.includes(entry.code)) return SHOCK_COLOURS.exposed;
+  if (shockProtected.includes(entry.code)) return SHOCK_COLOURS.protected;
   if (!hasFullPage(entry.region)) return COLOURS.external;
   const file = panelData.countries.find((item) => item.code === entry.code);
   const exposureType = file?.exposureType;
@@ -148,10 +176,16 @@ const panelData: {
     status: string;
     statusText: string;
     chain: { text: string; href?: string };
+    play?: {
+      stages: { label: string; text: string }[];
+      exposedCodes: string[];
+      protectedCodes: string[];
+    };
   }[];
   flows: {
     fromName: string;
     toName: string;
+    viaChokepoint?: string;
     fromLat: number;
     fromLng: number;
     toLat: number;
@@ -172,6 +206,11 @@ const panelHitting = document.getElementById('panel-hitting')!;
 const panelHittingText = document.getElementById('panel-hitting-text')!;
 const panelHint = document.getElementById('panel-hint')!;
 const panelLink = document.getElementById('panel-link') as HTMLAnchorElement;
+const panelPlay = document.getElementById('panel-play')!;
+const panelStage = document.getElementById('panel-stage')!;
+const panelStageLabel = document.getElementById('panel-stage-label')!;
+const panelStageText = document.getElementById('panel-stage-text')!;
+const panelStop = document.getElementById('panel-stop')!;
 
 const legend = document.getElementById('legend')!;
 const viewExporterBtn = document.getElementById('view-exporter')!;
@@ -212,6 +251,7 @@ function fillPanel(content: {
   hittingNow?: string;
   chain?: { text: string; href?: string };
 }) {
+  stopShock(); // any normal panel update interrupts a running "play the shock"
   panelType.textContent = content.type;
   panelTitle.textContent = content.title;
   // An empty string hides the summary (country panels lead with indicators instead).
@@ -243,6 +283,9 @@ function fillPanel(content: {
     panelLink.href = content.link.href;
     panelLink.textContent = content.link.text;
   }
+  // Only showChokepointPanel turns this back on, for a chokepoint whose
+  // chain exists; any other panel content means "play the shock" doesn't apply.
+  panelPlay.hidden = true;
   panel.classList.add('is-open');
 }
 
@@ -288,7 +331,13 @@ function showFlowPanel(flow: (typeof panelData.flows)[number]) {
   });
 }
 
+// The chokepoint "play the shock" is currently showing, if any. Read by
+// playShock/stopShock, which take no arguments so they can be used directly
+// as event handlers.
+let currentChokepoint: (typeof panelData.chokepoints)[number] | undefined;
+
 function showChokepointPanel(point: (typeof panelData.chokepoints)[number]) {
+  currentChokepoint = point;
   fillPanel({
     type: `Chokepoint · ${point.status.charAt(0).toUpperCase()}${point.status.slice(1)}`,
     title: point.name,
@@ -296,9 +345,56 @@ function showChokepointPanel(point: (typeof panelData.chokepoints)[number]) {
     chain: point.chain,
     hint: 'Click a country to see who it affects.',
   });
+  panelPlay.hidden = !point.play;
+}
+
+// Steps through the chain's stages (trigger, energy hit, ...) on a timer
+// while the chokepoint pin pulses, matching flow arcs turn red, and the
+// countries the chain names as exposed/protected light up on the globe.
+function playShock() {
+  const point = currentChokepoint;
+  if (!point?.play) return;
+  shockExposed = point.play.exposedCodes;
+  shockProtected = point.play.protectedCodes;
+  shockFlowIndexes = new Set(
+    panelData.flows.flatMap((flow, i) => (flow.viaChokepoint === point.id ? [i] : [])),
+  );
+  pulsingChokepoint = point.id;
+  panelPlay.hidden = true;
+  panelChain.hidden = true;
+  panelStage.hidden = false;
+
+  let stageIndex = 0;
+  const showStage = () => {
+    const stage = point.play!.stages[stageIndex];
+    panelStageLabel.textContent = stage.label;
+    panelStageText.textContent = stage.text;
+    stageIndex = (stageIndex + 1) % point.play!.stages.length;
+  };
+  showStage();
+  shockTimer = setInterval(showStage, 4500);
+  pulseTimer = setInterval(refreshColours, 80); // Drives the pin's pulsing radius.
+  refreshColours();
+}
+
+function stopShock() {
+  if (shockTimer) clearInterval(shockTimer);
+  if (pulseTimer) clearInterval(pulseTimer);
+  shockTimer = null;
+  pulseTimer = null;
+  shockExposed = [];
+  shockProtected = [];
+  shockFlowIndexes = new Set();
+  pulsingChokepoint = null;
+  panelStage.hidden = true;
+  panelChain.hidden = false;
+  panelPlay.hidden = !currentChokepoint?.play;
+  refreshColours();
 }
 
 function closePanel() {
+  stopShock();
+  currentChokepoint = undefined;
   panel.classList.remove('is-open');
 }
 
@@ -345,7 +441,9 @@ async function startGlobe() {
   // globe.gl only redraws an accessor-driven property when it's given a new
   // function, so every property that depends on hover/selection state (not
   // just colour) is re-set here, and this is called after anything changes.
-  function refreshColours() {
+  // Assigns the module-level reference declared above, rather than being a
+  // local declaration, so playShock/stopShock (module-level) can call it too.
+  refreshColours = function () {
     globe
       .polygonCapColor((country) => {
         const entry = entryFor(country as MapCountry);
@@ -360,15 +458,22 @@ async function startGlobe() {
       .pointRadius((point) => {
         const p = point as MapPoint;
         if (p.kind === 'dot') return p.radius;
-        return p.id === selectedChokepoint ? 0.75 : 0.55;
+        const base = p.id === selectedChokepoint ? 0.75 : 0.55;
+        // Pulses the playing chokepoint's pin between base and base+0.3.
+        if (p.id !== pulsingChokepoint) return base;
+        return base + 0.3 * (0.5 + 0.5 * Math.sin(Date.now() / 250));
       })
       .arcColor((flow: object) => {
         const index = panelData.flows.indexOf(flow as (typeof panelData.flows)[number]);
+        if (shockFlowIndexes.has(index)) return SHOCK_COLOURS.exposed;
         if (index === selectedFlow) return COLOURS.selected;
         return FLOW_COLOURS[(flow as (typeof panelData.flows)[number]).type] ?? COLOURS.pending;
       })
-      .arcStroke((flow: object) => (panelData.flows.indexOf(flow as (typeof panelData.flows)[number]) === selectedFlow ? 1 : 0.4));
-  }
+      .arcStroke((flow: object) => {
+        const index = panelData.flows.indexOf(flow as (typeof panelData.flows)[number]);
+        return index === selectedFlow || shockFlowIndexes.has(index) ? 1 : 0.4;
+      });
+  };
 
   function setHovered(code: string | null) {
     hoveredCode = code;
@@ -572,6 +677,9 @@ async function startGlobe() {
   viewExporterBtn.addEventListener('click', () => setView('exporter'));
   viewImporterBtn.addEventListener('click', () => setView('importer'));
   setView(activeView);
+
+  panelPlay.addEventListener('click', playShock);
+  panelStop.addEventListener('click', stopShock);
   renderLegend();
 
   // Keep the globe filling the screen if the window changes size.

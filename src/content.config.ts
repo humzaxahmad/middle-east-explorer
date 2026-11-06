@@ -226,6 +226,12 @@ const flows = defineCollection({
     unit: text,
     volume: indicatorOrTodo,
     explainer: text,
+    // Which chokepoint this flow physically transits, if any. Drives "play
+    // the shock": closing a chokepoint only turns red the flows that
+    // actually cross it, not every flow from the same country.
+    viaChokepoint: z
+      .enum(['hormuz', 'bab-el-mandeb'], { error: 'Must be hormuz or bab-el-mandeb.' })
+      .optional(),
   }),
 });
 

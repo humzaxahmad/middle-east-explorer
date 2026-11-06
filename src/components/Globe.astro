@@ -47,18 +47,49 @@ const panelData = {
   })),
   // Pins for the globe. Each one gets a "See the X shock" button, same as a
   // country's panel, pointing at the chain that shares its relatedChainSlug.
-  chokepoints: chokepoints.map(({ id, data }) => ({
-    id,
-    name: data.name,
-    lat: data.lat,
-    lng: data.lng,
-    status: data.status,
-    statusText: `${data.status.charAt(0).toUpperCase()}${data.status.slice(1)} since ${data.statusAsOf.toLocaleDateString('en-GB', { dateStyle: 'long', timeZone: 'UTC' })}`,
-    chain: {
-      text: `See the ${data.name} shock`,
-      href: chains.some((c) => c.id === data.relatedChainSlug) ? `/chains/${data.relatedChainSlug}` : undefined,
-    },
-  })),
+  // "play" is only present once that chain file actually exists: it drives
+  // "play the shock" (src/scripts/globe.ts), stepping through the chain's
+  // stages while the pin pulses, matching flow arcs turn red, and the
+  // countries that chain names as exposed/protected light up.
+  chokepoints: chokepoints.map(({ id, data }) => {
+    const chain = chains.find((c) => c.id === data.relatedChainSlug);
+    return {
+      id,
+      name: data.name,
+      lat: data.lat,
+      lng: data.lng,
+      status: data.status,
+      statusText: `${data.status.charAt(0).toUpperCase()}${data.status.slice(1)} since ${data.statusAsOf.toLocaleDateString('en-GB', { dateStyle: 'long', timeZone: 'UTC' })}`,
+      chain: {
+        text: `See the ${data.name} shock`,
+        href: chain ? `/chains/${data.relatedChainSlug}` : undefined,
+      },
+      play: chain
+        ? {
+            stages: [
+              { label: 'Trigger', text: chain.data.trigger },
+              { label: 'Energy hit', text: chain.data.energyHit },
+              { label: 'Economy hit', text: chain.data.economyHit },
+              {
+                label: 'Sectors',
+                text: `Usually gain: ${chain.data.sectorsWinners.join('; ')}. Usually lose: ${chain.data.sectorsLosers.join('; ')}.`,
+              },
+              {
+                label: 'Countries',
+                text: `Exposed: ${chain.data.countriesExposed.map((c) => findCountry(c)?.name ?? c).join(', ')}. Protected: ${
+                  chain.data.countriesProtected.length
+                    ? chain.data.countriesProtected.map((c) => findCountry(c)?.name ?? c).join(', ')
+                    : 'none'
+                }.`,
+              },
+              { label: 'What to watch', text: chain.data.whatToWatch },
+            ],
+            exposedCodes: chain.data.countriesExposed,
+            protectedCodes: chain.data.countriesProtected,
+          }
+        : undefined,
+    };
+  }),
   // Energy flow arcs: who supplies whom. Unknown codes are skipped rather
   // than crashing the build, the same pattern as the chain page's country list.
   flows: flows
@@ -76,6 +107,7 @@ const panelData = {
         type: data.type,
         volumeText: formatVolume(data.volume, data.unit),
         explainer: data.explainer,
+        viaChokepoint: data.viaChokepoint,
       };
     })
     .filter((flow) => flow !== undefined),

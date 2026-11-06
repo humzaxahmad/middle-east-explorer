@@ -6,7 +6,8 @@
     "type": "crude-oil",
     "unit": "million barrels a day",
     "volume": { "value": 1.57, "year": 2024, "source": "China Global South Project / OilPrice.com reporting on Saudi-China crude flows" },
-    "explainer": "China is Saudi Arabia's largest single oil customer by far. If this flow were cut, Saudi Arabia would need to find other Asian buyers at a discount, and China would need to replace its single largest crude supplier."
+    "explainer": "China is Saudi Arabia's largest single oil customer by far. If this flow were cut, Saudi Arabia would need to find other Asian buyers at a discount, and China would need to replace its single largest crude supplier.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "omn-chn-crude",
@@ -42,7 +43,8 @@
     "type": "lng",
     "unit": "million tonnes a year",
     "volume": { "value": 8.6, "year": 2023, "source": "S&P Global Commodity Insights, citing South Korean import data (19.5% of Korea's total LNG imports)" },
-    "explainer": "South Korea leans on Qatar for roughly a fifth of its LNG imports. A Hormuz disruption threatens this flow directly, since Qatari LNG has no bypass route around the strait."
+    "explainer": "South Korea leans on Qatar for roughly a fifth of its LNG imports. A Hormuz disruption threatens this flow directly, since Qatari LNG has no bypass route around the strait.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "qat-jpn-lng",
@@ -51,7 +53,8 @@
     "type": "lng",
     "unit": "tonnes in the month shown",
     "volume": { "value": 293598, "year": 2025, "source": "S&P Global Commodity Insights, one month's Japanese import data (5.4% of Japan's total LNG imports that month)" },
-    "explainer": "A smaller but steady flow. Japan diversifies its LNG suppliers more than South Korea does, so a Qatari disruption would be a squeeze rather than a crisis for Japan specifically."
+    "explainer": "A smaller but steady flow. Japan diversifies its LNG suppliers more than South Korea does, so a Qatari disruption would be a squeeze rather than a crisis for Japan specifically.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "irq-tur-crude",
@@ -78,7 +81,8 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "Once Saudi Arabia's top customer, the US now takes a small share of its exports after the shale revolution made America a net oil exporter in its own right."
+    "explainer": "Once Saudi Arabia's top customer, the US now takes a small share of its exports after the shale revolution made America a net oil exporter in its own right.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "sau-ind-crude",
@@ -87,7 +91,8 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "India's fast-growing economy makes it an increasingly important buyer of Saudi crude, competing with China for supply."
+    "explainer": "India's fast-growing economy makes it an increasingly important buyer of Saudi crude, competing with China for supply.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "are-ind-crude",
@@ -96,7 +101,8 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "India is one of the UAE's largest oil customers, part of a broader trade relationship that also includes gold and other goods."
+    "explainer": "India is one of the UAE's largest oil customers, part of a broader trade relationship that also includes gold and other goods.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "are-jpn-crude",
@@ -105,7 +111,8 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "Japan has bought UAE crude for decades under long-term supply agreements, part of why Japan has pushed the UAE and Saudi Arabia on new Hormuz-bypass pipeline capacity."
+    "explainer": "Japan has bought UAE crude for decades under long-term supply agreements, part of why Japan has pushed the UAE and Saudi Arabia on new Hormuz-bypass pipeline capacity.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "qat-chn-lng",
@@ -114,7 +121,8 @@
     "type": "lng",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "China buys more Qatari LNG than any other country, under long-term contracts that give Qatar unusually stable, locked-in revenue."
+    "explainer": "China buys more Qatari LNG than any other country, under long-term contracts that give Qatar unusually stable, locked-in revenue.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "qat-ind-lng",
@@ -123,7 +131,8 @@
     "type": "lng",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "Qatar is India's single largest LNG supplier. A sustained Hormuz disruption would force India to compete harder for cargoes from the US, Australia or elsewhere."
+    "explainer": "Qatar is India's single largest LNG supplier. A sustained Hormuz disruption would force India to compete harder for cargoes from the US, Australia or elsewhere.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "egy-eu-lng",
@@ -132,7 +141,8 @@
     "type": "lng",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "Once a major LNG supplier to Europe, Egypt's exports have shrunk as rising domestic demand turned it into a net gas importer by 2024, a reminder that export flows can disappear from the demand side, not just the supply side."
+    "explainer": "Once a major LNG supplier to Europe, Egypt's exports have shrunk as rising domestic demand turned it into a net gas importer by 2024, a reminder that export flows can disappear from the demand side, not just the supply side.",
+    "viaChokepoint": "bab-el-mandeb"
   },
   {
     "id": "kwt-chn-crude",
@@ -141,7 +151,8 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "China is a major buyer of Kuwaiti crude, but unlike Oman, Kuwait's entire export route runs through the Gulf and the strait, with no bypass pipeline of its own."
+    "explainer": "China is a major buyer of Kuwaiti crude, but unlike Oman, Kuwait's entire export route runs through the Gulf and the strait, with no bypass pipeline of its own.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "irq-chn-crude",
@@ -150,7 +161,8 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "China is Iraq's largest single oil customer, buying around a third of its crude exports."
+    "explainer": "China is Iraq's largest single oil customer, buying around a third of its crude exports.",
+    "viaChokepoint": "hormuz"
   },
   {
     "id": "irq-ind-crude",
@@ -159,6 +171,7 @@
     "type": "crude-oil",
     "unit": "TODO: fill in",
     "volume": "TODO: fill in",
-    "explainer": "India is Iraq's second-largest crude buyer. Both of Iraq's top two customers depend on oil that has to cross the Strait of Hormuz to reach them."
+    "explainer": "India is Iraq's second-largest crude buyer. Both of Iraq's top two customers depend on oil that has to cross the Strait of Hormuz to reach them.",
+    "viaChokepoint": "hormuz"
   }
 ]
