@@ -44,6 +44,7 @@ keyRisks:
   - "Tariffs and trade policy uncertainty are expected to weigh on US activity and hurt trading partners, with the applied tariff rate expected to settle at 7-8.5%"
   - "Rising energy prices create upside risks to inflation, and the war in the Middle East adds to uncertainty"
   - "The current account deficit was 3.7% of GDP in 2025 and is expected to stay well above pre-pandemic levels"
+interviewAngle: "TODO: fill in"
 summary: "The United States is the largest economy on this site, with GDP of about $30.8 trillion in 2025, and it exported $3.4 trillion of goods and services that year. Its main long-term vulnerability is fiscal: the IMF projects general government debt, at 123.9% of GDP in 2025, will exceed 140% by 2031. The Iran war pushed up energy prices: gas averaged $4.06 a gallon in April 2026, up from $2.98 before the war, and consumer price inflation reached 3.3% in March, its highest since May 2024."
 sources:
   - title: "World Bank Open Data, United States"

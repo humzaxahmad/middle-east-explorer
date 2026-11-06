@@ -40,6 +40,7 @@ keyRisks:
   - "Shrinking foreign exchange reserves increase vulnerability to oil price shocks"
   - "The closure of the Strait of Hormuz disrupts its main oil export route"
   - "Government wages and pensions rising to 24.5% of GDP (IMF) strain the budget"
+interviewAngle: "TODO: fill in"
 summary: "Iraq is OPEC's second-largest producer but has almost no economic diversification, with fuels making up about 99% of goods exports and oil about 90% of government revenue. It exported mostly through the Strait of Hormuz, and with the strait closed by the Iran war, the IMF in October 2026 projected a 16.0% contraction in 2026, followed by 19.0% growth in 2027."
 sources:
   - title: "IMF, \"IMF Executive Board Concludes 2025 Article IV Consultation with Iraq\" (Press Release No. 25/243)"

@@ -1,0 +1,68 @@
+# The sector cheat sheet: how each sector reacts to higher energy prices.
+# reaction is one of: gain, lose, depends.
+# explainer is TODO until the sector cheat sheet page is built (build step 5).
+
+oil-gas-producers:
+  name: "Oil and gas producers"
+  reaction: gain
+  explainer: "TODO: fill in"
+
+oilfield-services:
+  name: "Oilfield services"
+  reaction: gain
+  explainer: "TODO: fill in"
+
+tankers:
+  name: "Tankers"
+  reaction: gain
+  explainer: "TODO: fill in"
+
+non-gulf-lng-exporters:
+  name: "Non-Gulf LNG exporters"
+  reaction: gain
+  explainer: "TODO: fill in"
+
+renewables:
+  name: "Renewables"
+  reaction: gain
+  explainer: "TODO: fill in"
+
+airlines:
+  name: "Airlines"
+  reaction: lose
+  explainer: "TODO: fill in"
+
+chemicals:
+  name: "Chemicals"
+  reaction: lose
+  explainer: "TODO: fill in"
+
+heavy-industry:
+  name: "Heavy industry"
+  reaction: lose
+  explainer: "TODO: fill in"
+
+autos:
+  name: "Autos"
+  reaction: lose
+  explainer: "TODO: fill in"
+
+retail:
+  name: "Retail"
+  reaction: lose
+  explainer: "TODO: fill in"
+
+utilities:
+  name: "Utilities that can't pass on costs"
+  reaction: lose
+  explainer: "TODO: fill in"
+
+banks:
+  name: "Banks"
+  reaction: depends
+  explainer: "TODO: fill in"
+
+insurers:
+  name: "Insurers"
+  reaction: depends
+  explainer: "TODO: fill in"

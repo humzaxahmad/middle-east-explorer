@@ -8,7 +8,6 @@ import { INDICATORS, exposureHeader, indicatorsFor, shortIndicator } from '../da
 // Runs at build time. Gathers just what the panel needs from the Markdown files,
 // so the browser doesn't have to download whole profiles.
 const countries = await getCollection('countries');
-const relationships = await getCollection('relationships');
 const chokepoints = await getCollection('chokepoints');
 const panelData = {
   countries: countries.map(({ data }) => ({
@@ -31,10 +30,6 @@ const panelData = {
           href: undefined as string | undefined,
         }
       : undefined,
-  })),
-  relationships: relationships.map((relationship) => ({
-    slug: relationship.id,
-    summary: relationship.data.summary,
   })),
 };
 

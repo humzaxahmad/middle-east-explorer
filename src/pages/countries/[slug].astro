@@ -86,9 +86,14 @@ const chainName = chokepoint ? `${chokepoint.data.name} shock chain` : 'shock ch
     <ul>{data.keyRisks.map((item) => <li><Value value={item} /></li>)}</ul>
   </section>
 
+  <section>
+    <h2>5. Interview angle</h2>
+    <p><Value value={data.interviewAngle} /></p>
+  </section>
+
   {/* <details> is a built-in HTML box that opens and closes with no JavaScript. */}
   <details class="reference">
-    <summary>5. Reference data</summary>
+    <summary>6. Reference data</summary>
 
     <h3>Key figures</h3>
     <dl class="facts">

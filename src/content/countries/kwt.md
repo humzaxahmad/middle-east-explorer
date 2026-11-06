@@ -46,6 +46,7 @@ keyRisks:
   - "The Emir dissolved parliament and suspended parts of the constitution in May 2024 for up to four years, leaving uncertainty over what follows the suspension"
   - "Non-oil revenue generation lags regional peers"
   - "A new 2025 debt law (up to KD 30bn borrowing) addresses near-term financing but not the underlying oil dependence"
+interviewAngle: "TODO: fill in"
 summary: "Kuwait runs one of the Gulf's most oil-dependent economies, with fuels making up about 93% of goods exports in 2025. With the Iran war closing the Strait of Hormuz, the IMF in October 2026 projected a 16.7% contraction in 2026, followed by 17.1% growth in 2027. The Kuwait Investment Authority holds about $1 trillion in assets, but diversification has lagged regional peers, and parliament has been suspended since May 2024."
 sources:
   - title: "Fitch via Arab News, on Fitch's affirmation of Kuwait's AA- rating (September 2025)"

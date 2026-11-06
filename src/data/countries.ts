@@ -56,7 +56,7 @@ export const EU_MEMBERS = [
 ];
 
 // Every region except external powers gets a full page at /countries/<slug>.
-// External powers appear through the globe panel and relationships instead.
+// External powers appear through the globe panel only, as buyers/counterparts.
 export function hasFullPage(region: string) {
   return region !== 'external';
 }
@@ -64,16 +64,6 @@ export function hasFullPage(region: string) {
 // Find a country by its code. Returns undefined if the code isn't in the list.
 export function findCountry(code: unknown) {
   return COUNTRIES.find((country) => country.code === code);
-}
-
-// Build a relationship's filename from two country codes, with the slugs in
-// alphabetical order. Both ('ARE', 'GBR') and ('GBR', 'ARE') give 'uae-uk',
-// so the order you click two countries in doesn't matter.
-export function relationshipSlug(codeA: unknown, codeB: unknown) {
-  const a = findCountry(codeA);
-  const b = findCountry(codeB);
-  if (!a || !b) return undefined;
-  return [a.slug, b.slug].sort().join('-');
 }
 
 // Takes a code from the map and finds which clickable entry it belongs to:

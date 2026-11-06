@@ -39,6 +39,7 @@ keyRisks:
   - "The IMF says the euro area's near-term outlook has deteriorated amid the war in the Middle East, with uncertainty about how soon energy supply disruptions will be resolved"
   - "The war and energy price surge have raised inflation risks and weakened the growth outlook"
   - "Reducing external risks through trade diversification or domestic capacity can entail fiscal costs and lower efficiency"
+interviewAngle: "TODO: fill in"
 summary: "The European Union is a major goods exporter, with a EUR 128 billion goods surplus in 2025 and the US taking 21.0% of its exports. It also ran a EUR 298.9 billion energy deficit, and the IMF says the Middle East war has worsened the euro area's near-term outlook."
 sources:
   - title: "World Bank Open Data, European Union"

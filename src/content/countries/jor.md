@@ -44,6 +44,7 @@ keyRisks:
   - "Potential US tariff increases pose a direct risk to export growth"
   - "Regional instability continues to weigh on FDI and tourism"
   - "Exports are concentrated in a small number of traditional sectors, such as apparel, fertilizers, potash and pharmaceuticals"
+interviewAngle: "TODO: fill in"
 summary: "Jordan runs a resource-poor economy heavily dependent on remittances, tourism, and foreign aid rather than natural resource exports. The Iran war has weakened tourism and raised food and energy import costs, and in October 2026 the IMF projected 2.7% growth in 2026. A stable dinar-dollar peg and an IMF program running to 2028 anchor its finances, but regional instability and exports concentrated in a few traditional sectors remain constraints on growth."
 sources:
   - title: "World Bank Open Data, Jordan"

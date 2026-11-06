@@ -48,6 +48,7 @@ keyRisks:
   - "Heavy reliance on short-term domestic debt (~60% of domestic debt) exposes Egypt to rollover and interest-rate risk"
   - "Suez Canal revenue collapsed from $10.25bn (2023) to about $4bn (2024) due to Red Sea shipping attacks"
   - "Currency remains sensitive to further devaluation pressure"
+interviewAngle: "TODO: fill in"
 summary: "Egypt runs the Arab world's most populous and most diversified major economy, but one strained by heavy debt and a currency crisis that forced a 38% devaluation in 2024. A sharp drop in Suez Canal revenue from regional shipping attacks added pressure on its IMF-backed stabilization program, but canal activity has since begun recovering, and in October 2026 the IMF upgraded its 2026 growth forecast to 5.1%, while warning that the delayed impact of the Gulf conflict will weigh on activity in 2027."
 sources:
   - title: "World Bank Open Data, Egypt"

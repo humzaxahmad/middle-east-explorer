@@ -46,6 +46,7 @@ keyRisks:
   - "Renewed escalation of trade tensions, with exports to the US down 20% in 2025"
   - "Persistent deflationary pressures"
   - "Unsustainable local government financing vehicle debt, which the IMF says should be restructured"
+interviewAngle: "TODO: fill in"
 summary: "China's export-driven economy ran a record $1.189 trillion goods trade surplus in 2025, even as exports to the US fell 20%. The IMF says its overarching priority should be a shift to consumption-led growth, with persistent deflation and the property sector among the main concerns. The Iran war and the closure of the Strait of Hormuz threaten its energy supply, since China, India, Japan and South Korea together take about 75-80% of the oil passing through the strait. In October 2026 the IMF projected 4.5% growth for 2026."
 sources:
   - title: "World Bank Open Data, China"

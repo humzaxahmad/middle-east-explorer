@@ -46,6 +46,7 @@ keyRisks:
   - "Interest rates remain extremely high (a 36% policy rate) to defend the currency"
   - "External risks from global trade uncertainty and regional conflicts persist"
   - "Any reversal of the current stabilization program could reignite currency instability"
+interviewAngle: "TODO: fill in"
 summary: "Turkey runs one of the region's most diversified economies, anchored by manufacturing, automotive, and textile exports, but has spent recent years battling severe currency instability and inflation. A tightening-led stabilization program has cut annual inflation from 44.4% at the end of 2024 to 29.77% in October 2026, though both inflation and the 36% policy rate remain exceptionally high by global standards. The Iran war added pressure through higher energy prices: in April 2026 the IMF cut its 2026 growth forecast to 3.4% from 4.2% and raised its current account deficit forecast to 2.8% of GDP from 1.3%."
 sources:
   - title: "World Bank Open Data, Turkiye"

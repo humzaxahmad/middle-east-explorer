@@ -46,6 +46,7 @@ keyRisks:
   - "Its LNG shipping depends on the Strait of Hormuz, which is closed; the IMF expects it to reopen gradually from March 2027"
   - "A disorderly global energy transition could erode long-term gas demand"
   - "Export volumes blocked by the Hormuz closure, rather than softening prices, are now the main threat to hydrocarbon revenue and the current account"
+interviewAngle: "TODO: fill in"
 summary: "Qatar has one of the highest GDP per capita figures in the world, built almost entirely on natural gas exports, supplying nearly a fifth of global LNG. The closure of the Strait of Hormuz has hit it hard: in October 2026 the IMF projected a 15.6% contraction in 2026, followed by 18.8% growth in 2027 if the strait reopens."
 sources:
   - title: "Gulf Times, \"Qatar accounts for 18.8% share of global LNG exports in 2024\""

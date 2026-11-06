@@ -46,6 +46,7 @@ keyRisks:
   - "Oil export revenue, once the government's main income source, has been cut off for years by Houthi attacks on export infrastructure"
   - "Real GDP per capita has fallen an estimated 58% since 2015"
   - "Two competing currencies and governments make any unified economic assessment inherently unreliable"
+interviewAngle: "TODO: fill in"
 summary: "Yemen's economy has been devastated by over a decade of civil war, split between a Houthi-controlled north and an internationally recognized government in the south, each with its own currency system. Fighting has also escalated: in October 2026 the Houthis and the Saudi-led coalition exchanged heavy strikes, and in May the World Bank projected a further 0.5% contraction in 2026, after a 1.5% fall in 2025, saying the regional conflict had clouded the outlook. Economic data is so degraded that the World Bank's own GDP series hasn't been updated since 2018, a telling sign of how far outside normal economic tracking this country now sits."
 sources:
   - title: "World Bank Open Data, Yemen"

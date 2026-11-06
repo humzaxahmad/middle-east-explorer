@@ -57,6 +57,7 @@ keyRisks:
   - "Oil price volatility still meaningfully affects fiscal revenue and external balances despite diversification (IMF, 2025)"
   - "The UAE's role as a global financial and trade hub increases exposure to global financial shocks and shifts in trade policy"
   - "Rising real estate prices and cybersecurity risks require ongoing monitoring as digitalization and AI adoption accelerate"
+interviewAngle: "TODO: fill in"
 summary: "The UAE runs one of the Gulf's most diversified economies, with non-oil exports now exceeding 60% of total export value and its sovereign wealth funds collectively holding well over $2 trillion in assets. The Iran war and the closure of the Strait of Hormuz have hit that model: in October 2026 the IMF projected a 3.9% contraction in 2026, followed by 7.7% growth in 2027 if the strait gradually reopens."
 sources:
   - title: "World Bank Open Data, United Arab Emirates"

@@ -47,6 +47,7 @@ keyRisks:
   - "Oil dependence: over 90% of Japan's crude oil comes from the Middle East, which leaves it highly exposed to the closure of the Strait of Hormuz."
   - "Inflation: in the Bank of Japan's April 2026 risk scenario, with oil at about $105 a barrel and a 10% weaker yen, core inflation would reach 3.1% in fiscal 2026 and stay around 3% in 2027, well above its 2% target."
   - "A longer oil shock: large oil reserves have cushioned Japan so far, but in April 2026 the IMF's chief economist warned that many Asian countries would be hit harder if oil prices stay high longer than expected."
+interviewAngle: "TODO: fill in"
 summary: "Japan buys energy from across the Gulf. It ranked fourth among Qatar's export destinations in 2023 and took 3.59 million tonnes of Qatari LNG in 2025, and in February 2026 Japan's JERA signed a 27-year deal for 3 million tonnes a year from 2028. It took 11% of Kuwait's exports in 2024 and is listed at 9% of the UAE's. It is also listed at 16% of Yemen's exports, level with Saudi Arabia, a link worth investigating further."
 sources:
   - title: "World Bank Open Data, Japan"

@@ -43,6 +43,7 @@ keyRisks:
   - "Persistent disruption to energy supply is the IMF's main downside risk, with possible second-round effects on inflation"
   - "Weak productivity gains weigh on long-term growth"
   - "Public sector net financial liabilities are projected to rise from 82.8% of GDP in 2025 to a peak of 84.7% in 2028, while ageing, defence and energy-transition spending will require difficult choices"
+interviewAngle: "TODO: fill in"
 summary: "The United Kingdom is a services-heavy exporter, and the US is its largest market at 21.8% of total exports in 2025. The IMF projects growth slowing to 1.0% in 2026 as the Middle East war weighs on activity, with weak productivity a long-term constraint."
 sources:
   - title: "World Bank Open Data, United Kingdom"

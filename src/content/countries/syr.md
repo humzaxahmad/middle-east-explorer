@@ -46,6 +46,7 @@ keyRisks:
   - "Extreme poverty affects roughly 1 in 4 Syrians"
   - "Sanctions relief remains partial and politically reversible"
   - "Basic economic data is still unreliable during the transition"
+interviewAngle: "TODO: fill in"
 summary: "Syria's economy is attempting a fragile recovery after 14 years of civil war and the fall of the Assad government in December 2024, with GDP down more than 50% from 2010 levels. Reconstruction needs are estimated at $216 billion, about ten times current annual GDP, and basic economic data remains highly uncertain during the transition. Syria has stayed almost entirely out of the 2026 regional war, but an April 2026 analysis said the fallout would slow investment, even as the closure of the Strait of Hormuz could make Syria a route around it."
 sources:
   - title: "World Bank, \"New World Bank Report Highlights Syria's Economic Challenges and Recovery Prospects for 2025\""

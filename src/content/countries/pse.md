@@ -44,6 +44,7 @@ keyRisks:
   - "Unemployment stood at 69% in Gaza and 29% in the West Bank"
   - "Trade is heavily dependent on and constrained by Israel (which absorbs the large majority of Palestinian exports and supplies the bulk of imports)"
   - "Political fragmentation limits unified economic policy"
+interviewAngle: "TODO: fill in"
 summary: "Palestine's economy is sharply divided and remains far below its level before October 2023. A ceasefire in October 2025 halted two years of conflict, but Gaza's roughly 30% growth in 2025 only reflected the collapse the year before, with unemployment at 78% and recovery needs of about $71.5 billion. The West Bank grew about 3% in 2025, while the Palestinian Authority faces a severe cash crisis because the tax revenue Israel collects for it has been suspended since May 2025. UNCTAD says overall GDP shrank a further 6.6% in the first quarter of 2026, and the World Bank says the regional war adds pressure through higher energy and import costs. Reliable unified economic data is difficult to produce given this fragmentation."
 sources:
   - title: "World Bank Open Data, West Bank and Gaza"

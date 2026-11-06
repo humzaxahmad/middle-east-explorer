@@ -46,6 +46,7 @@ keyRisks:
   - "A dual/parallel exchange rate system reflecting a currency that collapsed by well over 90% from its pre-crisis peg"
   - "Cumulative real GDP decline exceeding 34% since 2019"
   - "Renewed conflict: the World Bank projects a 6.4% contraction in 2026 after 4.2% growth in 2025, with growth 10.4 percentage points below a no-conflict path"
+interviewAngle: "TODO: fill in"
 summary: "Lebanon remains in the midst of one of the world's worst financial collapses in modern history, with public debt near 177% of GDP and a currency that has lost over 90% of its pre-crisis value on the parallel market. Even basic GDP figures are genuinely contested among different institutions, reflecting how much statistical capacity the crisis has damaged. Renewed conflict has also reversed a fragile recovery: in August 2026 the World Bank projected a 6.4% contraction in 2026, after 4.2% growth in 2025."
 sources:
   - title: "World Bank, \"Lebanon Economic Monitor, Spring 2025: Turning the Tide?\""

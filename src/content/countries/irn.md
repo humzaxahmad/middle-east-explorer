@@ -43,6 +43,7 @@ keyRisks:
   - "Oil exports are overwhelmingly dependent on a single buyer (China takes about 91% of Iran's oil exports)"
   - "The currency lost roughly 45% of its value in 2025 amid a widening official/market exchange-rate gap"
   - "The National Development Fund's accessible reserves have been heavily depleted for budget support"
+interviewAngle: "TODO: fill in"
 summary: "Iran runs a sanctions-isolated economy where oil exports are overwhelmingly dependent on a single buyer, China, which takes roughly 91% of its crude. The Iran war has deepened the damage: in October 2026 the IMF projected a 7.6% contraction in 2026, citing enhanced sanctions and a US naval blockade. The rial lost about 45% of its value against the dollar in 2025 alone."
 sources:
   - title: "World Bank Open Data, Iran"

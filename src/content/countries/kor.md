@@ -47,6 +47,7 @@ keyRisks:
   - "Oil prices: in March 2026 Korean research institutes estimated that a prolonged Iran war could cut growth by up to 0.8 percentage points, pushing it into the low 1% range, or toward zero if the conflict lasts a year."
   - "Energy dependence: South Korea relies heavily on Middle Eastern crude, and Morgan Stanley lists it among the economies most exposed to oil and gas deficits."
   - "Inflation and the won: a weaker won on top of higher oil prices raises inflation, which could force the Bank of Korea to keep interest rates higher for longer."
+interviewAngle: "TODO: fill in"
 summary: "South Korea is a major buyer of Gulf energy. In 2024 it was Kuwait's second-largest export destination, taking 13% of Kuwait's exports, and the third-largest buyer of Iraqi crude. It ranked second among Qatar's export destinations in 2023, and Qatar supplied about 15% of its LNG in 2025, making Gulf energy security a direct concern for Seoul."
 sources:
   - title: "World Bank Open Data, South Korea"

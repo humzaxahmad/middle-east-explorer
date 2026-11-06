@@ -3,7 +3,7 @@
 import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { COUNTRIES, NOT_APPLICABLE, NOT_AVAILABLE, TODO, findCountry, relationshipSlug } from './data/countries';
+import { COUNTRIES, NOT_APPLICABLE, NOT_AVAILABLE, TODO, findCountry } from './data/countries';
 
 // The exact placeholder allowed in fields that haven't been filled in yet.
 const todo = z.literal(TODO);
@@ -140,6 +140,8 @@ const countries = defineCollection({
       currencyRegime: text,
       diversificationPlan: text,
       keyRisks: textList,
+      // One likely interview question and a sharp point to make about it.
+      interviewAngle: text,
       summary: text,
       sources,
       lastUpdated: dateOrTodo,
@@ -148,45 +150,6 @@ const countries = defineCollection({
     .refine((data) => findCountry(data.iso3)?.region === data.region, {
       path: ['region'],
       message: 'This does not match the region listed for this country in src/data/countries.ts.',
-    }),
-});
-
-const relationships = defineCollection({
-  loader: glob({
-    pattern: '*.md',
-    base: './src/content/relationships',
-    // Same idea as above: a pair's filename must match its two country codes.
-    generateId: ({ entry, data }) => {
-      const name = fileName(entry);
-      const expected = relationshipSlug(data.countryA, data.countryB);
-      if (expected && data.countryA !== data.countryB && expected !== name) {
-        throw new Error(
-          `${entry}: a file for ${data.countryA} and ${data.countryB} must be named ${expected}.md`,
-        );
-      }
-      return name;
-    },
-  }),
-  schema: z
-    .object({
-      countryA: countryCode,
-      countryB: countryCode,
-      title: text,
-      summary: text,
-      tradeAtoB: text,
-      tradeBtoA: text,
-      investmentFlows: text,
-      energyTies: text,
-      securityTies: text,
-      recentDevelopments: textList,
-      whyItMatters: text,
-      interviewAngle: text,
-      sources,
-      lastUpdated: dateOrTodo,
-    })
-    .refine((data) => data.countryA !== data.countryB, {
-      path: ['countryB'],
-      message: 'countryA and countryB must be two different countries.',
     }),
 });
 
@@ -206,4 +169,64 @@ const chokepoints = defineCollection({
   }),
 });
 
-export const collections = { countries, relationships, chokepoints };
+// Shock chains: the main content type. Each one walks trigger -> energy hit ->
+// economy hit -> sectors -> countries exposed or protected -> what to watch.
+// No difficulty levels yet (deferred): every field is a single piece of text.
+const chains = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/chains' }),
+  schema: z.object({
+    title: text,
+    // Fast: a single event (a strait closes). Slow: a multi-year trend (peak
+    // oil demand). Decides how the chain is framed and how often it's revisited.
+    speed: z.enum(['fast', 'slow'], { error: 'Must be fast or slow.' }),
+    // Only chains anchored to one physical place (a strait, a pipeline) get a
+    // globe pin. A slow, structural chain like peak oil demand has none.
+    location: z
+      .object({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180) })
+      .optional(),
+    trigger: text,
+    energyHit: text,
+    economyHit: text,
+    // Shown as a two-column table on the chain page.
+    sectorsWinners: textList,
+    sectorsLosers: textList,
+    countriesExposed: z.array(countryCode).min(1, 'List at least one exposed country.'),
+    // May be empty: not every chain has a country that gets away clean.
+    countriesProtected: z.array(countryCode),
+    whatToWatch: text,
+    interviewAngle: text,
+    summary: text,
+    sources,
+    lastUpdated: dateOrTodo,
+  }),
+});
+
+// The sector cheat sheet: how each sector reacts to higher energy prices. One
+// small hand-curated file, the same pattern as chokepoints.yaml. Every chain
+// links here instead of re-explaining sector reactions from scratch.
+const sectors = defineCollection({
+  loader: file('src/content/sectors.yaml'),
+  schema: z.object({
+    name: text,
+    reaction: z.enum(['gain', 'lose', 'depends'], { error: 'Must be gain, lose or depends.' }),
+    explainer: text,
+  }),
+});
+
+// Energy flow arcs for the globe: who supplies whom. A small hand-curated list,
+// not full pages. Starts empty; filled in once the chains and chokepoints work.
+const flows = defineCollection({
+  loader: file('src/content/flows.json'),
+  schema: z.object({
+    from: countryCode,
+    to: countryCode,
+    type: z.enum(['crude-oil', 'lng', 'pipeline-oil', 'pipeline-gas'], {
+      error: 'Must be crude-oil, lng, pipeline-oil or pipeline-gas.',
+    }),
+    unit: text,
+    volume: indicatorOrTodo,
+    explainer: text,
+  }),
+});
+
+export const collections = { countries, chokepoints, chains, sectors, flows };

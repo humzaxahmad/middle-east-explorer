@@ -38,6 +38,7 @@ keyRisks:
   - "Oil and gas revenue fell 17.2% year on year in January-September 2026"
   - "The National Wealth Fund's liquid assets had fallen to 3.8 trillion rubles, or 1.6% of projected 2026 GDP, by October 1, 2026"
   - "Defence spending and Western sanctions put pressure on public finances"
+interviewAngle: "TODO: fill in"
 summary: "Russia's public finances and exports remain tied to fossil fuels, with China, India and Turkey its largest buyers in October 2025. The Iran war lifted oil prices, with Urals rising above $70 a barrel in March 2026 from about $40 in late February, yet oil and gas revenue still fell 17.2% in January-September 2026. The liquid part of its National Wealth Fund stood at about $44 billion on October 1, 2026."
 sources:
   - title: "World Bank Open Data, Russian Federation"

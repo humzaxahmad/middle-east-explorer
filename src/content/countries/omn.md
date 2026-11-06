@@ -46,6 +46,7 @@ keyRisks:
   - "Hydrocarbons still dominate exports, with revenue closely tied to oil prices"
   - "Vision 2040 implementation faces execution-capacity and labor-market constraints"
   - "Fiscal position remains exposed to oil price volatility"
+interviewAngle: "TODO: fill in"
 summary: "Oman is a smaller, high-income Gulf oil exporter working to diversify through tourism, logistics, and manufacturing under Vision 2040. Hydrocarbons still drive the bulk of export revenue, keeping its finances sensitive to oil price swings. The Iran war and the closure of the Strait of Hormuz have hit the Gulf hard, but in October 2026 the IMF forecast 4.1% growth for Oman in 2026, making it the only GCC economy forecast to grow."
 sources:
   - title: "World Bank Open Data, Oman"

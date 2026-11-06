@@ -132,62 +132,38 @@ These values only show the format. They aren't real data.
 | `currencyRegime` | text | |
 | `diversificationPlan` | text | |
 | `keyRisks` | list of text | At least one item |
+| `interviewAngle` | text | One likely interview question and a sharp point to make about it |
 | `summary` | text | Two sentences (not checked automatically) |
 | `sources` | list of `title` and `url` | At least one |
 | `lastUpdated` | date | Such as `2026-01-31` |
 
-## Add a relationship
+## Chains, sectors and flows
 
-1. Put the two slugs in alphabetical order and join them with a hyphen. The UAE and the US become `uae-usa`.
-2. Create `src/content/relationships/<slug-slug>.md`, such as `uae-usa.md`.
-3. Paste in this template and fill it in. All the fields are required.
-4. Run `npm run build` to check it.
+These replace the old country-to-country "relationships" pages. A relationship
+page described facts ("Saudi's biggest customer is China"); a chain explains
+cause and effect ("China slows, oil demand falls, Saudi's budget comes under
+pressure"). The schemas exist now; the pages that render them arrive in later
+build steps.
 
-```markdown
----
-countryA: "ARE"
-countryB: "USA"
-title: "TODO: fill in"
-summary: "TODO: fill in"
-tradeAtoB: "TODO: fill in"
-tradeBtoA: "TODO: fill in"
-investmentFlows: "TODO: fill in"
-energyTies: "TODO: fill in"
-securityTies: "TODO: fill in"
-recentDevelopments:
-  - "TODO: fill in"
-whyItMatters: "TODO: fill in"
-interviewAngle: "TODO: fill in"
-sources:
-  - title: "TODO: fill in"
-    url: "TODO: fill in"
-lastUpdated: "TODO: fill in"
----
+**Chains** (`src/content/chains/*.md`, collection `chains`): the main content
+type. One file per shock, such as `hormuz-closure.md`. Fields: `title`,
+`speed` (`fast` or `slow`), `location` (optional `lat`/`lng` for the globe
+pin — slow, structural chains like peak oil demand don't get one),
+`trigger`, `energyHit`, `economyHit`, `sectorsWinners` and `sectorsLosers`
+(lists of text), `countriesExposed` and `countriesProtected` (lists of
+country codes), `whatToWatch`, `interviewAngle`, `summary`, `sources`,
+`lastUpdated`. No difficulty levels yet.
 
-TODO: fill in: the longer written analysis goes here.
-```
+**Sectors** (`src/content/sectors.yaml`, collection `sectors`): the sector
+cheat sheet, one hand-curated file in the same style as `chokepoints.yaml`.
+Each entry has `name`, `reaction` (`gain`, `lose` or `depends`), and
+`explainer`.
 
-You'll get a page at `/relationships/<slug-slug>`, a summary and link when someone clicks both countries on the globe (in either order), and a link on `/browse`.
-
-### Relationship fields
-
-| Field | Type | Notes |
-|---|---|---|
-| `countryA`, `countryB` | code | Two different codes from the table above, not slugs |
-| `title` | text | |
-| `summary` | text | Two sentences (not checked automatically) |
-| `tradeAtoB` | text | Trade from country A to country B |
-| `tradeBtoA` | text | Trade from country B to country A |
-| `investmentFlows` | text | |
-| `energyTies` | text | |
-| `securityTies` | text | |
-| `recentDevelopments` | list of text | At least one item |
-| `whyItMatters` | text | |
-| `interviewAngle` | text | |
-| `sources` | list of `title` and `url` | At least one |
-| `lastUpdated` | date | Such as `2026-01-31` |
-
-The text below the second `---` is the longer written analysis.
+**Flows** (`src/content/flows.json`, collection `flows`): the energy flow
+arcs for the globe — who supplies whom. Each entry has `from` and `to`
+(country codes), `type` (`crude-oil`, `lng`, `pipeline-oil` or
+`pipeline-gas`), `unit`, `volume` (an indicator, same shape as the country
+fields above), and `explainer`. Starts as an empty list.
 
 ## Filling in real values
 

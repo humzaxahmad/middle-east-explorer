@@ -4,23 +4,14 @@
 // and screen-reader users, and it gives search engines links they can follow.
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { COUNTRIES, findCountry, hasFullPage } from '../data/countries';
+import { COUNTRIES, hasFullPage } from '../data/countries';
 
 const countryFiles = await getCollection('countries');
-const relationshipFiles = await getCollection('relationships');
 
 // Every country with a full page appears, whether or not its file exists yet.
 const coreCountries = COUNTRIES.filter((country) => hasFullPage(country.region));
 const externalPowers = COUNTRIES.filter((country) => country.region === 'external');
 const hasFile = (slug: string) => countryFiles.some((file) => file.id === slug);
-
-// The schema already checked both codes, so the "!" is safe: they will be found.
-const relationships = relationshipFiles
-  .map((file) => ({
-    slug: file.id,
-    name: `${findCountry(file.data.countryA)!.name} and ${findCountry(file.data.countryB)!.name}`,
-  }))
-  .sort((a, b) => a.name.localeCompare(b.name));
 ---
 <BaseLayout title="Browse">
   <h1>Browse all pages</h1>
@@ -42,21 +33,8 @@ const relationships = relationshipFiles
   </section>
 
   <section>
-    <h2>Relationships</h2>
-    {relationships.length === 0 ? (
-      <p>Coming soon.</p>
-    ) : (
-      <ul>
-        {relationships.map((relationship) => (
-          <li><a href={`/relationships/${relationship.slug}`}>{relationship.name}</a></li>
-        ))}
-      </ul>
-    )}
-  </section>
-
-  <section>
     <h2>External powers</h2>
-    <p>These appear through their relationships with the region, listed above:</p>
+    <p>Buyers and counterparts. These appear through the globe panel only, with no page of their own:</p>
     <ul>
       {externalPowers.map((country) => <li>{country.name}</li>)}
     </ul>

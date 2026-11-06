@@ -45,6 +45,7 @@ keyRisks:
   - "Foreign reserves cover just over two months of prospective non-hydrocarbon imports (IMF), leaving the currency peg vulnerable to external shocks"
   - "Heavy reliance on financial support from Saudi Arabia and Gulf neighbors"
   - "The IMF expected hydrocarbons to provide about half of 2025 government revenue (via AGBI), even though Bahrain is furthest along in diversification among Gulf states"
+interviewAngle: "TODO: fill in"
 summary: "Bahrain is the Gulf's most diversified economy, with aluminum and financial services now rivaling oil as export earners, but that diversification was funded by debt rather than savings. Public debt of about 142% of GDP in 2025 and thin foreign reserves make it the most fiscally exposed economy in the Gulf, and with the Iran war closing the Strait of Hormuz, the IMF in October 2026 projected an 11.3% contraction in 2026, followed by 13.9% growth in 2027."
 sources:
   - title: "IMF, \"IMF Executive Board Concludes 2025 Article IV Consultation with The Kingdom of Bahrain\" (press release)"

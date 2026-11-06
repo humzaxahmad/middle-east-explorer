@@ -42,6 +42,7 @@ keyRisks:
   - "Heavy reliance on a concentrated high-tech sector makes growth sensitive to global tech cycles"
   - "An active regional war is a direct risk to the economy"
   - "Its small natural-gas sovereign fund offers limited buffering capacity against currency swings"
+interviewAngle: "TODO: fill in"
 summary: "Israel runs a highly diversified, technology-driven economy, with high-tech products and services making up more than half of exports. A sharply appreciating shekel, which reached a 31-year high against the dollar in April 2026, has become a growing risk to export competitiveness. The Iran war that began in February 2026 shrank GDP at an annualized 3.3% in the first quarter, but in October the IMF projected 4.5% growth for 2026."
 sources:
   - title: "World Bank Open Data, Israel"

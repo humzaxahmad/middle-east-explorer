@@ -1,7 +1,7 @@
 // Everything the globe does in the browser: drawing the map, colours, rotation,
-// hover names, the panel, and the arc between two selected countries.
+// hover names, and the panel.
 import Globe from 'globe.gl';
-import { TODO, findCountry, findCountryOnMap, hasFullPage, relationshipSlug } from '../data/countries';
+import { TODO, findCountry, findCountryOnMap, hasFullPage } from '../data/countries';
 
 const COLOURS = {
   background: '#0b1730',
@@ -11,7 +11,6 @@ const COLOURS = {
   external: '#f59e0b',
   externalHover: '#fcd34d',
   selected: '#ffffff',
-  arc: '#ffffff',
   other: '#3b4760',
   border: '#0b1730',
 };
@@ -25,12 +24,6 @@ interface MapCountry {
 // A clickable entry from the master list in data/countries.ts.
 type Entry = NonNullable<ReturnType<typeof findCountry>>;
 
-// The data behind the arc: the two selected countries.
-interface Pair {
-  first: Entry;
-  second: Entry;
-}
-
 // A click area for a country too small to click on the map.
 interface Dot {
   entry: Entry;
@@ -42,7 +35,7 @@ interface Dot {
 
 // What we track as the visitor moves around.
 let hoveredCode: string | null = null;
-let selectedCodes: string[] = []; // Holds zero, one or two codes, like ['ARE', 'GBR']
+let selectedCodes: string[] = []; // Holds zero or one code, like ['ARE']
 
 // Gets the clickable entry a map shape belongs to, or undefined for grey countries.
 function entryFor(country: MapCountry) {
@@ -70,7 +63,6 @@ const panelData: {
     hittingNow: string;
     chain?: { text: string; href?: string };
   }[];
-  relationships: { slug: string; summary: string }[];
 } = JSON.parse(document.getElementById('panel-data')!.textContent!);
 
 const panel = document.getElementById('panel')!;
@@ -167,25 +159,12 @@ function showCountryPanel(entry: Entry) {
     chain: file?.chain,
     hint: isCore
       ? 'Click a chokepoint or buyer to see the link.'
-      : 'Click a Middle East country to see its relationship with this one.',
+      : 'Click a Middle East country or chokepoint to see the link.',
     // Only non-external countries with a Markdown file have a full page to link to.
     link:
       isCore && file
         ? { href: `/countries/${entry.slug}`, text: 'Read the full profile' }
         : undefined,
-  });
-}
-
-function showRelationshipPanel(first: Entry, second: Entry) {
-  // The slug comes out the same whichever country was clicked first.
-  const slug = relationshipSlug(first.code, second.code);
-  const file = panelData.relationships.find((item) => item.slug === slug);
-  fillPanel({
-    type: 'Relationship',
-    title: `${first.name} and ${second.name}`,
-    summary: file?.summary,
-    hint: 'Click another country to start a new selection.',
-    link: file ? { href: `/relationships/${slug}`, text: 'Read the full analysis' } : undefined,
   });
 }
 
@@ -241,18 +220,10 @@ async function startGlobe() {
     refreshColours();
   }
 
-  // Decides what happens when a country is clicked.
+  // Clicking a selected country clears the selection. Clicking any other
+  // country replaces it: only one country is selected at a time.
   function selectCountry(code: string) {
-    if (selectedCodes.includes(code)) {
-      // Clicking a selected country clears the selection.
-      selectedCodes = [];
-    } else if (selectedCodes.length === 1) {
-      // A second country completes the pair.
-      selectedCodes = [selectedCodes[0], code];
-    } else {
-      // A first click, or a third click, which starts a new selection.
-      selectedCodes = [code];
-    }
+    selectedCodes = selectedCodes.includes(code) ? [] : [code];
     showSelection();
   }
 
@@ -261,54 +232,22 @@ async function startGlobe() {
     showSelection();
   }
 
-  // Updates the panel, the arc and the colours to match the current selection.
+  // Updates the panel and the colours to match the current selection.
   function showSelection() {
-    const [first, second] = selectedCodes.map((code) => findCountry(code)!);
-
-    if (first && second) {
-      showRelationshipPanel(first, second);
-      globe.arcsData([{ first, second }]);
-      lookBetween(first, second);
+    const [first] = selectedCodes.map((code) => findCountry(code)!);
+    if (first) {
+      showCountryPanel(first);
     } else {
-      globe.arcsData([]);
-      if (first) {
-        showCountryPanel(first);
-      } else {
-        closePanel();
-      }
+      closePanel();
     }
     updateOffset();
     refreshColours();
   }
 
-  // Slides the globe so the panel doesn't cover the selected countries.
-  // - Wide screens: slide left by half the panel's width, only while a pair shows.
-  // - Phones: slide up by half the bottom sheet's height, whenever it's open.
+  // On phones, slides the globe up so the bottom sheet doesn't cover it.
   function updateOffset() {
     const isBottomSheet = window.innerWidth <= 800; // Matches the CSS breakpoint
-    if (isBottomSheet) {
-      globe.globeOffset([0, selectedCodes.length > 0 ? -panel.offsetHeight / 2 : 0]);
-    } else {
-      globe.globeOffset([selectedCodes.length === 2 ? -panel.offsetWidth / 2 : 0, 0]);
-    }
-  }
-
-  // Turns the globe to face the middle of the arc, so both ends can be seen.
-  function lookBetween(first: Entry, second: Entry) {
-    // Longitude wraps around at 180 degrees, so the middle of 170 and -170 is 180,
-    // not 0. Adding 360 to the western one makes the average come out right.
-    const gap = Math.abs(first.lng - second.lng);
-    const lngA = gap > 180 && first.lng < 0 ? first.lng + 360 : first.lng;
-    const lngB = gap > 180 && second.lng < 0 ? second.lng + 360 : second.lng;
-    globe.pointOfView(
-      {
-        lat: (first.lat + second.lat) / 2,
-        lng: (lngA + lngB) / 2,
-        // Zoom out if needed, but don't zoom in if the visitor is already further away.
-        altitude: Math.max(globe.pointOfView().altitude, fittedAltitude()),
-      },
-      1000, // The move takes one second.
-    );
+    globe.globeOffset(isBottomSheet && selectedCodes.length > 0 ? [0, -panel.offsetHeight / 2] : [0, 0]);
   }
 
   const globe = new Globe(container)
@@ -338,19 +277,6 @@ async function startGlobe() {
     .pointLabel((dot) => (dot as Dot).entry.name)
     .onPointHover((dot) => setHovered(dot ? (dot as Dot).entry.code : null))
     .onPointClick((dot) => selectCountry((dot as Dot).entry.code))
-    // The arc is drawn from the first selected country to the second. Its dashes
-    // move along the line, which is what makes it look animated.
-    .arcStartLat((arc) => (arc as Pair).first.lat)
-    .arcStartLng((arc) => (arc as Pair).first.lng)
-    .arcEndLat((arc) => (arc as Pair).second.lat)
-    .arcEndLng((arc) => (arc as Pair).second.lng)
-    .arcColor(() => COLOURS.arc)
-    .arcStroke(0.7)
-    .arcDashLength(0.4)
-    .arcDashGap(0.15)
-    .arcDashAnimateTime(1800)
-    // Arcs ignore the mouse, so countries underneath one can still be clicked.
-    .pointerEventsFilter((_object, data) => !(data && 'first' in data))
     // Only show the hand cursor over things that can be clicked.
     .showPointerCursor((type, item) => {
       if (type === 'point') return true;
