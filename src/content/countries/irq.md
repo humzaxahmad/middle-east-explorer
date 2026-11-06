@@ -6,17 +6,17 @@ gdpUsdBn: 254.37
 gdpPerCapitaUsd: 5410
 population: 47020774
 oilGasShareOfExportsPct: 99
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "exporter"
+protectionStatus: "partly protected"
 resourceRentsPctGdp: { value: 43.4, year: 2021, source: "World Bank WDI" }
-oilShareOfGovRevenuePct: "TODO: fill in"
+oilShareOfGovRevenuePct: { value: 91, year: 2024, source: "Shafaq News, citing Iraqi Ministry of Finance data" }
 fiscalBreakevenOilPriceUsd: { value: 83.8, year: 2024, source: "IMF REO May 2025" }
 energyImportDependencePct: { value: -223.3, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 5.2, year: 2024, source: "World Bank WDI" }
 nonOilGdpSharePct: "TODO: fill in"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
-exportRouteStatus: "TODO: fill in"
+hittingNow: "Hormuz closed → most Iraqi crude, exported from Basra on the Gulf, has no way out → the Kirkuk-Ceyhan pipeline to Turkey, covering only a few hundred thousand barrels a day, becomes the one real bypass, while PM al-Zaidi pushes to sell more crude to Europe"
+marketImpact: "With oil close to all of government revenue and exports, the closure hit hard: the IMF's October 2026 outlook put Iraq's 2026 contraction at 16.0%, before a 19.0% rebound in 2027 if the strait reopens as assumed."
+exportRouteStatus: "Iraq and Turkey struck a one-year deal in August 2026 for a minimum 750,000 barrels a day through the Kirkuk-Ceyhan pipeline to Turkey's Mediterranean coast, bypassing Hormuz entirely; actual flow had reached about 500,000 barrels a day. That covers only part of Iraq's total exports, most of which still move from the Basra terminals on the Gulf. A separate Basra-Haditha pipeline project, designed to carry up to 2.5 million barrels a day to export points in Syria, Jordan and Turkey, remained unbuilt as of the Turkey pipeline deal."
 relatedChainSlug: hormuz-closure
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -41,7 +41,7 @@ keyRisks:
   - "Shrinking foreign exchange reserves increase vulnerability to oil price shocks"
   - "The closure of the Strait of Hormuz disrupts its main oil export route"
   - "Government wages and pensions rising to 24.5% of GDP (IMF) strain the budget"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Iraq looks protected by the new Kirkuk-Ceyhan pipeline deal, but the volumes don't support that: the pipeline covers a few hundred thousand barrels a day against a country whose budget runs almost entirely on oil, so it's a real step, not a real fix."
 summary: "Iraq is OPEC's second-largest producer but has almost no economic diversification, with fuels making up about 99% of goods exports and oil about 90% of government revenue. It exported mostly through the Strait of Hormuz, and with the strait closed by the Iran war, the IMF in October 2026 projected a 16.0% contraction in 2026, followed by 19.0% growth in 2027."
 sources:
   - title: "IMF, \"IMF Executive Board Concludes 2025 Article IV Consultation with Iraq\" (Press Release No. 25/243)"
@@ -66,7 +66,11 @@ sources:
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
   - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
     url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
-lastUpdated: 2026-11-06
+  - title: "Iraqi News, \"Iraq's oil exports via Turkey rise to 500,000 barrels per day\""
+    url: "https://www.iraqinews.com/iraq/iraqs-oil-exports-via-turkey-rise-to-500000-barrels-per-day/"
+  - title: "Washington Times, \"Iraq and Turkey strike a 1-year oil pipeline deal to boost exports during ongoing Hormuz closures\" (August 2026)"
+    url: "https://www.washingtontimes.com/news/2026/aug/1/iraq-turkey-strike-1-year-oil-pipeline-deal-boost-exports-ongoing/"
+lastUpdated: 2026-11-07
 ---
 
 TODO: fill in

@@ -53,7 +53,7 @@ keyRisks:
   - "Continued heavy reliance on oil for exports and revenue"
   - "An active regional war, with Houthi attacks on Saudi Arabia escalating in October 2026"
   - "Long-term global shift away from oil demand"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Don't call Saudi Arabia \"protected\" just because Petroline exists: the pipeline bypasses Hormuz, but oil shipped onward from Yanbu still crosses the Red Sea, where Houthi attacks have been escalating. A bypass only fully works if the route after it is also safe."
 summary: "Saudi Arabia is the Arab world's largest economy, historically built on oil exports but pursuing rapid diversification under Vision 2030. Fuels were still about 79% of goods exports in 2025. In October 2026 the IMF projected a 3.3% contraction in 2026, followed by 7.9% growth in 2027, with the Iran war and the closure of the Strait of Hormuz disrupting the region's exports."
 sources:
   - title: "IMF, \"Saudi Arabia: 2025 Article IV Consultation\""
@@ -98,7 +98,7 @@ sources:
     url: "https://www.arabnews.com/node/2590103/business-economy"
   - title: "World Oil, \"Saudi's fiscal outlook hinges on oil price recovery, production growth, IMF says\" (October 2025)"
     url: "https://www.worldoil.com/news/2025/10/21/saudi-fiscal-outlook-hinges-on-oil-price-recovery-production-growth-imf-says/"
-lastUpdated: 2026-11-06
+lastUpdated: 2026-11-07
 ---
 
 TODO: fill in

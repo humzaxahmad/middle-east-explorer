@@ -6,19 +6,20 @@ gdpUsdBn: 215.56
 gdpPerCapitaUsd: 72525
 population: 2972215
 oilGasShareOfExportsPct: 83.8
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "exporter"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 27.3, year: 2021, source: "World Bank WDI" }
-oilShareOfGovRevenuePct: "TODO: fill in"
+oilShareOfGovRevenuePct: { value: 82.2, year: 2024, source: "IMF, Qatar 2024 Article IV Consultation" }
 fiscalBreakevenOilPriceUsd: { value: 47.1, year: 2024, source: "IMF REO May 2025" }
 energyImportDependencePct: { value: -395.5, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 6.2, year: 2024, source: "World Bank WDI" }
 nonOilGdpSharePct: { value: 64, year: 2024, source: "NPC via The Peninsula" }
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
-exportRouteStatus: "TODO: fill in"
+hittingNow: "Hormuz closed → Qatar's LNG, which has no bypass route of any kind, can only reach tankers willing to sail at today's war-risk premiums → cargo volumes collapsed for months before cautiously recovering under naval escort"
+marketImpact: "The IMF's October 2026 outlook projects a 15.6% contraction for Qatar in 2026, the second-worst in the GCC after Kuwait, before an 18.8% rebound in 2027 if the strait reopens as assumed."
+exportRouteStatus: "Qatar's LNG has no bypass route. Its energy minister has said building a pipeline around the strait would make no economic sense, since gas piped overland would still need a new liquefaction plant outside Qatar before it could be loaded onto tankers. Nearly all Qatari LNG transits Hormuz; only deliveries to Kuwait avoid it."
 relatedChainSlug: hormuz-closure
 notes:
+  - "Oil share of government revenue: estimates vary by source and year. The IMF's 2024 Article IV put it at 82.2%, a KPMG analysis of the 2025 budget projected 78%, and a separate October 2025 estimate put it at 83%, all in the same general range."
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Non-oil share of GDP: the source says \"nearly 64%\"."
   - "GDP, GDP per person and population: World Bank, 2025."
@@ -47,7 +48,7 @@ keyRisks:
   - "Its LNG shipping depends on the Strait of Hormuz, which is closed; the IMF expects it to reopen gradually from March 2027"
   - "A disorderly global energy transition could erode long-term gas demand"
   - "Export volumes blocked by the Hormuz closure, rather than softening prices, are now the main threat to hydrocarbon revenue and the current account"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Qatar is the clearest case for why \"has oil and gas\" doesn't mean \"is protected\": it's one of the two Gulf states, with Kuwait, that have no way around Hormuz at all, and it shows up directly in the IMF's growth numbers."
 summary: "Qatar has one of the highest GDP per capita figures in the world, built almost entirely on natural gas exports, supplying nearly a fifth of global LNG. The closure of the Strait of Hormuz has hit it hard: in October 2026 the IMF projected a 15.6% contraction in 2026, followed by 18.8% growth in 2027 if the strait reopens."
 sources:
   - title: "Gulf Times, \"Qatar accounts for 18.8% share of global LNG exports in 2024\""
@@ -76,7 +77,11 @@ sources:
     url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
   - title: "The Peninsula, \"Qatari economy grows 2.4% YoY in 2024\" (National Planning Council data)"
     url: "https://thepeninsulaqatar.com/article/20/03/2025/qatari-economy-grows-24-yoy-in-2024"
-lastUpdated: 2026-11-06
+  - title: "CSIS, \"The Battle for Hormuz Will Reshape the Global LNG Market\""
+    url: "https://www.csis.org/analysis/battle-hormuz-will-reshape-global-lng-market"
+  - title: "Discovery Alert, \"Qatar LNG Shipments Through the Strait of Hormuz in 2026\""
+    url: "https://discoveryalert.com/qatar-lng-strait-hormuz-supply-shock-2026-market-crisis/"
+lastUpdated: 2026-11-07
 ---
 
 TODO: fill in

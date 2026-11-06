@@ -6,17 +6,18 @@ gdpUsdBn: 21243.21
 gdpPerCapitaUsd: 47089
 population: 451127411
 oilGasShareOfExportsPct: 4.7
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "partly protected"
 resourceRentsPctGdp: { value: 0.2, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 57.3, year: 2024, source: "Eurostat", method: eurostat }
 fuelImportsPctOfImports: { value: 9.8, year: 2025, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "The Iran war and Hormuz closure pushed global energy prices sharply higher on top of the EU's existing shift away from Russian gas → the IMF says the euro area's near-term outlook has deteriorated, with inflation and growth both affected → the EUR 298.9 billion energy deficit (2025) widens further"
+marketImpact: "The IMF says the war has worsened the euro area's near-term outlook and raised inflation risk, though the EU's post-2022 diversification away from Russian gas gives it more cushion than an importer with no such head start: 12 new LNG terminals between 2022 and 2024 added 70 bcm of import capacity, and Russia's share of EU gas imports fell from 45% in 2021 to 12% in 2025."
 exportRouteStatus: "Not applicable"
+relatedChainSlug: hormuz-closure
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "GDP, GDP per person and population: World Bank, 2025."
@@ -39,7 +40,7 @@ keyRisks:
   - "The IMF says the euro area's near-term outlook has deteriorated amid the war in the Middle East, with uncertainty about how soon energy supply disruptions will be resolved"
   - "The war and energy price surge have raised inflation risks and weakened the growth outlook"
   - "Reducing external risks through trade diversification or domestic capacity can entail fiscal costs and lower efficiency"
-interviewAngle: "TODO: fill in"
+interviewAngle: "The EU is a useful contrast with Jordan: both are big energy importers hit by the same global price shock, but the EU's post-2022 scramble to replace Russian gas means it's absorbing this one from a stronger starting position."
 summary: "The European Union is a major goods exporter, with a EUR 128 billion goods surplus in 2025 and the US taking 21.0% of its exports. It also ran a EUR 298.9 billion energy deficit, and the IMF says the Middle East war has worsened the euro area's near-term outlook."
 sources:
   - title: "World Bank Open Data, European Union"
@@ -62,7 +63,9 @@ sources:
     url: "https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_id/default/table"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "European Commission, \"REPowerEU - 4 years on\""
+    url: "https://energy.ec.europa.eu/strategy/repowereu-phase-out-russian-energy-imports/repowereu-4-years_en"
+lastUpdated: 2026-11-07
 ---
 
 TODO: fill in

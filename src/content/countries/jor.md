@@ -6,17 +6,18 @@ gdpUsdBn: 61.61
 gdpPerCapitaUsd: 5348
 population: 11520684
 oilGasShareOfExportsPct: 0
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 0.1, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 81.7, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 10.9, year: 2024, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "The Iran war has pushed up global oil and food prices and hit regional tourism → with energy import dependence at 81.7%, higher import bills widen Jordan's trade deficit → the government leans on its 2024-2028 IMF program and Gulf/US aid to absorb the hit"
+marketImpact: "The IMF still projected 2.7% growth for 2026, helped by the ongoing IMF program, but higher energy and food import costs and weaker tourism revenue are a direct drag on a current account that already depends heavily on remittances and aid."
 exportRouteStatus: "Not applicable"
+relatedChainSlug: hormuz-closure
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "Top exports: percentages are shares of total exports in 2025, from World's Top Exports, rounded to whole numbers. Garments combines knit and non-knit clothing, and the phosphates figure combines phosphates and phosphoric acid."
@@ -44,7 +45,7 @@ keyRisks:
   - "Potential US tariff increases pose a direct risk to export growth"
   - "Regional instability continues to weigh on FDI and tourism"
   - "Exports are concentrated in a small number of traditional sectors, such as apparel, fertilizers, potash and pharmaceuticals"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Jordan shows the importer side of the same shock hitting Gulf producers: it isn't losing export revenue, it's paying more for everything it imports, and with energy import dependence above 80%, that's a large, direct hit to its current account."
 summary: "Jordan runs a resource-poor economy heavily dependent on remittances, tourism, and foreign aid rather than natural resource exports. The Iran war has weakened tourism and raised food and energy import costs, and in October 2026 the IMF projected 2.7% growth in 2026. A stable dinar-dollar peg and an IMF program running to 2028 anchor its finances, but regional instability and exports concentrated in a few traditional sectors remain constraints on growth."
 sources:
   - title: "World Bank Open Data, Jordan"
@@ -65,7 +66,7 @@ sources:
     url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+lastUpdated: 2026-11-07
 ---
 
 TODO: fill in
