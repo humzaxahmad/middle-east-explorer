@@ -15,6 +15,10 @@ const panelData = {
     code: data.iso3,
     summary: data.summary,
     header: exposureHeader(data.exposureType, data.protectionStatus, TODO),
+    // Raw values for the globe's colouring, separate from the formatted header
+    // text above. "exporter", "importer", "mixed" or TODO if not set yet.
+    exposureType: data.exposureType,
+    protectionStatus: data.protectionStatus,
     // Only the headline indicators for this country's exposure type, already
     // turned into short text like "54.6% (2025)".
     indicators: indicatorsFor(data.exposureType).map((key) => ({

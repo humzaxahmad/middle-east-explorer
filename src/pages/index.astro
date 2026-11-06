@@ -20,10 +20,11 @@ import Globe from '../components/Globe.astro';
     <main>
       <Globe />
     </main>
-    <ul class="legend">
-      <li><span class="swatch swatch-core"></span>Middle East countries</li>
-      <li><span class="swatch swatch-external"></span>External powers</li>
-      <li class="legend-hint">Click or tap a coloured country to begin</li>
-    </ul>
+    <div class="view-toggle" role="group" aria-label="Shade the globe by">
+      <button id="view-exporter" type="button" class="view-toggle-btn" aria-pressed="true">Exporters</button>
+      <button id="view-importer" type="button" class="view-toggle-btn" aria-pressed="false">Importers</button>
+    </div>
+    <!-- Filled in by globe.ts, so it always matches the active exposure view. -->
+    <ul class="legend" id="legend"></ul>
   </body>
 </html>

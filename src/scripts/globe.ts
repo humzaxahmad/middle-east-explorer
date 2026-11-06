@@ -2,18 +2,43 @@
 // hover names, and the panel.
 import Globe from 'globe.gl';
 import { TODO, findCountry, findCountryOnMap, hasFullPage } from '../data/countries';
+import { EXPOSURE_LABELS, PROTECTION_LABELS } from '../data/indicators';
+
+// Which exposure type the toggle currently shows. Exporters and importers get
+// separate colour scales, because "high risk" means opposite things for each.
+type View = 'exporter' | 'importer';
+let activeView: View = 'exporter';
 
 const COLOURS = {
   background: '#0b1730',
   ocean: '#10264d',
-  core: '#2dd4bf',
-  coreHover: '#8ff0e0',
-  external: '#f59e0b',
-  externalHover: '#fcd34d',
+  // External powers (buyers): unaffected by the toggle, always this colour.
+  external: '#2dd4bf',
   selected: '#ffffff',
+  // A Middle East country whose exposureType doesn't match the active view
+  // fades to the same colour as a country outside the dataset entirely.
   other: '#3b4760',
   border: '#0b1730',
+  // Exposure-risk scale, shared by whichever view is active. Matches the
+  // badge colours on the country pages (src/styles/global.css, .badge-*).
+  protected: '#34d399',
+  partlyProtected: '#fbbf24',
+  exposedRisk: '#f87171',
+  mixed: '#a78bfa',
+  // A country of the active type with no protectionStatus set yet.
+  pending: '#6b7591',
 };
+
+// Lightens a "#rrggbb" colour toward white, for hover highlights. Keeping this
+// as one function avoids hand-picking a hover shade for every colour above.
+function lighten(hex: string, amount: number) {
+  const n = parseInt(hex.slice(1), 16);
+  const channel = (shift: number) => {
+    const value = (n >> shift) & 0xff;
+    return Math.round(value + (255 - value) * amount);
+  };
+  return `rgb(${channel(16)}, ${channel(8)}, ${channel(0)})`;
+}
 
 // The shape of one country in countries.geojson.
 interface MapCountry {
@@ -42,13 +67,28 @@ function entryFor(country: MapCountry) {
   return findCountryOnMap(country.properties.code);
 }
 
-// Picks a colour for a clickable entry based on its region and current state.
+// The colour scale's base shade (before hover/selection), driven by the
+// active exposure view. External powers ignore the toggle entirely; a Middle
+// East country is only shaded by protectionStatus when its own exposureType
+// matches the active view (or is "mixed", which shows in both).
+function baseColourFor(entry: Entry) {
+  if (!hasFullPage(entry.region)) return COLOURS.external;
+  const file = panelData.countries.find((item) => item.code === entry.code);
+  const exposureType = file?.exposureType;
+  if (!exposureType || exposureType === TODO) return COLOURS.pending;
+  if (exposureType !== activeView && exposureType !== 'mixed') return COLOURS.other;
+  const status = file?.protectionStatus;
+  if (status === 'protected') return COLOURS.protected;
+  if (status === 'partly protected') return COLOURS.partlyProtected;
+  if (status === 'exposed') return COLOURS.exposedRisk;
+  return exposureType === 'mixed' ? COLOURS.mixed : COLOURS.pending;
+}
+
+// Picks a colour for a clickable entry: selected beats hovered beats base.
 function colourFor(entry: Entry) {
   if (selectedCodes.includes(entry.code)) return COLOURS.selected;
-  if (entry.code === hoveredCode) {
-    return hasFullPage(entry.region) ? COLOURS.coreHover : COLOURS.externalHover;
-  }
-  return hasFullPage(entry.region) ? COLOURS.core : COLOURS.external;
+  const base = baseColourFor(entry);
+  return entry.code === hoveredCode ? lighten(base, 0.4) : base;
 }
 
 // ---------- The panel ----------
@@ -59,6 +99,9 @@ const panelData: {
     code: string;
     summary: string;
     header: string;
+    // "exporter", "importer", "mixed" or TODO — drives the globe's colouring.
+    exposureType: string;
+    protectionStatus: string;
     indicators: { label: string; value: string }[];
     hittingNow: string;
     chain?: { text: string; href?: string };
@@ -75,6 +118,10 @@ const panelHitting = document.getElementById('panel-hitting')!;
 const panelHittingText = document.getElementById('panel-hitting-text')!;
 const panelHint = document.getElementById('panel-hint')!;
 const panelLink = document.getElementById('panel-link') as HTMLAnchorElement;
+
+const legend = document.getElementById('legend')!;
+const viewExporterBtn = document.getElementById('view-exporter')!;
+const viewImporterBtn = document.getElementById('view-importer')!;
 
 // Makes one element with some text, highlighted yellow if it's a placeholder.
 // textContent (not innerHTML) keeps any text from being treated as code.
@@ -220,6 +267,43 @@ async function startGlobe() {
     refreshColours();
   }
 
+  // Rebuilds the legend to match the active view. A plain swatch list, built
+  // the same way the panel's indicator rows are: no innerHTML, so nothing in
+  // the data can be mistaken for markup.
+  function renderLegend() {
+    const rows: [string, string][] = [
+      [COLOURS.protected, PROTECTION_LABELS.protected],
+      [COLOURS.partlyProtected, PROTECTION_LABELS['partly protected']],
+      [COLOURS.exposedRisk, PROTECTION_LABELS.exposed],
+      [COLOURS.mixed, EXPOSURE_LABELS.mixed],
+      [COLOURS.pending, 'Data pending'],
+      [COLOURS.external, 'External power (buyer)'],
+    ];
+    legend.replaceChildren(
+      ...rows.map(([colour, label]) => {
+        const li = document.createElement('li');
+        const swatch = document.createElement('span');
+        swatch.className = 'swatch';
+        swatch.style.background = colour;
+        li.append(swatch, label);
+        return li;
+      }),
+      make('li', 'Click or tap a coloured country to begin', 'legend-hint'),
+    );
+  }
+
+  // Switches which exposure type the map is shaded by. Exporters and
+  // importers never share a colour scale, so switching views is the only way
+  // to see both.
+  function setView(view: View) {
+    activeView = view;
+    viewExporterBtn.classList.toggle('is-active', view === 'exporter');
+    viewExporterBtn.setAttribute('aria-pressed', String(view === 'exporter'));
+    viewImporterBtn.classList.toggle('is-active', view === 'importer');
+    viewImporterBtn.setAttribute('aria-pressed', String(view === 'importer'));
+    refreshColours();
+  }
+
   // Clicking a selected country clears the selection. Clicking any other
   // country replaces it: only one country is selected at a time.
   function selectCountry(code: string) {
@@ -311,6 +395,11 @@ async function startGlobe() {
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') resetSelection();
   });
+
+  viewExporterBtn.addEventListener('click', () => setView('exporter'));
+  viewImporterBtn.addEventListener('click', () => setView('importer'));
+  setView(activeView);
+  renderLegend();
 
   // Keep the globe filling the screen if the window changes size.
   window.addEventListener('resize', () => {
