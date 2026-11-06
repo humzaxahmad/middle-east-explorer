@@ -1,0 +1,58 @@
+---
+// The news log: short, append-only items, newest first. No fixed cadence is
+// promised here or anywhere else in the UI.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Value from '../components/Value.astro';
+
+const chains = await getCollection('chains');
+const items = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const chainTitle = (slug: string) => chains.find((c) => c.id === slug)?.data.title;
+---
+<BaseLayout title="News log">
+  <h1>News log</h1>
+  <p class="lead">Short items, added whenever something happens worth a 60-word note. Not a daily or weekly digest.</p>
+
+  {items.map((item) => (
+    <article class="news-item">
+      <p class="news-date"><Value value={item.data.date} /></p>
+      <h2>{item.data.headline}</h2>
+      <p><Value value={item.data.summary} /></p>
+      {chainTitle(item.data.relatedChainSlug) && (
+        <p><a href={`/chains/${item.data.relatedChainSlug}`}>See the {chainTitle(item.data.relatedChainSlug)} chain →</a></p>
+      )}
+      <p class="news-sources">
+        Sources:{' '}
+        {item.data.sources.map((source, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={source.url} target="_blank" rel="noopener noreferrer"><Value value={source.title} /></a>
+          </>
+        ))}
+      </p>
+    </article>
+  ))}
+</BaseLayout>
+
+<style>
+  .news-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #dde2ea;
+  }
+  .news-item:last-child {
+    border-bottom: 0;
+  }
+  .news-item h2 {
+    margin-top: 0.2rem;
+  }
+  .news-date {
+    color: #5a6577;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+  .news-sources {
+    color: #5a6577;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>

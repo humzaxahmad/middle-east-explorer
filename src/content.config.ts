@@ -229,4 +229,22 @@ const flows = defineCollection({
   }),
 });
 
-export const collections = { countries, chokepoints, chains, sectors, flows };
+// The news log: short, append-only items, each tagged to the chain it belongs
+// to and pinned to a place. No fixed cadence is promised anywhere in the UI,
+// so this is filled in whenever there's something worth a 60-word note, not
+// on a schedule.
+const news = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/news' }),
+  schema: z.object({
+    date: z.date({ error: 'Must be a date like 2026-10-23 with no quotes.' }),
+    headline: text,
+    // Not programmatically enforced, the same as every other "not checked
+    // automatically" text field: what happened, who's exposed, who gains.
+    summary: text,
+    relatedChainSlug: slug,
+    location: z.object({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180) }),
+    sources,
+  }),
+});
+
+export const collections = { countries, chokepoints, chains, sectors, flows, news };
