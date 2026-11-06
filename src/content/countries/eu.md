@@ -1,7 +1,7 @@
 ---
 name: "European Union"
 iso3: "EUU"
-region: "external"
+region: "importer"
 gdpUsdBn: 21243.21
 gdpPerCapitaUsd: 47089
 population: 451127411

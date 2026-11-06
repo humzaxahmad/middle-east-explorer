@@ -43,8 +43,11 @@ export const COUNTRIES = [
   { code: 'GBR', slug: 'uk', name: 'United Kingdom', region: 'external', lat: 54, lng: -2 },
   { code: 'KOR', slug: 'kor', name: 'South Korea', region: 'external', lat: 36.5, lng: 127.8 },
   { code: 'JPN', slug: 'jpn', name: 'Japan', region: 'external', lat: 36.5, lng: 138 },
-  // The EU has no ISO3 country code, so we use the World Bank's code for it.
-  { code: 'EUU', slug: 'eu', name: 'European Union', region: 'external', lat: 50.8, lng: 4.4 },
+  // The EU gets a full page like Jordan, unlike the other buyers above: it's a
+  // heavy energy importer with real diversification dynamics (away from
+  // Russian gas), not just a trading partner. The EU has no ISO3 code, so we
+  // use the World Bank's code for it.
+  { code: 'EUU', slug: 'eu', name: 'European Union', region: 'importer', lat: 50.8, lng: 4.4 },
 ] as const;
 
 // All 27 EU members. The globe treats them as one clickable bloc, because energy
