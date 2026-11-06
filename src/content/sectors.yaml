@@ -1,68 +1,67 @@
 # The sector cheat sheet: how each sector reacts to higher energy prices.
 # reaction is one of: gain, lose, depends.
-# explainer is TODO until the sector cheat sheet page is built (build step 5).
 
 oil-gas-producers:
   name: "Oil and gas producers"
   reaction: gain
-  explainer: "TODO: fill in"
+  explainer: "Revenue scales directly with price. A barrel that costs a fraction of its sale price to produce in the Gulf sells for whatever the market will pay, so a price spike flows straight to government and company revenue."
 
 oilfield-services:
   name: "Oilfield services"
   reaction: gain
-  explainer: "TODO: fill in"
+  explainer: "Higher prices justify more drilling and new pipeline capacity, like the Gulf's Hormuz-bypass projects, which means more contracts for the firms that build and service that infrastructure."
 
 tankers:
   name: "Tankers"
   reaction: gain
-  explainer: "TODO: fill in"
+  explainer: "Freight rates rise with the extra risk and distance of avoiding trouble spots, and war-risk insurance premiums get built straight into what shippers charge to carry a cargo."
 
 non-gulf-lng-exporters:
   name: "Non-Gulf LNG exporters"
   reaction: gain
-  explainer: "TODO: fill in"
+  explainer: "A Gulf supply disruption makes buyers pay up for LNG from anywhere else, from the US to Australia, even though none of that gas is actually affected by the shock itself."
 
 renewables:
   name: "Renewables"
   reaction: gain
-  explainer: "TODO: fill in"
+  explainer: "Expensive fossil fuels make wind, solar and batteries look cheaper by comparison, and energy-security arguments for renewables get louder whenever a chokepoint makes imported oil and gas feel risky."
 
 airlines:
   name: "Airlines"
   reaction: lose
-  explainer: "TODO: fill in"
+  explainer: "Jet fuel is one of the largest costs on an airline's balance sheet, and it's hard to pass a sudden spike straight on to ticket prices without losing passengers."
 
 chemicals:
   name: "Chemicals"
   reaction: lose
-  explainer: "TODO: fill in"
+  explainer: "Oil and gas are both the fuel and the raw material for most chemicals, so a price spike hits the cost base twice over."
 
 heavy-industry:
   name: "Heavy industry"
   reaction: lose
-  explainer: "TODO: fill in"
+  explainer: "Steel, cement and similar industries are energy-intensive and compete globally, so they can't always pass higher energy costs on to customers."
 
 autos:
   name: "Autos"
   reaction: lose
-  explainer: "TODO: fill in"
+  explainer: "Carmakers face higher input costs from energy-intensive materials like steel and aluminium, while higher fuel prices also dampen demand for the cars themselves."
 
 retail:
   name: "Retail"
   reaction: lose
-  explainer: "TODO: fill in"
+  explainer: "Retailers absorb higher costs across the whole supply chain, from transport to packaging, while inflation-squeezed households cut back on spending."
 
 utilities:
   name: "Utilities that can't pass on costs"
   reaction: lose
-  explainer: "TODO: fill in"
+  explainer: "A utility locked into regulated prices or fixed-rate contracts can't raise what it charges customers even as its own fuel costs rise."
 
 banks:
   name: "Banks"
   reaction: depends
-  explainer: "TODO: fill in"
+  explainer: "Higher interest rates, usually a central bank's response to energy-driven inflation, widen the margin between what banks pay savers and charge borrowers, but they also raise the risk that stretched borrowers default."
 
 insurers:
   name: "Insurers"
   reaction: depends
-  explainer: "TODO: fill in"
+  explainer: "War-risk and marine insurers collect much higher premiums during a shock, but they also carry the risk of an unusually large claim if a tanker is actually hit."

@@ -1,0 +1,45 @@
+---
+// The sector cheat sheet: how each sector reacts to higher energy prices.
+// Every chain links here instead of re-explaining sector reactions from
+// scratch, so students learn the pattern once and reuse it.
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Value from '../components/Value.astro';
+
+const sectors = await getCollection('sectors');
+const byReaction = (reaction: string) => sectors.filter((s) => s.data.reaction === reaction);
+---
+<BaseLayout title="Sector cheat sheet">
+  <h1>Sector cheat sheet</h1>
+  <p class="lead">How each sector reacts when energy prices rise. The same pattern shows up in every shock chain, so it's worth learning once.</p>
+
+  <section>
+    <h2>Usually gain</h2>
+    {byReaction('gain').map((sector) => (
+      <>
+        <h3>{sector.data.name}</h3>
+        <p><Value value={sector.data.explainer} /></p>
+      </>
+    ))}
+  </section>
+
+  <section>
+    <h2>Usually lose</h2>
+    {byReaction('lose').map((sector) => (
+      <>
+        <h3>{sector.data.name}</h3>
+        <p><Value value={sector.data.explainer} /></p>
+      </>
+    ))}
+  </section>
+
+  <section>
+    <h2>Depends</h2>
+    {byReaction('depends').map((sector) => (
+      <>
+        <h3>{sector.data.name}</h3>
+        <p><Value value={sector.data.explainer} /></p>
+      </>
+    ))}
+  </section>
+</BaseLayout>
