@@ -6,16 +6,16 @@ gdpUsdBn: 365.25
 gdpPerCapitaUsd: 3086
 population: 118365995
 oilGasShareOfExportsPct: 12
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "mixed"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 5.1, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 26.4, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 21.4, year: 2025, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "Houthi attacks shut most container traffic out of the Red Sea → Suez Canal transit revenue, one of Egypt's largest sources of foreign currency, falls from a $10.25bn peak in 2023 toward roughly $4.4bn-$4.7bn for fiscal year 2025/26 → at the same time Egypt's own gas production keeps declining, so a country that used to export LNG to Europe now imports a record 8.92 million tonnes of it in 2025 → Egypt loses foreign currency from the canal and spends more on energy imports, from two unrelated causes at once"
+marketImpact: "Suez Canal revenue is recovering off its 2024 low but remains far below pre-crisis levels: Prime Minister Madbouly put fiscal year 2025/26 revenue at about $4.4bn in October 2026, and the Suez Canal Authority gave $4.67bn for the same year, both against a $10.25bn peak in 2023, which keeps pressure on the foreign-currency reserves backing the pound. Egypt's own energy balance adds a second drag: it imported a record 8.92 million tonnes of LNG in 2025, roughly triple 2024's volume, as declining domestic output, notably at the Zohr field, turned a former gas exporter into a regular importer."
 exportRouteStatus: "Not applicable"
 relatedChainSlug: red-sea-shipping
 notes:
@@ -49,7 +49,7 @@ keyRisks:
   - "Heavy reliance on short-term domestic debt (~60% of domestic debt) exposes Egypt to rollover and interest-rate risk"
   - "Suez Canal revenue collapsed from $10.25bn (2023) to about $4bn (2024) due to Red Sea shipping attacks"
   - "Currency remains sensitive to further devaluation pressure"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Egypt is being squeezed from two unrelated directions at once. It's losing Suez Canal revenue because of a shipping crisis that has nothing to do with its own energy sector, and separately becoming a net LNG importer because its own gas fields, especially Zohr, are producing less. Most countries on this site have one clear energy story; Egypt has two, hitting the same current account from opposite sides at the same time."
 summary: "Egypt runs the Arab world's most populous and most diversified major economy, but one strained by heavy debt and a currency crisis that forced a 38% devaluation in 2024. A sharp drop in Suez Canal revenue from regional shipping attacks added pressure on its IMF-backed stabilization program, but canal activity has since begun recovering, and in October 2026 the IMF upgraded its 2026 growth forecast to 5.1%, while warning that the delayed impact of the Gulf conflict will weigh on activity in 2027."
 sources:
   - title: "World Bank Open Data, Egypt"
@@ -74,7 +74,13 @@ sources:
     url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "MEES, \"Egypt LNG Imports: Record 2025, More to Come in 2026\" (January 2026)"
+    url: "https://www.mees.com/2026/1/2/refining-petrochemicals/egypt-lng-imports-record-2025-more-to-come-in-2026/691f0f70-e7dd-11f0-acc6-1d86dba5c11b"
+  - title: "Rio Times Online, \"Suez Canal Revenue Still Far Below Peak, Egypt Says\" (October 2026)"
+    url: "https://www.riotimesonline.com/egypt-suez-canal-revenue-below-peak-2026/"
+  - title: "Enterprise, \"Why Egypt's gas sector is leaning heavily on LNG imports\" (June 2026)"
+    url: "https://enterpriseam.com/infrastructure/2026/06/02/why-egypts-gas-sector-is-leaning-heavily-on-lng-imports/"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in

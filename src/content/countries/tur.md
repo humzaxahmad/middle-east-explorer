@@ -6,16 +6,16 @@ gdpUsdBn: 1597.29
 gdpPerCapitaUsd: 18599
 population: 85878556
 oilGasShareOfExportsPct: 6
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "mixed"
+protectionStatus: "partly protected"
 resourceRentsPctGdp: { value: 0.8, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 68.1, year: 2024, source: "Eurostat", method: eurostat }
 fuelImportsPctOfImports: { value: 6.9, year: 2025, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "War pushes Brent crude and European gas prices up sharply → Turkey, which imports about 68% of its energy, takes an estimated $14bn hit to its 2026 energy import bill (Ember Energy) → at the same time Iraq needs a way to move crude out of the Gulf, so Ankara earns new transit revenue running that oil through the Kirkuk-Ceyhan pipeline to its Mediterranean port of Ceyhan, an estimated $500m a year, a real gain but far smaller than the cost"
+marketImpact: "Ember Energy estimated in June 2026 that the Hormuz crisis would add about $14bn to Turkey's 2026 energy import bill ($7.7bn from oil, $6.4bn from gas), after net energy imports already rose 26% (about $3bn) in March-May 2026 versus a year earlier. That adds to the current account deficit the IMF expects to widen to 2.8% of GDP in 2026, on top of an independent currency and inflation fight Turkey was already running before the war. Turkey's energy minister has estimated the new Iraq pipeline deal will bring in roughly $500m a year in transit fees, a genuine but much smaller offset."
 exportRouteStatus: "Not applicable"
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -46,7 +46,7 @@ keyRisks:
   - "Interest rates remain extremely high (a 36% policy rate) to defend the currency"
   - "External risks from global trade uncertainty and regional conflicts persist"
   - "Any reversal of the current stabilization program could reignite currency instability"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Most countries on this site are purely hurt or purely helped by the Hormuz closure. Turkey is both: an estimated $14bn added to its own 2026 energy import bill (Ember Energy) because it imports most of what it burns, and an estimated $500m a year in new transit fees (Turkey's energy minister) because Iraqi crude now has to detour through the Kirkuk-Ceyhan pipeline to reach the sea. Turkey doesn't need to produce oil to profit from a Gulf war; it just needs to sit on the map between the Gulf and the Mediterranean."
 summary: "Turkey runs one of the region's most diversified economies, anchored by manufacturing, automotive, and textile exports, but has spent recent years battling severe currency instability and inflation. A tightening-led stabilization program has cut annual inflation from 44.4% at the end of 2024 to 29.77% in October 2026, though both inflation and the 36% policy rate remain exceptionally high by global standards. The Iran war added pressure through higher energy prices: in April 2026 the IMF cut its 2026 growth forecast to 3.4% from 4.2% and raised its current account deficit forecast to 2.8% of GDP from 1.3%."
 sources:
   - title: "World Bank Open Data, Turkiye"
@@ -69,7 +69,11 @@ sources:
     url: "https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_id/default/table"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "Ember Energy, \"Hormuz crisis could cost Türkiye $14 billion\" (June 2026)"
+    url: "https://ember-energy.org/latest-insights/hormuz-crisis-could-cost-turkiye-14-billion/"
+  - title: "Discovery Alert, \"Iraq-Turkey Ceyhan Pipeline Deal: Risks and Realities in 2026\""
+    url: "https://discoveryalert.com/iraq-turkey-ceyhan-pipeline-deal-kirkuk-oil-2026/"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
