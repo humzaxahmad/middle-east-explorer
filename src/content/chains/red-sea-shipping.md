@@ -8,7 +8,7 @@ economyHit: "Egypt, which depends on Suez Canal tolls for a large share of its f
 sectorsWinners:
   - "Shipping lines able to charge the higher freight rates that come with Cape of Good Hope diversions"
   - "Ports and logistics hubs along the alternative route, such as South African bunkering and transshipment ports"
-  - "Tankers and container ships, through the same war-risk premium mechanism as the Strait of Hormuz"
+  - "Shipping stocks broadly: car carriers, gas carriers and dry-bulk shippers have joined tankers in a rally to decade-high levels, the same war-risk premium mechanism as the Strait of Hormuz applied across the whole fleet"
 sectorsLosers:
   - "Egypt, which loses canal toll revenue directly"
   - "Retailers and manufacturers relying on just-in-time Asia-Europe shipping, who face longer, less predictable lead times"
@@ -43,7 +43,9 @@ sources:
     url: "https://www.maritimegateway.com/container-shipping-forecast-2026/"
   - title: "Fortune, \"Aramco's plan to supersize Hormuz bypass pipeline could take years\" (October 2026)"
     url: "https://fortune.com/2026/10/23/aramco-east-west-pipeline-10-million-barrels-oil-prices-strait-of-hormuz/"
-lastUpdated: 2026-11-07
+  - title: "CNBC, \"Shipping stocks at a crossroads amid their best rally in decades\" (September 2026)"
+    url: "https://www.cnbc.com/2026/09/03/shipping-hormuz-tankers-earnings-freight-rates-iran-trump-crude-china-stocks.html"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in: the longer written analysis goes here.

@@ -15,7 +15,7 @@
     "to": "CHN",
     "type": "crude-oil",
     "unit": "million barrels a year",
-    "volume": { "value": 289.21, "year": 2024, "source": "The Arabian Stories, citing Omani customs data" },
+    "volume": { "value": 289, "year": 2024, "source": "The Arabian Stories, citing Omani customs data (289.21m barrels, rounded here for readability)" },
     "explainer": "Oman sells almost all its oil to one buyer. That concentration is a risk for Oman, but the flow itself is largely insulated from a Hormuz shock, since Oman's export terminals sit on the Gulf of Oman, outside the strait."
   },
   {
