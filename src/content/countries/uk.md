@@ -6,16 +6,16 @@ gdpUsdBn: 4002.59
 gdpPerCapitaUsd: 57602
 population: 69487000
 oilGasShareOfExportsPct: 7.2
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "partly protected"
 resourceRentsPctGdp: { value: 0.6, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 47.6, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 8.1, year: 2025, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "The war has pushed global gas and oil prices higher for a ninth straight month → UK wholesale gas futures averaged 216p/therm in October, 81% above July, and the Bank of England says direct energy effects added about a percentage point to September's 3.5% CPI reading → Ofgem raised the household energy price cap 4% to £1,723 for October-December, citing the Middle East conflict → the Bank of England raised Bank Rate to 4% on 5 November, its first increase since August 2023"
+marketImpact: "The Bank of England raised Bank Rate to 4% on 5 November 2026, its first hike since August 2023, warning that energy costs alone had added about a percentage point to inflation and that CPI could near 5% by mid-2027. That sits on top of the IMF's own downgrade: UK growth slowing to 1.0% in 2026, with persistent energy disruption as its main downside risk."
 exportRouteStatus: "Not applicable"
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -43,7 +43,7 @@ keyRisks:
   - "Persistent disruption to energy supply is the IMF's main downside risk, with possible second-round effects on inflation"
   - "Weak productivity gains weigh on long-term growth"
   - "Public sector net financial liabilities are projected to rise from 82.8% of GDP in 2025 to a peak of 84.7% in 2028, while ageing, defence and energy-transition spending will require difficult choices"
-interviewAngle: "TODO: fill in"
+interviewAngle: "The Bank of England's November hike is a textbook cost-push dilemma: raising rates doesn't put more gas into the country, it just cools the rest of the economy to offset an imported price shock the Bank can't actually fix. It chose to hike anyway, which says more about how seriously it's taking the inflation pipeline than about any strength in UK demand."
 summary: "The United Kingdom is a services-heavy exporter, and the US is its largest market at 21.8% of total exports in 2025. The IMF projects growth slowing to 1.0% in 2026 as the Middle East war weighs on activity, with weak productivity a long-term constraint."
 sources:
   - title: "World Bank Open Data, United Kingdom"
@@ -64,7 +64,13 @@ sources:
     url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "Bank of England, \"Monetary Policy Summary and Minutes, November 2026\""
+    url: "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026"
+  - title: "Ofgem, \"Energy price cap will rise 4% from October 2026\""
+    url: "https://www.ofgem.gov.uk/press-release/energy-price-cap-will-rise-4-october-2026"
+  - title: "Euronews, \"UK inflation jumps more than expected fuelling rate hike expectations\" (October 2026)"
+    url: "https://www.euronews.com/2026/10/21/uk-inflation-jumps-more-than-expected-fuelling-rate-hike-expectations"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
