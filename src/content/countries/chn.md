@@ -6,16 +6,16 @@ gdpUsdBn: 19498.04
 gdpPerCapitaUsd: 13862
 population: 1406585000
 oilGasShareOfExportsPct: 1.4
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "partly protected"
 resourceRentsPctGdp: { value: 1.7, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 24, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 18.1, year: 2025, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "Hormuz disruption cuts China's seaborne crude flow through the strait from about 4.45 million bpd before the war to roughly 222,000 bpd in April 2026 → Beijing draws on strategic reserves built up before the war, estimated at 900 million to 1.4 billion barrels depending on the source and date → independent 'teapot' refineries, about a quarter of China's processing capacity, lean harder on discounted, sanctioned Iranian and Russian crude → but by September 2026 Q2 crude imports were still down 32% from Q1, and one energy analyst called China's position 'critical' as supply options narrow"
+marketImpact: "China's deflationary backdrop and near-zero wage growth mean the global energy price shock barely shows up in headline inflation the way it does in the US or EU. The damage shows up instead in refining margins and factory costs: independent refiners posted losses of about RMB143 ($20.85) a tonne in March 2026, even as the manufacturing PMI's input-price index climbed to 52.3."
 exportRouteStatus: "Not applicable"
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -46,7 +46,7 @@ keyRisks:
   - "Renewed escalation of trade tensions, with exports to the US down 20% in 2025"
   - "Persistent deflationary pressures"
   - "Unsustainable local government financing vehicle debt, which the IMF says should be restructured"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Don't assume China is as exposed as its 24% energy import dependence suggests. Beijing had already built the world's largest strategic oil reserve and leaned on independent 'teapot' refineries buying discounted, sanctioned Iranian and Russian crude that other buyers wouldn't touch, which cushioned the first few months of the shock better than its import-dependence number implies. The cushion isn't unlimited: China's own position was being called 'critical' by energy analysts as early as September 2026, as alternative supply narrowed and the war ground on."
 summary: "China's export-driven economy ran a record $1.189 trillion goods trade surplus in 2025, even as exports to the US fell 20%. The IMF says its overarching priority should be a shift to consumption-led growth, with persistent deflation and the property sector among the main concerns. The Iran war and the closure of the Strait of Hormuz threaten its energy supply, since China, India, Japan and South Korea together take about 75-80% of the oil passing through the strait. In October 2026 the IMF projected 4.5% growth for 2026."
 sources:
   - title: "World Bank Open Data, China"
@@ -75,7 +75,17 @@ sources:
     url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "CNBC, \"How the Iran war has stoked competition between India and China for Russian oil\" (April 2026)"
+    url: "https://www.cnbc.com/2026/04/23/india-china-russian-oil-supply-strait-hormuz-disruption.html"
+  - title: "Al Jazeera, \"How China's 'teapot' refineries are cushioning it from Iran war oil crisis\" (April 2026)"
+    url: "https://www.aljazeera.com/news/2026/4/3/how-chinas-teapot-refineries-are-cushioning-it-from-iran-war-oil-crisis"
+  - title: "China Briefing, \"Hormuz Disruptions: China's Energy Security and Supply Chains\""
+    url: "https://www.china-briefing.com/news/hormuz-disruptions-china-energy-security-supply-chain/"
+  - title: "Bruegel, \"What the war in Iran means for China\""
+    url: "https://www.bruegel.org/analysis/what-war-iran-means-china"
+  - title: "Al Jazeera, \"China faces oil challenge as prices soar and supply options narrow\" (September 2026)"
+    url: "https://www.aljazeera.com/news/2026/9/17/china-faces-oil-challenge-as-prices-soar-and-supply-options-narrow"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
