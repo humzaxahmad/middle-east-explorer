@@ -6,16 +6,16 @@ gdpUsdBn: 10.98
 gdpPerCapitaUsd: 263
 population: 41773878
 oilGasShareOfExportsPct: 0
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "exposed"
 resourceRentsPctGdp: "Not available"
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 71.7, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 12.8, year: 2024, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not available"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "Houthi forces based in Yemen seize the country's entire Red Sea coastline and the Bab el-Mandeb islands by September 2026 → that territorial control feeds a Houthi war economy estimated at $2.5bn a year in taxes, customs and levies (Mocha Center for Strategic Studies, cited by Gulf News, October 2026) → but the same conflict has kept Yemen's own oil exports blocked for roughly two and a half years and pushed government revenue down to just 5.6% of GDP → fuel imports hit a low in March 2026 and fuel prices in government-held areas rose as much as 30% by May, deepening a crisis in which close to three-quarters of the population lives in poverty (World Bank, May 2026)"
+marketImpact: "Yemen sits on both sides of this shock. Control of the Red Sea coast and the islands commanding Bab el-Mandeb lets Houthi authorities collect an estimated $2.5bn a year, more than a fifth of national GDP, largely outside any recognized government budget (Mocha Center for Strategic Studies, October 2026). At the same time the formal economy keeps shrinking: the World Bank projected a further 0.5% GDP contraction for 2026 after a 1.5% fall in 2025, with oil exports still blocked and humanitarian funding covering only 28% of needs, down from 56.5% in 2024."
 exportRouteStatus: "Not applicable"
 relatedChainSlug: red-sea-shipping
 notes:
@@ -47,7 +47,7 @@ keyRisks:
   - "Oil export revenue, once the government's main income source, has been cut off for years by Houthi attacks on export infrastructure"
   - "Real GDP per capita has fallen an estimated 58% since 2015"
   - "Two competing currencies and governments make any unified economic assessment inherently unreliable"
-interviewAngle: "TODO: fill in"
+interviewAngle: "This site's own protectionStatus framework, protected, partly protected, or exposed, assumes a country is a recipient of a shock. Yemen breaks that assumption: Houthi-controlled territory is the physical chokepoint the Red Sea crisis runs through, and it's reportedly profiting from it to the tune of roughly $2.5bn a year, even as the national economy it sits inside keeps contracting and oil export revenue stays frozen. The honest answer isn't that Yemen is simply exposed the way Jordan or Egypt are; it's that two different Yemeni economies, one controlling a chokepoint, one just trying to survive, are exposed to the same shock in opposite directions at once."
 summary: "Yemen's economy has been devastated by over a decade of civil war, split between a Houthi-controlled north and an internationally recognized government in the south, each with its own currency system. Fighting has also escalated: in October 2026 the Houthis and the Saudi-led coalition exchanged heavy strikes, and in May the World Bank projected a further 0.5% contraction in 2026, after a 1.5% fall in 2025, saying the regional conflict had clouded the outlook. Economic data is so degraded that the World Bank's own GDP series hasn't been updated since 2018, a telling sign of how far outside normal economic tracking this country now sits."
 sources:
   - title: "World Bank Open Data, Yemen"
@@ -66,7 +66,11 @@ sources:
     url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "Gulf News, \"Who funds Yemen's Houthis? Inside the $2.5 billion war economy behind attacks on Saudi Arabia\" (October 2026)"
+    url: "https://gulfnews.com/world/gulf/yemen/who-funds-yemen-s-houthis-inside-the-2-5-billion-war-economy-behind-attacks-on-saudi-arabia-1.500728110"
+  - title: "Al Jazeera, \"Can the Houthis close the Red Sea after seizing the Yemen coast?\" (September 2026)"
+    url: "https://www.aljazeera.com/news/2026/9/11/can-the-houthis-close-the-red-sea-after-seizing-the-yemen-coast"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
