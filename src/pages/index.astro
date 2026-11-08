@@ -24,6 +24,9 @@ import Globe from '../components/Globe.astro';
       <button id="view-exporter" type="button" class="view-toggle-btn" aria-pressed="true">Exporters</button>
       <button id="view-importer" type="button" class="view-toggle-btn" aria-pressed="false">Importers</button>
     </div>
+    <!-- Off by default: 18 arcs at once, on top of the coloured countries and
+         pins, reads as clutter rather than a feature. -->
+    <button id="flows-toggle" type="button" class="flows-toggle" aria-pressed="false">Show energy flows</button>
     <!-- Filled in by globe.ts, so it always matches the active exposure view. -->
     <ul class="legend" id="legend"></ul>
   </body>

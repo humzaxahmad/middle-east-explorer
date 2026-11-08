@@ -104,6 +104,10 @@ let selectedCodes: string[] = []; // Holds zero or one code, like ['ARE']
 let selectedChokepoint: string | null = null; // A chokepoint id, such as 'hormuz'
 let selectedFlow: number | null = null; // An index into panelData.flows
 
+// Off by default: 18 arcs at once, on top of the coloured countries and
+// chokepoint pins, reads as clutter rather than a feature until toggled on.
+let flowsVisible = false;
+
 // "Play the shock" state. Empty/null whenever playback isn't running.
 let shockExposed: string[] = [];
 let shockProtected: string[] = [];
@@ -215,6 +219,7 @@ const panelStop = document.getElementById('panel-stop')!;
 const legend = document.getElementById('legend')!;
 const viewExporterBtn = document.getElementById('view-exporter')!;
 const viewImporterBtn = document.getElementById('view-importer')!;
+const flowsToggleBtn = document.getElementById('flows-toggle')!;
 
 // Makes one element with some text, highlighted yellow if it's a placeholder.
 // textContent (not innerHTML) keeps any text from being treated as code.
@@ -465,7 +470,11 @@ async function startGlobe() {
       })
       .arcColor((flow: object) => {
         const index = panelData.flows.indexOf(flow as (typeof panelData.flows)[number]);
+        // A shocked flow shows regardless of the toggle: "play the shock"
+        // revealing exactly the relevant arcs is the answer to the clutter
+        // problem, not a reason to keep them hidden.
         if (shockFlowIndexes.has(index)) return SHOCK_COLOURS.exposed;
+        if (!flowsVisible) return 'rgba(0,0,0,0)';
         if (index === selectedFlow) return COLOURS.selected;
         return FLOW_COLOURS[(flow as (typeof panelData.flows)[number]).type] ?? COLOURS.pending;
       })
@@ -515,9 +524,25 @@ async function startGlobe() {
     legend.replaceChildren(
       ...rows.map(([colour, label]) => swatchRow(colour, label)),
       ...pinRows.map(([colour, label]) => swatchRow(colour, label)),
-      ...flowRows.map(([colour, label]) => swatchRow(colour, label)),
+      // Only listed while flows are actually on screen to explain.
+      ...(flowsVisible ? flowRows.map(([colour, label]) => swatchRow(colour, label)) : []),
       make('li', 'Click or tap a coloured country to begin', 'legend-hint'),
     );
+  }
+
+  // Flows are off by default (see flowsVisible above); this just flips it.
+  function setFlowsVisible(visible: boolean) {
+    flowsVisible = visible;
+    flowsToggleBtn.setAttribute('aria-pressed', String(visible));
+    flowsToggleBtn.textContent = visible ? 'Hide energy flows' : 'Show energy flows';
+    // A flow selected while visible shouldn't linger, invisibly selected,
+    // once flows are hidden again.
+    if (!visible && selectedFlow !== null) {
+      selectedFlow = null;
+      closePanel();
+    }
+    renderLegend();
+    refreshColours();
   }
 
   // Switches which exposure type the map is shaded by. Exporters and
@@ -638,10 +663,14 @@ async function startGlobe() {
       const f = flow as (typeof panelData.flows)[number];
       return `${f.fromName} → ${f.toName} (${FLOW_TYPE_LABELS[f.type] ?? f.type})`;
     })
-    .onArcClick((flow) => selectFlow(panelData.flows.indexOf(flow as (typeof panelData.flows)[number])))
+    .onArcClick((flow) => {
+      if (!flowsVisible) return; // Invisible arcs shouldn't be clickable either.
+      selectFlow(panelData.flows.indexOf(flow as (typeof panelData.flows)[number]));
+    })
     // Only show the hand cursor over things that can be clicked.
     .showPointerCursor((type, item) => {
-      if (type === 'point' || type === 'arc') return true;
+      if (type === 'point') return true;
+      if (type === 'arc') return flowsVisible;
       return type === 'polygon' && Boolean(entryFor(item as MapCountry));
     });
 
@@ -677,6 +706,8 @@ async function startGlobe() {
   viewExporterBtn.addEventListener('click', () => setView('exporter'));
   viewImporterBtn.addEventListener('click', () => setView('importer'));
   setView(activeView);
+
+  flowsToggleBtn.addEventListener('click', () => setFlowsVisible(!flowsVisible));
 
   panelPlay.addEventListener('click', playShock);
   panelStop.addEventListener('click', stopShock);
