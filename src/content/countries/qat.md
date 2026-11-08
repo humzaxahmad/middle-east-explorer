@@ -14,8 +14,8 @@ fiscalBreakevenOilPriceUsd: { value: 47.1, year: 2024, source: "IMF REO May 2025
 energyImportDependencePct: { value: -395.5, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 6.2, year: 2024, source: "World Bank WDI" }
 nonOilGdpSharePct: { value: 64, year: 2024, source: "NPC via The Peninsula" }
-hittingNow: "Hormuz closed → Qatar's LNG, which has no bypass route of any kind, can only reach tankers willing to sail at today's war-risk premiums → cargo volumes collapsed for months before cautiously recovering under naval escort"
-marketImpact: "The IMF's October 2026 outlook projects a 15.6% contraction for Qatar in 2026, the second-worst in the GCC after Kuwait, before an 18.8% rebound in 2027 if the strait reopens as assumed."
+hittingNow: "Hormuz closed → Qatar's LNG, which has no bypass route of any kind, can only reach tankers willing to sail at today's war-risk premiums → an Iranian strike on the Ras Laffan complex in March 2026 then destroyed 17% of Qatar's LNG capacity outright (two of 14 trains, one of two gas-to-liquids plants), forcing force majeure on long-term contracts with Italy, Belgium, South Korea and China for up to five years → cargo volumes collapsed for months before cautiously recovering under naval escort"
+marketImpact: "The IMF's October 2026 outlook projects a 15.6% contraction for Qatar in 2026, the second-worst in the GCC after Kuwait, before an 18.8% rebound in 2027 if the strait reopens as assumed. The Ras Laffan strike alone is estimated to cost about $20 billion a year in lost revenue until repairs finish, which QatarEnergy's CEO said could take three to five years."
 exportRouteStatus: "Qatar's LNG has no bypass route. Its energy minister has said building a pipeline around the strait would make no economic sense, since gas piped overland would still need a new liquefaction plant outside Qatar before it could be loaded onto tankers. Nearly all Qatari LNG transits Hormuz; only deliveries to Kuwait avoid it."
 relatedChainSlug: hormuz-closure
 notes:
@@ -48,6 +48,7 @@ keyRisks:
   - "Its LNG shipping depends on the Strait of Hormuz, which is closed; the IMF expects it to reopen gradually from March 2027"
   - "A disorderly global energy transition could erode long-term gas demand"
   - "Export volumes blocked by the Hormuz closure, rather than softening prices, are now the main threat to hydrocarbon revenue and the current account"
+  - "A March 2026 Iranian strike on the Ras Laffan LNG complex destroyed 17% of capacity outright, a direct physical loss on top of the shipping disruption, with repairs expected to take three to five years"
 interviewAngle: "Qatar is the clearest case for why \"has oil and gas\" doesn't mean \"is protected\": it's one of the two Gulf states, with Kuwait, that have no way around Hormuz at all, and it shows up directly in the IMF's growth numbers."
 summary: "Qatar has one of the highest GDP per capita figures in the world, built almost entirely on natural gas exports, supplying nearly a fifth of global LNG. The closure of the Strait of Hormuz has hit it hard: in October 2026 the IMF projected a 15.6% contraction in 2026, followed by 18.8% growth in 2027 if the strait reopens."
 sources:
@@ -81,7 +82,9 @@ sources:
     url: "https://www.csis.org/analysis/battle-hormuz-will-reshape-global-lng-market"
   - title: "Discovery Alert, \"Qatar LNG Shipments Through the Strait of Hormuz in 2026\""
     url: "https://discoveryalert.com/qatar-lng-strait-hormuz-supply-shock-2026-market-crisis/"
-lastUpdated: 2026-11-07
+  - title: "CNBC, \"Iran attack wipes out 17% of Qatar's LNG capacity for up to five years, QatarEnergy CEO says\" (March 2026)"
+    url: "https://www.cnbc.com/2026/03/19/iran-attack-qatar-lng-capacity.html"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
