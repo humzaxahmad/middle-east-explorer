@@ -6,16 +6,16 @@ gdpUsdBn: 21.4
 gdpPerCapitaUsd: 830
 population: 25800000
 oilGasShareOfExportsPct: 8.2
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 6.4, year: 2020, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: { value: 42.3, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: "Not available"
 nonOilGdpSharePct: "Not available"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "Years of war left Syria's oil output a fraction of what it was, down from roughly 380,000 barrels a day before 2011 to just 50,000-80,000 by 2021 (Wood Mackenzie) → the transitional government signed MOUs with Egypt in January 2026 for gas and petroleum product supply, at undisclosed volumes, largely just to help keep power plants running → crude exports resumed in September 2025, but at a small scale that doesn't come close to offsetting the need to import fuel and gas"
+marketImpact: "Energy barely registers next to the scale of Syria's reconstruction bill: the World Bank's $216 billion rebuilding estimate dwarfs anything oil or gas exports could bring in soon. The 2026 regional war has reached Syria mainly through slower investment and a cautious sanctions-relief process, not through its own oil and gas supply chain, which has stayed largely out of the fighting."
 exportRouteStatus: "Not applicable"
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -46,7 +46,7 @@ keyRisks:
   - "Extreme poverty affects roughly 1 in 4 Syrians"
   - "Sanctions relief remains partial and politically reversible"
   - "Basic economic data is still unreliable during the transition"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Syria shows why \"has oil fields\" and \"energy exposure\" aren't the same thing. It resumed crude exports in September 2025, but it's simultaneously importing gas and fuel from Egypt just to keep electricity running, because war damage, not price or chokepoints, is the binding constraint on its energy sector. The real story here is reconstruction finance, not energy markets, and it's worth saying that directly rather than forcing a commodity narrative onto a case that doesn't have one."
 summary: "Syria's economy is attempting a fragile recovery after 14 years of civil war and the fall of the Assad government in December 2024, with GDP down more than 50% from 2010 levels. Reconstruction needs are estimated at $216 billion, about ten times current annual GDP, and basic economic data remains highly uncertain during the transition. Syria has stayed almost entirely out of the 2026 regional war, but an April 2026 analysis said the fallout would slow investment, even as the closure of the Strait of Hormuz could make Syria a route around it."
 sources:
   - title: "World Bank, \"New World Bank Report Highlights Syria's Economic Challenges and Recovery Prospects for 2025\""
@@ -61,7 +61,13 @@ sources:
     url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
   - title: "World Bank WDI, \"Energy imports, net (% of energy use)\""
     url: "https://data.worldbank.org/indicator/EG.IMP.CONS.ZS"
-lastUpdated: 2026-11-06
+  - title: "Wood Mackenzie, \"Syrian oil and gas production set to recover in 2026 as government regains control of key assets\""
+    url: "https://www.woodmac.com/press-releases/syrian-oil-and-gas-production-set-to-recover-in-2026-as-government-regains-control-of-key-assets/"
+  - title: "Al Jazeera, \"'It's expensive': Syria's electricity has improved, but challenges remain\" (July 2026)"
+    url: "https://www.aljazeera.com/features/2026/7/13/its-expensive-syrias-electricity-has-improved-but-challenges-remain"
+  - title: "Baird Maritime, \"Egypt signs MOUs with Syria to supply gas and petroleum products\" (January 2026)"
+    url: "https://www.bairdmaritime.com/shipping/tankers/gas/egypt-signs-mous-with-syria-to-supply-gas-and-petroleum-products"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in

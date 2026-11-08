@@ -6,16 +6,16 @@ gdpUsdBn: 17.17
 gdpPerCapitaUsd: 3171
 population: 5413596
 oilGasShareOfExportsPct: 0
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "importer"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 0, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "Not applicable"
 fiscalBreakevenOilPriceUsd: "Not applicable"
 energyImportDependencePct: "Not available"
 fuelImportsPctOfImports: { value: 21.2, year: 2023, source: "World Bank WDI" }
 nonOilGdpSharePct: "Not applicable"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
+hittingNow: "Gaza has essentially no energy production of its own → Israel halted direct electricity supply and fuel for Gaza's only power plant on 7 October 2023, and by September 2025 Gaza's electricity distributor reported about 70% of its relay network destroyed → the West Bank, by contrast, still draws most of its grid power from Israel's electric utility (plus a small share from Jordan), so the two territories' energy situations have diverged sharply even though they're one Palestinian economy"
+marketImpact: "This isn't an energy-market story in the usual sense: there's no price or shipping-route mechanism here, just a population largely cut off from a grid. The World Bank's broader reconstruction estimate for Gaza, cited above, already covers rebuilding its destroyed power and water networks, and the 2026 regional war adds a secondary squeeze mainly by raising the cost of whatever fuel and goods still move."
 exportRouteStatus: "Not applicable"
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -44,7 +44,7 @@ keyRisks:
   - "Unemployment stood at 69% in Gaza and 29% in the West Bank"
   - "Trade is heavily dependent on and constrained by Israel (which absorbs the large majority of Palestinian exports and supplies the bulk of imports)"
   - "Political fragmentation limits unified economic policy"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Palestine breaks the standard energy-exposure framework rather than fitting into it: there's no oil, no gas, and no independent energy policy to analyze. Its exposure runs through whether electricity and fuel are allowed in, which is a logistics and policy variable, not a commodity-price one. In an interview, naming that mismatch is sharper than forcing a chokepoint or price-shock story onto a case that doesn't have one."
 summary: "Palestine's economy is sharply divided and remains far below its level before October 2023. A ceasefire in October 2025 halted two years of conflict, but Gaza's roughly 30% growth in 2025 only reflected the collapse the year before, with unemployment at 78% and recovery needs of about $71.5 billion. The West Bank grew about 3% in 2025, while the Palestinian Authority faces a severe cash crisis because the tax revenue Israel collects for it has been suspended since May 2025. UNCTAD says overall GDP shrank a further 6.6% in the first quarter of 2026, and the World Bank says the regional war adds pressure through higher energy and import costs. Reliable unified economic data is difficult to produce given this fragmentation."
 sources:
   - title: "World Bank Open Data, West Bank and Gaza"
@@ -61,7 +61,13 @@ sources:
     url: "https://data.worldbank.org/indicator/NY.GDP.TOTL.RT.ZS"
   - title: "World Bank WDI, \"Fuel imports (% of merchandise imports)\""
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
-lastUpdated: 2026-11-06
+  - title: "Gisha, \"Israel's war on electricity\""
+    url: "https://gisha.org/en/israels-war-on-electricity/"
+  - title: "Al Jazeera, \"Living in the dark: Gaza's struggle for electricity\" (March 2026)"
+    url: "https://www.aljazeera.com/features/2026/3/29/living-in-the-dark-gazas-struggle-for-electricity"
+  - title: "Wikipedia, \"Energy in Palestine\""
+    url: "https://en.wikipedia.org/wiki/Energy_in_Palestine"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
