@@ -183,6 +183,8 @@ const panelData: {
     };
   }[];
   flows: {
+    fromCode: string;
+    toCode: string;
     fromName: string;
     toName: string;
     viaChokepoint?: string;
@@ -195,6 +197,22 @@ const panelData: {
     explainer: string;
   }[];
 } = JSON.parse(document.getElementById('panel-data')!.textContent!);
+
+// A flow only shows once something it connects to is selected: a country on
+// either end of it, or the chokepoint it physically transits. There's no
+// manual toggle -- selecting a country reveals exactly its own flows, and
+// the arc's existing dash animation (start point to end point) already
+// reads as "outward" when the selected country is the exporter and
+// "inward" when it's the importer, since that's just which end it's on.
+function isFlowVisible(flow: (typeof panelData.flows)[number]) {
+  if (selectedCodes.length > 0) {
+    return flow.fromCode === selectedCodes[0] || flow.toCode === selectedCodes[0];
+  }
+  if (selectedChokepoint) {
+    return flow.viaChokepoint === selectedChokepoint;
+  }
+  return false;
+}
 
 const panel = document.getElementById('panel')!;
 const panelType = document.getElementById('panel-type')!;
@@ -302,8 +320,8 @@ function showCountryPanel(entry: Entry) {
     hittingNow: file?.hittingNow,
     chain: file?.chain,
     hint: isCore
-      ? 'Click a chokepoint or buyer to see the link.'
-      : 'Click a Middle East country or chokepoint to see the link.',
+      ? "Its energy flows are now shown on the globe. Click a chokepoint or buyer to see the link."
+      : "Its energy flows are now shown on the globe. Click a Middle East country or chokepoint to see the link.",
     // Only non-external countries with a Markdown file have a full page to link to.
     link:
       isCore && file
@@ -343,7 +361,7 @@ function showChokepointPanel(point: (typeof panelData.chokepoints)[number]) {
     title: point.name,
     summary: point.statusText,
     chain: point.chain,
-    hint: 'Click a country to see who it affects.',
+    hint: 'The flows that cross it are now shown on the globe. Click a country to see who it affects.',
   });
   panelPlay.hidden = !point.play;
 }
@@ -464,10 +482,14 @@ async function startGlobe() {
         return base + 0.3 * (0.5 + 0.5 * Math.sin(Date.now() / 250));
       })
       .arcColor((flow: object) => {
-        const index = panelData.flows.indexOf(flow as (typeof panelData.flows)[number]);
+        const f = flow as (typeof panelData.flows)[number];
+        const index = panelData.flows.indexOf(f);
+        // A shocked flow shows regardless of what's selected: "play the
+        // shock" revealing exactly the relevant arcs in red is the point.
         if (shockFlowIndexes.has(index)) return SHOCK_COLOURS.exposed;
+        if (!isFlowVisible(f)) return 'rgba(0,0,0,0)';
         if (index === selectedFlow) return COLOURS.selected;
-        return FLOW_COLOURS[(flow as (typeof panelData.flows)[number]).type] ?? COLOURS.pending;
+        return FLOW_COLOURS[f.type] ?? COLOURS.pending;
       })
       .arcStroke((flow: object) => {
         const index = panelData.flows.indexOf(flow as (typeof panelData.flows)[number]);
@@ -516,7 +538,7 @@ async function startGlobe() {
       ...rows.map(([colour, label]) => swatchRow(colour, label)),
       ...pinRows.map(([colour, label]) => swatchRow(colour, label)),
       ...flowRows.map(([colour, label]) => swatchRow(colour, label)),
-      make('li', 'Click or tap a coloured country to begin', 'legend-hint'),
+      make('li', 'Click a country or chokepoint to begin, and to see its flows', 'legend-hint'),
     );
   }
 
@@ -534,7 +556,9 @@ async function startGlobe() {
 
   // Clicking a selected country clears the selection. Clicking any other
   // country replaces it, and clears any selected chokepoint or flow: the
-  // panel only ever shows one thing at a time.
+  // panel only ever shows one thing at a time. This is also what reveals
+  // the country's own flows (see isFlowVisible) -- there's no separate
+  // toggle for that.
   function selectCountry(code: string) {
     selectedChokepoint = null;
     selectedFlow = null;
@@ -542,7 +566,8 @@ async function startGlobe() {
     showSelection();
   }
 
-  // Same idea, for chokepoint pins instead of countries.
+  // Same idea, for chokepoint pins instead of countries: also reveals the
+  // flows that physically transit this chokepoint.
   function selectChokepoint(id: string) {
     selectedCodes = [];
     selectedFlow = null;
@@ -550,10 +575,11 @@ async function startGlobe() {
     showSelection();
   }
 
-  // Same idea, for a flow arc instead of a country or chokepoint.
+  // Drills into one already-visible flow's own panel, without losing the
+  // country or chokepoint selection that made it visible in the first
+  // place -- otherwise the arc you just clicked would vanish underneath
+  // the panel you're about to show for it.
   function selectFlow(index: number) {
-    selectedCodes = [];
-    selectedChokepoint = null;
     selectedFlow = selectedFlow === index ? null : index;
     showSelection();
   }
@@ -565,15 +591,17 @@ async function startGlobe() {
     showSelection();
   }
 
-  // Updates the panel and the colours to match the current selection.
+  // Updates the panel and the colours to match the current selection. A
+  // selected flow is a drill-down on top of a country/chokepoint selection
+  // (see selectFlow above), so it takes priority over either of them here.
   function showSelection() {
     const [first] = selectedCodes.map((code) => findCountry(code)!);
     const pin = selectedChokepoint ? panelData.chokepoints.find((p) => p.id === selectedChokepoint) : undefined;
     const flow = selectedFlow !== null ? panelData.flows[selectedFlow] : undefined;
-    if (pin) {
-      showChokepointPanel(pin);
-    } else if (flow) {
+    if (flow) {
       showFlowPanel(flow);
+    } else if (pin) {
+      showChokepointPanel(pin);
     } else if (first) {
       showCountryPanel(first);
     } else {
@@ -638,10 +666,15 @@ async function startGlobe() {
       const f = flow as (typeof panelData.flows)[number];
       return `${f.fromName} → ${f.toName} (${FLOW_TYPE_LABELS[f.type] ?? f.type})`;
     })
-    .onArcClick((flow) => selectFlow(panelData.flows.indexOf(flow as (typeof panelData.flows)[number])))
+    .onArcClick((flow) => {
+      const f = flow as (typeof panelData.flows)[number];
+      if (!isFlowVisible(f)) return; // Invisible arcs shouldn't be clickable either.
+      selectFlow(panelData.flows.indexOf(f));
+    })
     // Only show the hand cursor over things that can be clicked.
     .showPointerCursor((type, item) => {
-      if (type === 'point' || type === 'arc') return true;
+      if (type === 'point') return true;
+      if (type === 'arc') return isFlowVisible(item as (typeof panelData.flows)[number]);
       return type === 'polygon' && Boolean(entryFor(item as MapCountry));
     });
 

@@ -98,6 +98,10 @@ const panelData = {
       const to = findCountry(data.to);
       if (!from || !to) return undefined;
       return {
+        // Raw codes, so the globe can match a flow against whichever country
+        // is currently selected, regardless of which side it's on.
+        fromCode: from.code,
+        toCode: to.code,
         fromName: from.name,
         toName: to.name,
         fromLat: from.lat,
