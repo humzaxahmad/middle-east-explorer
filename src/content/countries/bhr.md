@@ -6,17 +6,17 @@ gdpUsdBn: 48.97
 gdpPerCapitaUsd: 30597
 population: 1600366
 oilGasShareOfExportsPct: 38.2
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "exporter"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 16.6, year: 2021, source: "World Bank WDI" }
-oilShareOfGovRevenuePct: "TODO: fill in"
+oilShareOfGovRevenuePct: { value: 50, year: 2025, source: "AGBI, \"Tough decisions ahead for Bahrain as debt looms large\" (October 2025), citing IMF projection" }
 fiscalBreakevenOilPriceUsd: { value: 160.8, year: 2024, source: "IMF REO May 2025" }
 energyImportDependencePct: { value: -48.5, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 2.6, year: 2024, source: "World Bank WDI" }
 nonOilGdpSharePct: { value: 85.8, year: 2025, source: "Bahrain Economic Report via Arab News" }
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
-exportRouteStatus: "TODO: fill in"
+hittingNow: "Hormuz closed → Bahrain's own crude, the Abu Safah field it shares with Saudi Arabia, is still marketed by Saudi Aramco through the port of Ras Tanura inside the Gulf, so it has no route around the strait → the Sitra refinery's roughly 100,000 b/d of refined-product exports face the same war-risk shipping costs as everyone else, with no bypass pipeline of its own → the revenue hit lands on a government that already carried the Gulf's highest debt load and thin reserves"
+marketImpact: "The IMF's October 2026 outlook projects an 11.3% contraction for Bahrain in 2026, the third-deepest in the GCC after Kuwait (-16.7%) and Qatar (-15.6%), followed by 13.9% growth in 2027 if the strait reopens as assumed. Because Bahrain entered the war already carrying the Gulf's highest public debt and some of its thinnest reserves, it has little fiscal cushion to absorb lost hydrocarbon revenue."
+exportRouteStatus: "Bahrain has no bypass route around the Strait of Hormuz. Its own oil comes mostly from the Abu Safah field, an offshore reservoir shared with Saudi Arabia since the 1960s; Saudi Aramco markets that output through the port of Ras Tanura inside the Gulf and splits the revenue evenly with Bahrain, so none of it leaves via a route outside the strait. Bahrain's Sitra refinery, run by Bapco, is itself fed partly by a pipeline carrying Saudi crude into Bahrain, not a route out, and the refinery's product exports (around 100,000 b/d before the war, per a Rice University Baker Institute estimate) ship out through the same Gulf waters as every other producer with no bypass."
 relatedChainSlug: hormuz-closure
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
@@ -46,7 +46,7 @@ keyRisks:
   - "Foreign reserves cover just over two months of prospective non-hydrocarbon imports (IMF), leaving the currency peg vulnerable to external shocks"
   - "Heavy reliance on financial support from Saudi Arabia and Gulf neighbors"
   - "The IMF expected hydrocarbons to provide about half of 2025 government revenue (via AGBI), even though Bahrain is furthest along in diversification among Gulf states"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Don't assume diversification equals protection: Bahrain is the Gulf's most diversified economy by non-oil GDP share, yet it still posted the third-deepest 2026 contraction in the bloc. The difference from the UAE or Saudi Arabia is that Bahrain's diversification was financed by borrowing rather than saved oil wealth, so when roughly half its government revenue took a hit from the Hormuz closure, it had Gulf-low reserves and Gulf-high debt to fall back on instead of a sovereign wealth cushion."
 summary: "Bahrain is the Gulf's most diversified economy, with aluminum and financial services now rivaling oil as export earners, but that diversification was funded by debt rather than savings. Public debt of about 142% of GDP in 2025 and thin foreign reserves make it the most fiscally exposed economy in the Gulf, and with the Iran war closing the Strait of Hormuz, the IMF in October 2026 projected an 11.3% contraction in 2026, followed by 13.9% growth in 2027."
 sources:
   - title: "IMF, \"IMF Executive Board Concludes 2025 Article IV Consultation with The Kingdom of Bahrain\" (press release)"
@@ -77,7 +77,11 @@ sources:
     url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
   - title: "Arab News, \"Bahrain's economy grows 3.5% in 2025 as non-oil sectors drive expansion\" (Bahrain Economic Report 2025, iGA data)"
     url: "https://www.arabnews.com/node/2639863/amp"
-lastUpdated: 2026-11-06
+  - title: "Jim Krane and Justin Alexander, \"Losing Hormuz: The Costs of War for Gulf Oil Exporters\" (Rice University Baker Institute for Public Policy working paper, April 2026)"
+    url: "https://www.bakerinstitute.org/sites/default/files/2026-04/20260408-Krane%20Alexander-Losing%20Hormuz-Working%20Paper.pdf"
+  - title: "Wikipedia, \"Abu Safah field\""
+    url: "https://en.wikipedia.org/wiki/Abu_Safah_field"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
