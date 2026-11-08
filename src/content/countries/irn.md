@@ -6,22 +6,24 @@ gdpUsdBn: 362.68
 gdpPerCapitaUsd: 3924
 population: 92417681
 oilGasShareOfExportsPct: 68
-exposureType: "TODO: fill in"
-protectionStatus: "TODO: fill in"
+exposureType: "exporter"
+protectionStatus: "exposed"
 resourceRentsPctGdp: { value: 30.4, year: 2021, source: "World Bank WDI" }
 oilShareOfGovRevenuePct: "TODO: fill in"
 fiscalBreakevenOilPriceUsd: { value: 137.7, year: 2024, source: "IMF REO May 2025" }
 energyImportDependencePct: { value: -27.8, year: 2024, source: "World Bank WDI", method: worldbank }
 fuelImportsPctOfImports: { value: 1.7, year: 2023, source: "World Bank WDI" }
-nonOilGdpSharePct: "TODO: fill in"
-hittingNow: "TODO: fill in"
-marketImpact: "TODO: fill in"
-exportRouteStatus: "TODO: fill in"
+nonOilGdpSharePct: { value: 76, year: 2025, source: "Statistical Center of Iran, via Tehran Times (Iranian year 1403, ended March 2025)" }
+hittingNow: "War reaches Kharg Island, the terminal handling about 90% of Iran's oil exports → a US naval blockade and tanker attacks make shipping erratic through 2026 → but the deeper constraint predates the war: sanctions already route nearly all of Iran's oil (about 90%) to Chinese refiners through an uninsured shadow fleet, so the war adds a second layer of risk on top of one that was already there"
+marketImpact: "The IMF's October 2026 outlook put Iran's 2026 contraction at 7.6%, a steeper downgrade than the 5.4% it forecast in July, and worse than Saudi Arabia (-3.3%) or the UAE (-3.9%) despite neither being a direct party to the war. Iran's own Statistical Center reported GDP down 10.1% year-on-year in spring 2026 (the quarter from late March to June), the sharpest quarterly fall in 15 years, with crude oil and gas activity down 26.4% and even non-oil GDP down 4.6%, showing the damage has spread beyond the energy sector."
+exportRouteStatus: "Kharg Island, inside the Gulf, handles about 90% of Iran's crude exports and was struck in March 2026 but kept functioning. Iran's one potential route around the Strait of Hormuz, the Goreh-Jask pipeline and terminal on the Gulf of Oman coast (built for up to 1 million barrels a day), has moved only token volumes; the IEA assessed it as effectively non-operational for most of the war and not a viable export option. Iran's real workaround predates the war: a sanctions-evasion shadow fleet, outside normal insurance and tracking, moving crude via ship-to-ship transfers almost entirely to Chinese refiners, who take about 90% of Iran's exports. Both the Hormuz war-risk problem and the sanctions problem constrain the same oil, with no clean route around either."
 relatedChainSlug: hormuz-closure
 notes:
   - "Exposure indicators: each shows its year and source. Resource rents are the latest World Bank year, which is 2021 for most countries."
   - "GDP, GDP per person and population: World Bank, 2025."
   - "Oil and gas share of exports: World Bank fuel exports as a share of goods exports, 2023, the latest year the World Bank reports. This includes coal and leaves out services."
+  - "Oil share of government revenue: left as TODO. Iranian budget documents and press reports give wildly different figures (from roughly 4% to over 60%) depending on whether they mean the general budget, the government's post-NIOC and post-NDF cut of oil export proceeds, or total public-sector revenue. No single clean, comparable figure could be verified."
+  - "Non-oil GDP share: Statistical Center of Iran data for the Iranian calendar year 1403 (ended March 2025), as reported by Tehran Times. A separate figure for the quarter beginning spring 2026 (reported elsewhere) puts the oil sector's GDP share lower still, around 21%, suggesting the 76% non-oil figure may understate the most recent trend."
 topExports:
   - "Crude oil"
   - "Petrochemicals"
@@ -44,7 +46,7 @@ keyRisks:
   - "Oil exports are overwhelmingly dependent on a single buyer (China takes about 91% of Iran's oil exports)"
   - "The currency lost roughly 45% of its value in 2025 amid a widening official/market exchange-rate gap"
   - "The National Development Fund's accessible reserves have been heavily depleted for budget support"
-interviewAngle: "TODO: fill in"
+interviewAngle: "Don't treat the Hormuz closure as Iran's main problem. Years of sanctions already pushed nearly all its oil onto an uninsured shadow fleet selling to one buyer, China, so the war-risk insurance premium that's squeezing Saudi and Emirati shipping barely applies to tankers Iran couldn't insure through normal markets anyway. That's also why Iran's IMF contraction forecast for 2026 (-7.6%) is smaller than Kuwait's (-16.7%) or Qatar's (-15.6%), the two Gulf producers with no Hormuz bypass at all: being locked out of normal shipping and insurance for years left Iran with less of a 'normal' export system left to lose."
 summary: "Iran runs a sanctions-isolated economy where oil exports are overwhelmingly dependent on a single buyer, China, which takes roughly 91% of its crude. The Iran war has deepened the damage: in October 2026 the IMF projected a 7.6% contraction in 2026, citing enhanced sanctions and a US naval blockade. The rial lost about 45% of its value against the dollar in 2025 alone."
 sources:
   - title: "World Bank Open Data, Iran"
@@ -73,7 +75,21 @@ sources:
     url: "https://data.worldbank.org/indicator/TM.VAL.FUEL.ZS.UN"
   - title: "IMF REO, Middle East and Central Asia, May 2025, Statistical Appendix, Table 6 \"Oil Exporters: Breakeven Oil Prices\""
     url: "https://www.imf.org/-/media/files/publications/reo/mcd-cca/2025/may/english/regional-economic-outlook-middle-east-central-asia-may-2025-statistical-appendix.pdf"
-lastUpdated: 2026-11-06
+  - title: "Iran International, \"Iran faces worse economic outlook than war-hit Mideast rivals, IMF says\" (October 2026)"
+    url: "https://www.iranintl.com/en/202610136407"
+  - title: "Al Jazeera, \"How oil, gas losses have shrunk Iran's GDP by 10 percent during war\" (September 2026)"
+    url: "https://www.aljazeera.com/news/2026/9/21/how-oil-gas-losses-have-shrunk-irans-gdp-by-10-percent-during-war"
+  - title: "Wikipedia, \"2026 Kharg Island attack\""
+    url: "https://en.wikipedia.org/wiki/2026_Kharg_Island_attack"
+  - title: "CNBC, \"Oil exporters scramble for routes beyond Hormuz — but there are no easy options\" (April 2026)"
+    url: "https://www.cnbc.com/2026/04/23/strait-hormuz-closure-alternative-routes-middle-east-oil-gas-pipelines.html"
+  - title: "theboard.world, \"5 Pipelines That Bypass the Strait of Hormuz — And Why They Fall Short\" (2026)"
+    url: "https://theboard.world/articles/energy/5-pipelines-bypass-strait-of-hormuz-not-enough/"
+  - title: "Kharon, \"Behind Iran's War Chest, an Oil 'Lifeline' from China\""
+    url: "https://www.kharon.com/brief/iran-war-oil-china-trade-shadow-fleet-sanctions"
+  - title: "Tehran Times, \"Iran's monthly GDP grows 0.9%, driven by non-oil sectors\""
+    url: "https://www.tehrantimes.com/news/513964/Iran-s-monthly-GDP-grows-0-9-driven-by-non-oil-sectors"
+lastUpdated: 2026-11-08
 ---
 
 TODO: fill in
